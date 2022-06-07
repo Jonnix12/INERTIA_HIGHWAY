@@ -35,7 +35,7 @@
             ],
             "bindings": [
                 {
-                    "name": "acceleration",
+                    "name": "accelerationGamePad",
                     "id": "965ed002-6165-42b7-9627-2f5e1d2418ba",
                     "path": "1DAxis(minValue=-0.65)",
                     "interactions": "",
@@ -68,10 +68,54 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "accelerationKeybord",
+                    "id": "50d4c2c1-7b32-4258-a455-96acb86cc018",
+                    "path": "1DAxis(minValue=-0.65)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3f23562a-f1b2-4865-b857-ab6052795334",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6c2e4350-d62f-425f-b5af-1e885d935cbb",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "d21cd5fe-9766-4412-afd4-720de83121c3",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c89d2a9-c078-4093-b9b0-6ae089471ad3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Break",
@@ -110,6 +154,39 @@
                     "action": "Steering",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "SteerKeybord",
+                    "id": "7899e250-ddbc-44b1-999f-6ada00592a25",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2d18f9d0-cc6c-401f-b22e-334295f0fdcc",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b8357003-81c6-4552-b953-ebd2b5e7a517",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -132,6 +209,17 @@
                     "name": "",
                     "id": "52a2cfdf-4027-4a15-91ad-ffd92127ffdd",
                     "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CamControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59952667-0631-440e-b7dd-70c5291d95cf",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

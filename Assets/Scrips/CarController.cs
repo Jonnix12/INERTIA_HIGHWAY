@@ -6,12 +6,6 @@ using UnityEngine.Serialization;
 
 public class CarController : MonoBehaviour
 {
-    #region ScrifsReference
-    
-    [SerializeField] private CarInputManager _input;
-    
-    #endregion
-    
     #region Fields
     
     [Header("Motor Parameters")] 
@@ -20,113 +14,96 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private float _breakForce;
     [SerializeField]
-    private float _angelSpeed;
-
-    [Header("Colliders")]
-    [SerializeField] private WheelCollider _frontLeftCollider;
-    [SerializeField] private WheelCollider _frontRightCollider;
-    [SerializeField] private WheelCollider _rearLeftCollider;
-    [SerializeField] private WheelCollider _rearRightCollider;
+    private float _maxAngel;
     
-    [Header("Transforms")]
-    [SerializeField] private Transform _frontLeftTransform;
-    [SerializeField] private Transform _frontRightTransform;
-    [SerializeField] private Transform _rearLeftTransform;
-    [SerializeField] private Transform _rearRightTransform;
-
+    [Header("Wheels")] 
+    [SerializeField] private WheelStract[] _wheels;
+    
+    [Header("Camera LookAT")]
+    public Transform _cameraLookAT;
+    
     private float _accelerationInput;
     private float _steerInput;
-    private float _currentBreakForce;
-    private bool _isBreaking;
+    private bool _isBreakingInput;
     
+    private float _currentBreakForce;
+    private float[] _fowerdSlips;
+    private float[] _sideSlips;
+
+    #endregion
+
+    #region Prop
+
+    public WheelStract[] Wheels
+    {
+        get { return _wheels; }
+    }
+
+    #endregion
+
+    #region UnityCallback
+
+    private void Start()
+    {
+        for (int i = 0; i < _wheels.Length; i++)
+        {
+            _wheels[i].InhitWheel(i);
+        }
+    }
+
     #endregion
 
     #region Updates
-
-    #region Inputs
-
-    private void Update()
-    {
-        _accelerationInput = _input.Input.Default.Acceleration.ReadValue<float>();
-        _steerInput = _input.Input.Default.Steering.ReadValue<float>();
-        _isBreaking = _input.Input.Default.Break.IsPressed();
-        
-        #region GFXUpdate
-        
-        UpdateWheelVisal(_rearLeftCollider,_rearLeftTransform);
-        UpdateWheelVisal(_rearRightCollider,_rearRightTransform);
-        UpdateWheelVisal(_frontLeftCollider,_frontLeftTransform);
-        UpdateWheelVisal(_frontRightCollider,_frontRightTransform);
-        
-        #endregion
-        
-    }
-
-    #endregion
-
-    #region Physics
-
     private void FixedUpdate()
     {
-        Acceleration();
-        HandlSteering();
-        _currentBreakForce = _isBreaking ? _breakForce : 0f;
-        Break();
+        AddForceToWheel(_wheels,_accelerationInput * _motorForce);
+        AddSteerAngelToWheel(_wheels,_steerInput * _maxAngel);
+        _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
+        AddBrackForceToWheel(_wheels,_currentBreakForce * _breakForce);
+        
+        for (int i = 0; i < _wheels.Length; i++)
+        {
+            _wheels[i].UpdateWheel();
+        }
     }
 
     #endregion
-  
+
+    #region PublicFuncation
+
+    public void UpdateCarInputs(float acceleration,float steer, bool isBreak)
+    {
+        _accelerationInput = acceleration;
+        _steerInput = steer;
+        _isBreakingInput = isBreak;
+    }
 
     #endregion
     
     #region PrivateFuncation
-
-    private void Break()
+    
+    private void AddSteerAngelToWheel(WheelStract[] wheelColliders, float angel)
     {
-        AddBrackForceToWheel(_rearLeftCollider,_currentBreakForce);
-        AddBrackForceToWheel(_rearRightCollider,_currentBreakForce);
-        AddBrackForceToWheel(_frontLeftCollider,_currentBreakForce);
-        AddBrackForceToWheel(_frontRightCollider,_currentBreakForce);
-    }
-
-    private void Acceleration()
-    {
-        AddForceToWheel(_rearLeftCollider, _accelerationInput * _motorForce);
-        AddForceToWheel(_rearRightCollider, _accelerationInput * _motorForce);
-        AddForceToWheel(_frontLeftCollider, _accelerationInput * _motorForce);
-        AddForceToWheel(_frontRightCollider, _accelerationInput * _motorForce);
-    }
-
-    private void HandlSteering()
-    {
-        AddSteerAngelToWheel(_frontLeftCollider,_steerInput * _angelSpeed);
-        AddSteerAngelToWheel(_frontRightCollider,_steerInput * _angelSpeed);
-    }
-
-    private void AddSteerAngelToWheel(WheelCollider wheelCollider, float angel)
-    {
-        wheelCollider.steerAngle = angel;
+        for (int i = 0; i < 2; i++)//set only for the front wheels
+        {
+            _wheels[i].Collider.steerAngle = angel;
+        }
     }
     
-    private void AddForceToWheel(WheelCollider wheelCollider, float motorForce)
+    private void AddForceToWheel(WheelStract[] wheelColliders, float motorForce)
     {
-        wheelCollider.motorTorque = motorForce;
+        for (int i = 2; i < 4; i++)//set only for the two rear wheels
+        {
+            _wheels[i].Collider.motorTorque = motorForce;
+        }
     }
     
-    private void AddBrackForceToWheel(WheelCollider wheelCollider, float brackForce)
+    private void AddBrackForceToWheel(WheelStract[] wheelColliders, float brackForce)
     {
-        wheelCollider.brakeTorque = brackForce;
-    }
-
-    private void UpdateWheelVisal(WheelCollider wheelCollider, Transform wheelTransform)
-    {
-        Vector3 pos;
-        Quaternion rot;
-        
-        wheelCollider.GetWorldPose(out pos,out rot);
-
-        wheelTransform.position = pos;
-        wheelTransform.rotation = rot;
+        for (int i = 0; i < wheelColliders.Length; i++)
+        {
+            _wheels[i].Collider.brakeTorque = brackForce;
+        }
     }
 
     #endregion
