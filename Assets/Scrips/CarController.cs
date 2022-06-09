@@ -54,6 +54,8 @@ public class CarController : CarSteeringSystem
         AddForceToWheel(_wheels,_accelerationInput * _motorForce);
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(_wheels,_currentBreakForce * _breakForce);
+
+        UpdateWheelSteerAngel();
         
         for (int i = 0; i < _wheels.Length; i++)
         {

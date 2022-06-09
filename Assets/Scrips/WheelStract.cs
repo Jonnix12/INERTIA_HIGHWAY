@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public struct WheelStract
@@ -8,17 +9,23 @@ public struct WheelStract
     #region Fields
 
     public WheelCollider Collider;
-    public Transform Transform;
+    
+    public Vector3 DefaultWheelSteerDir;
+    
+    [SerializeField] public Transform Transform;
+    
+    private Vector3 _wheelForwardDir;
+    private Vector3 _wheelSidewaysDir;
     
     private string _wheelName;
     private int _wheelPosition;
+
 
     private float _wheelMotorTorque;
     private float _wheelBreakTorque;
     private float _wheelForwardSlip;
     private float _wheelSidewaysSlip;
-    private Vector3 _wheelForwardDir;
-    private Vector3 _wheelSidewaysDir;
+    
 
     #endregion
     
@@ -47,11 +54,13 @@ public struct WheelStract
     public Vector3 WheelForwardDir
     {
         get { return _wheelForwardDir; }
+        set { _wheelForwardDir = value; }
     }
 
     public Vector3 WheelSidewaysDir
     {
         get { return _wheelSidewaysDir; }
+        set { _wheelSidewaysDir = value; }
     }
 
     public string WheelName
@@ -80,16 +89,18 @@ public struct WheelStract
 
         _wheelMotorTorque = Collider.motorTorque;
         _wheelBreakTorque = Collider.brakeTorque;
+        
         Collider.GetGroundHit(out wheelHit);
         _wheelForwardSlip = wheelHit.forwardSlip;
         _wheelSidewaysSlip = wheelHit.sidewaysSlip;
         _wheelForwardDir = wheelHit.forwardDir;
         _wheelSidewaysDir = wheelHit.sidewaysDir;
-        
+
         UpdateWheelVisal();
     }
 
     #endregion
+    
 
     #region PrivateFuncation
 
