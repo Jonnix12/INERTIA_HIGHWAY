@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CarController : MonoBehaviour
+public class CarController : CarSteeringSystem
 {
     #region Fields
     
@@ -16,14 +16,10 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private float _maxAngel;
     
-    [Header("Wheels")] 
-    [SerializeField] private WheelStract[] _wheels;
-    
     [Header("Camera LookAT")]
     public Transform _cameraLookAT;
     
     private float _accelerationInput;
-    private float _steerInput;
     private bool _isBreakingInput;
     
     private float _currentBreakForce;
@@ -34,10 +30,7 @@ public class CarController : MonoBehaviour
 
     #region Prop
 
-    public WheelStract[] Wheels
-    {
-        get { return _wheels; }
-    }
+    //CamaraProp
 
     #endregion
 
@@ -45,6 +38,8 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        InitSteeringSystem();
+        
         for (int i = 0; i < _wheels.Length; i++)
         {
             _wheels[i].InhitWheel(i);
@@ -57,7 +52,6 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         AddForceToWheel(_wheels,_accelerationInput * _motorForce);
-        AddSteerAngelToWheel(_wheels,_steerInput * _maxAngel);
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(_wheels,_currentBreakForce * _breakForce);
         
@@ -74,22 +68,14 @@ public class CarController : MonoBehaviour
     public void UpdateCarInputs(float acceleration,float steer, bool isBreak)
     {
         _accelerationInput = acceleration;
-        _steerInput = steer;
+        GetSteeringInput(steer);
         _isBreakingInput = isBreak;
     }
 
     #endregion
     
     #region PrivateFuncation
-    
-    private void AddSteerAngelToWheel(WheelStract[] wheelColliders, float angel)
-    {
-        for (int i = 0; i < 2; i++)//set only for the front wheels
-        {
-            _wheels[i].Collider.steerAngle = angel;
-        }
-    }
-    
+
     private void AddForceToWheel(WheelStract[] wheelColliders, float motorForce)
     {
         for (int i = 2; i < 4; i++)//set only for the two rear wheels
@@ -107,6 +93,4 @@ public class CarController : MonoBehaviour
     }
 
     #endregion
-
-   
 }

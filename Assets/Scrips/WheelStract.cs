@@ -17,6 +17,8 @@ public struct WheelStract
     private float _wheelBreakTorque;
     private float _wheelForwardSlip;
     private float _wheelSidewaysSlip;
+    private Vector3 _wheelForwardDir;
+    private Vector3 _wheelSidewaysDir;
 
     #endregion
     
@@ -40,6 +42,16 @@ public struct WheelStract
     public float SideSlip
     {
         get { return _wheelSidewaysSlip; }
+    }
+    
+    public Vector3 WheelForwardDir
+    {
+        get { return _wheelForwardDir; }
+    }
+
+    public Vector3 WheelSidewaysDir
+    {
+        get { return _wheelSidewaysDir; }
     }
 
     public string WheelName
@@ -71,6 +83,8 @@ public struct WheelStract
         Collider.GetGroundHit(out wheelHit);
         _wheelForwardSlip = wheelHit.forwardSlip;
         _wheelSidewaysSlip = wheelHit.sidewaysSlip;
+        _wheelForwardDir = wheelHit.forwardDir;
+        _wheelSidewaysDir = wheelHit.sidewaysDir;
         
         UpdateWheelVisal();
     }
@@ -87,8 +101,6 @@ public struct WheelStract
         Collider.GetWorldPose(out pos,out rot);
         Transform.position = pos;
         Transform.rotation = rot;
-        
-        
     }
 
     #endregion

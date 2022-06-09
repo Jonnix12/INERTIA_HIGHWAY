@@ -20,6 +20,7 @@ public class CarInputManager : MonoBehaviour
     private void OnEnable()
     {
         Input.Enable();
+        
     }
 
     private void OnDisable()
@@ -32,8 +33,8 @@ public class CarInputManager : MonoBehaviour
         float acceleration = Input.Default.Acceleration.ReadValue<float>();
         float steer = Input.Default.Steering.ReadValue<float>();
         bool isBreak = Input.Default.Break.IsPressed();
-        
-       _controller.UpdateCarInputs(acceleration,steer,isBreak);
+
+        _controller.UpdateCarInputs(acceleration,steer,isBreak);
        
        CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
     }
