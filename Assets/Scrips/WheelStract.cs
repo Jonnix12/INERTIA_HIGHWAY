@@ -10,17 +10,18 @@ public struct WheelStract
 
     public WheelCollider Collider;
     
-    public Vector3 DefaultWheelSteerDir;
+    [HideInInspector] public Vector3 DefaultWheelSteerDir;
+    [HideInInspector] public Transform WheelPosition;
     
-    [SerializeField] public Transform Transform;
-    
+    [SerializeField] private Transform meshTransform;
+
     private Vector3 _wheelForwardDir;
-    private Vector3 _wheelSidewaysDir;
+    private Vector3 _wheelSidewaysDirLeft;
+    private Vector3 _wheelSidewaysDirRight;
     
     private string _wheelName;
-    private int _wheelPosition;
-
-
+    private int _wheelIndex;
+    
     private float _wheelMotorTorque;
     private float _wheelBreakTorque;
     private float _wheelForwardSlip;
@@ -54,13 +55,16 @@ public struct WheelStract
     public Vector3 WheelForwardDir
     {
         get { return _wheelForwardDir; }
-        set { _wheelForwardDir = value; }
     }
 
-    public Vector3 WheelSidewaysDir
+    public Vector3 WheelSidewaysDirLeft
     {
-        get { return _wheelSidewaysDir; }
-        set { _wheelSidewaysDir = value; }
+        get { return _wheelSidewaysDirLeft; }
+    }
+
+    public Vector3 WheelSidewaysDirRight
+    {
+        get { return _wheelSidewaysDirRight; }
     }
 
     public string WheelName
@@ -68,9 +72,9 @@ public struct WheelStract
         get { return _wheelName; }
     }
 
-    public int WheelPosition
+    public int WheelIndex
     {
-        get { return _wheelPosition; }
+        get { return _wheelIndex; }
     }
 
     #endregion
@@ -79,8 +83,8 @@ public struct WheelStract
 
     public void InhitWheel(int wheelPosition)
     {
-        _wheelName = Transform.name;
-        _wheelPosition = wheelPosition;
+        _wheelName = meshTransform.name;
+        _wheelIndex = wheelPosition;
     }
 
     public void UpdateWheel()
@@ -94,14 +98,14 @@ public struct WheelStract
         _wheelForwardSlip = wheelHit.forwardSlip;
         _wheelSidewaysSlip = wheelHit.sidewaysSlip;
         _wheelForwardDir = wheelHit.forwardDir;
-        _wheelSidewaysDir = wheelHit.sidewaysDir;
+        _wheelSidewaysDirLeft = wheelHit.sidewaysDir;
+        _wheelSidewaysDirRight = -wheelHit.sidewaysDir;
 
         UpdateWheelVisal();
     }
 
     #endregion
     
-
     #region PrivateFuncation
 
     private void UpdateWheelVisal()
@@ -110,8 +114,8 @@ public struct WheelStract
         Quaternion rot;
         
         Collider.GetWorldPose(out pos,out rot);
-        Transform.position = pos;
-        Transform.rotation = rot;
+        meshTransform.position = pos;
+        meshTransform.rotation = rot;
     }
 
     #endregion

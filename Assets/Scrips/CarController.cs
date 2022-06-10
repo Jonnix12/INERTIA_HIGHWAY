@@ -39,11 +39,6 @@ public class CarController : CarSteeringSystem
     private void Start()
     {
         InitSteeringSystem();
-        
-        for (int i = 0; i < _wheels.Length; i++)
-        {
-            _wheels[i].InhitWheel(i);
-        }
     }
 
     #endregion
@@ -52,6 +47,7 @@ public class CarController : CarSteeringSystem
     private void FixedUpdate()
     {
         AddForceToWheel(_wheels,_accelerationInput * _motorForce);
+        
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(_wheels,_currentBreakForce * _breakForce);
 
