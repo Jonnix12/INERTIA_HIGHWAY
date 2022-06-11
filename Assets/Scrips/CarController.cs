@@ -1,27 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class CarController : CarSteeringSystem
+public class CarController : TransmissionSystem
 {
     #region Fields
     
-    [Header("Motor Parameters")] 
-    [SerializeField]
-    private float _motorForce;
-    [SerializeField]
-    private float _breakForce;
-    [SerializeField]
-    private float _maxAngel;
+    [Header("Center Of Mass")]
+    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Transform _centerOfMass;
     
-    [Header("Camera LookAT")]
-    public Transform _cameraLookAT;
+    [Header("Motor Parameters")]
     
+    [SerializeField] private float _breakForce;
+
+    [Header("Camera LookAT")] public Transform _cameraLookAT;
+
     private float _accelerationInput;
     private bool _isBreakingInput;
-    
+
     private float _currentBreakForce;
     private float[] _fowerdSlips;
     private float[] _sideSlips;
@@ -33,61 +29,50 @@ public class CarController : CarSteeringSystem
     //CamaraProp
 
     #endregion
-
+    
     #region UnityCallback
 
     private void Start()
     {
         InitSteeringSystem();
+        _rb.centerOfMass = _centerOfMass.position;
     }
 
     #endregion
 
     #region Updates
+
     private void FixedUpdate()
     {
-        AddForceToWheel(_wheels,_accelerationInput * _motorForce);
-        
+        UpdateTransmission(_accelerationInput);
+
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
-        AddBrackForceToWheel(_wheels,_currentBreakForce * _breakForce);
+        AddBrackForceToWheel(Wheels, _currentBreakForce * _breakForce);
 
         UpdateWheelSteerAngel();
-        
-        for (int i = 0; i < _wheels.Length; i++)
-        {
-            _wheels[i].UpdateWheel();
-        }
+
+        for (var i = 0; i < Wheels.Length; i++) Wheels[i].UpdateWheel();
     }
 
     #endregion
 
     #region PublicFuncation
 
-    public void UpdateCarInputs(float acceleration,float steer, bool isBreak)
+    public void UpdateCarInputs(float acceleration, float steer, bool isBreak)
     {
         _accelerationInput = acceleration;
         GetSteeringInput(steer);
         _isBreakingInput = isBreak;
     }
 
+    
     #endregion
     
     #region PrivateFuncation
-
-    private void AddForceToWheel(WheelStract[] wheelColliders, float motorForce)
-    {
-        for (int i = 2; i < 4; i++)//set only for the two rear wheels
-        {
-            _wheels[i].Collider.motorTorque = motorForce;
-        }
-    }
     
-    private void AddBrackForceToWheel(WheelStract[] wheelColliders, float brackForce)
+    private void AddBrackForceToWheel(WheelStruct[] wheelColliders, float brackForce)
     {
-        for (int i = 0; i < wheelColliders.Length; i++)
-        {
-            _wheels[i].Collider.brakeTorque = brackForce;
-        }
+        for (var i = 0; i < wheelColliders.Length; i++) Wheels[i].Collider.brakeTorque = brackForce;
     }
 
     #endregion

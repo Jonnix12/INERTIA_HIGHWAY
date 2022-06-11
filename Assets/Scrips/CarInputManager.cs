@@ -15,12 +15,13 @@ public class CarInputManager : MonoBehaviour
     {
         Input = new CarInput();
         CamaraFallowCar.SetTarget(_controller._cameraLookAT);
+        Input.Default.UpShiftGear.performed += _controller.UpShifter;
+        Input.Default.DawnShiftGear.performed += _controller.DawnShifter;
     }
 
     private void OnEnable()
     {
         Input.Enable();
-        
     }
 
     private void OnDisable()
@@ -35,7 +36,7 @@ public class CarInputManager : MonoBehaviour
         bool isBreak = Input.Default.Break.IsPressed();
 
         _controller.UpdateCarInputs(acceleration,steer,isBreak);
-       
-       CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
+
+        CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
     }
 }

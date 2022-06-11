@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarSteeringSystem : MonoBehaviour
@@ -8,17 +5,19 @@ public class CarSteeringSystem : MonoBehaviour
     #region Fields
 
     [Header("Wheels")] 
-    [SerializeField] protected WheelStract[] _wheels;
+    [SerializeField] private WheelStruct[] _wheels;
 
-    [Header("Steering System Parameters")]
+    [Header("Steering System Parameters")] 
     [SerializeField] private float _maxSteerAngel;
-    [SerializeField] private float _InputDeadZone;
 
-    [Header("Anchors Transform")]
+    [SerializeField] private float _inputDeadZone;
+
+    [Header("Steering Anchors Transform")] 
     [SerializeField] private Transform _leftAnchor;
+
     [SerializeField] private Transform _rightAnchor;
 
-    
+
     private float _steerInput;
 
     private Vector3 _leftAnchorBasePosition;
@@ -29,72 +28,66 @@ public class CarSteeringSystem : MonoBehaviour
     private Vector3 _leftDefaultWheelSteerDir;
     private Vector3 _rightDefaultWheelSteerDir;
 
-    private float leftInput;
-    private float rightInput;
+    private float _leftInput;
+    private float _rightInput;
 
     private bool _isTruningLeft;
     private bool _isTruningRight;
 
     #endregion
-
+    
     #region Prop
 
-    public WheelStract[] Wheels
-    {
-        get { return _wheels; }
-    }
+    public WheelStruct[] Wheels => _wheels;
 
     #endregion
 
     #region UnityCallback
-    
+
     private void Awake()
     {
         WheelHalper.onSetDir += GetWheelDirVector;
     }
 
     #endregion
-
-    #region ProtectedFunction
     
+    #region ProtectedFunction
+
     protected void InitSteeringSystem()
     {
         _leftAnchorBasePosition = _leftAnchor.localPosition;
         _rightAnchorBasePosition = _rightAnchor.localPosition;
         _leftAnchorTarget = new Vector3(_leftAnchor.position.x, 0, -_maxSteerAngel);
         _rightAnchorTarget = new Vector3(_rightAnchor.position.x, 0, -_maxSteerAngel);
-        
-        for (int i = 0; i < _wheels.Length; i++)
-        {
-            _wheels[i].InhitWheel(i);
-        }
+
+        for (var i = 0; i < _wheels.Length; i++) _wheels[i].InhitWheel(i);
     }
-   
+
     protected void GetSteeringInput(float input)
     {
-        if (input < -_InputDeadZone)
+        if (input < -_inputDeadZone)
         {
-            leftInput = Mathf.Abs(input);
+            _leftInput = Mathf.Abs(input);
             _isTruningLeft = true;
         }
-        else if (input > _InputDeadZone)
+        else if (input > _inputDeadZone)
         {
-            rightInput = input;
+            _rightInput = input;
             _isTruningRight = true;
         }
         else
         {
-            rightInput = 0;
-            leftInput = 0;
+            _rightInput = 0;
+            _leftInput = 0;
             _isTruningLeft = false;
             _isTruningRight = false;
         }
     }
-    
+
     protected void UpdateWheelSteerAngel()
     {
         MoveAnchorPosition();
-        
+
         if (_isTruningLeft)
         {
             _wheels[0].Collider.steerAngle = -CalculateSteerAngel(_leftAnchor.position, 0);
@@ -118,20 +111,20 @@ public class CarSteeringSystem : MonoBehaviour
 
     private void MoveAnchorPosition()
     {
-        _leftAnchor.localPosition = Vector3.Lerp(_leftAnchorBasePosition, _leftAnchorTarget, leftInput); 
-        _rightAnchor.localPosition = Vector3.Lerp(_rightAnchorBasePosition, _rightAnchorTarget, rightInput);
+        _leftAnchor.localPosition = Vector3.Lerp(_leftAnchorBasePosition, _leftAnchorTarget, _leftInput);
+        _rightAnchor.localPosition = Vector3.Lerp(_rightAnchorBasePosition, _rightAnchorTarget, _rightInput);
     }
-    
+
     private float CalculateSteerAngel(Vector3 target, int index)
     {
-        Vector3 dir = _wheels[index].WheelPosition.InverseTransformPoint(target) - Vector3.zero;
-        
-        float angel = Vector3.Angle(_wheels[index].DefaultWheelSteerDir , dir.normalized);
-        
+        var dir = _wheels[index].WheelPosition.InverseTransformPoint(target) - Vector3.zero;
+
+        var angel = Vector3.Angle(_wheels[index].DefaultWheelSteerDir, dir.normalized);
+
         return angel;
     }
 
-    private void GetWheelDirVector(Vector3 dir, int index,Transform position)
+    private void GetWheelDirVector(Vector3 dir, int index, Transform position)
     {
         _wheels[index].DefaultWheelSteerDir = dir;
         _wheels[index].WheelPosition = position;
@@ -141,32 +134,28 @@ public class CarSteeringSystem : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        for (int i = 0; i < _wheels.Length; i++)
+        for (var i = 0; i < _wheels.Length; i++)
         {
             Gizmos.color = Color.blue;
-            Ray ray = new Ray(_wheels[i].Collider.transform.position, _wheels[i].DefaultWheelSteerDir);
-            Gizmos.DrawRay(ray);
+            //var ray = new Ray(_wheels[i].WheelPosition.position, _wheels[i].DefaultWheelSteerDir);
+           // Gizmos.DrawRay(ray);
         }
 
-        for (int i = 0; i < _wheels.Length / 2; i++)
+        for (var i = 0; i < _wheels.Length / 2; i++)
         {
             Gizmos.color = Color.red;
-            Ray rayLeft = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirLeft);
+            var rayLeft = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirLeft);
             Gizmos.DrawRay(rayLeft);
-            Ray rayRight = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirRight);
+            var rayRight = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirRight);
             Gizmos.DrawRay(rayRight);
         }
-        
+
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(_leftAnchor.position,0.5f);
-        Gizmos.DrawSphere(_rightAnchor.position,0.5f);
+        Gizmos.DrawSphere(_leftAnchor.position, 0.5f);
+        Gizmos.DrawSphere(_rightAnchor.position, 0.5f);
     }
 
     #endregion
 
     #endregion
-
-   
-
-    
 }

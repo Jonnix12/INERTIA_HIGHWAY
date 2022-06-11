@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-
+ 
 public class CamaraFallowCar : MonoBehaviour
 {
     public static bool IsLookBackInput = false;

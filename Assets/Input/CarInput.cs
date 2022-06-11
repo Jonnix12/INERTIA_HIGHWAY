@@ -53,6 +53,24 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpShiftGear"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bba8db8-17d8-472c-a4cb-d5f66c2bea59"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DawnShiftGear"",
+                    ""type"": ""Button"",
+                    ""id"": ""48580633-7086-4527-8ca3-8f0d812e0fb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +227,50 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                     ""action"": ""Steering"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70bb7003-d98c-497f-9f26-19198f0da310"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DawnShiftGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6a64b4a-a86e-4cd8-a237-b7c344ea1ac2"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DawnShiftGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec293423-3228-4439-94ce-c6ed82c0b551"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpShiftGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3e0dd4e-49e1-40a0-a0fe-842d12ce5cf0"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpShiftGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -259,6 +321,8 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
         m_Default_Acceleration = m_Default.FindAction("Acceleration", throwIfNotFound: true);
         m_Default_Break = m_Default.FindAction("Break", throwIfNotFound: true);
         m_Default_Steering = m_Default.FindAction("Steering", throwIfNotFound: true);
+        m_Default_UpShiftGear = m_Default.FindAction("UpShiftGear", throwIfNotFound: true);
+        m_Default_DawnShiftGear = m_Default.FindAction("DawnShiftGear", throwIfNotFound: true);
         // CamControl
         m_CamControl = asset.FindActionMap("CamControl", throwIfNotFound: true);
         m_CamControl_CamControl = m_CamControl.FindAction("CamControl", throwIfNotFound: true);
@@ -324,6 +388,8 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Acceleration;
     private readonly InputAction m_Default_Break;
     private readonly InputAction m_Default_Steering;
+    private readonly InputAction m_Default_UpShiftGear;
+    private readonly InputAction m_Default_DawnShiftGear;
     public struct DefaultActions
     {
         private @CarInput m_Wrapper;
@@ -331,6 +397,8 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
         public InputAction @Acceleration => m_Wrapper.m_Default_Acceleration;
         public InputAction @Break => m_Wrapper.m_Default_Break;
         public InputAction @Steering => m_Wrapper.m_Default_Steering;
+        public InputAction @UpShiftGear => m_Wrapper.m_Default_UpShiftGear;
+        public InputAction @DawnShiftGear => m_Wrapper.m_Default_DawnShiftGear;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -349,6 +417,12 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                 @Steering.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSteering;
                 @Steering.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSteering;
                 @Steering.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSteering;
+                @UpShiftGear.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUpShiftGear;
+                @UpShiftGear.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUpShiftGear;
+                @UpShiftGear.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUpShiftGear;
+                @DawnShiftGear.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDawnShiftGear;
+                @DawnShiftGear.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDawnShiftGear;
+                @DawnShiftGear.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDawnShiftGear;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -362,6 +436,12 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                 @Steering.started += instance.OnSteering;
                 @Steering.performed += instance.OnSteering;
                 @Steering.canceled += instance.OnSteering;
+                @UpShiftGear.started += instance.OnUpShiftGear;
+                @UpShiftGear.performed += instance.OnUpShiftGear;
+                @UpShiftGear.canceled += instance.OnUpShiftGear;
+                @DawnShiftGear.started += instance.OnDawnShiftGear;
+                @DawnShiftGear.performed += instance.OnDawnShiftGear;
+                @DawnShiftGear.canceled += instance.OnDawnShiftGear;
             }
         }
     }
@@ -404,6 +484,8 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
         void OnAcceleration(InputAction.CallbackContext context);
         void OnBreak(InputAction.CallbackContext context);
         void OnSteering(InputAction.CallbackContext context);
+        void OnUpShiftGear(InputAction.CallbackContext context);
+        void OnDawnShiftGear(InputAction.CallbackContext context);
     }
     public interface ICamControlActions
     {

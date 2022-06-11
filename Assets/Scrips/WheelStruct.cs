@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [System.Serializable]
-public struct WheelStract
+public struct WheelStruct
 {
     #region Fields
 
@@ -26,6 +23,7 @@ public struct WheelStract
     private float _wheelBreakTorque;
     private float _wheelForwardSlip;
     private float _wheelSidewaysSlip;
+    private float _wheelRPM;
     
 
     #endregion
@@ -50,6 +48,11 @@ public struct WheelStract
     public float SideSlip
     {
         get { return _wheelSidewaysSlip; }
+    }
+
+    public float WheelRPM
+    {
+        get { return _wheelRPM; }
     }
     
     public Vector3 WheelForwardDir
@@ -100,6 +103,7 @@ public struct WheelStract
         _wheelForwardDir = wheelHit.forwardDir;
         _wheelSidewaysDirLeft = wheelHit.sidewaysDir;
         _wheelSidewaysDirRight = -wheelHit.sidewaysDir;
+        _wheelRPM = Collider.rpm;
 
         UpdateWheelVisal();
     }
