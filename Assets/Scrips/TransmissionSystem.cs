@@ -15,12 +15,13 @@ public class TransmissionSystem : CarSteeringSystem
 
     [SerializeField] private int _maxRpm;
     [SerializeField] private int _minRpm;
+    [SerializeField] private AnimationCurve _engineCurve;
     
     private const float FINAL_DRIVE_RATIO = 3.72f;
     private const int NUMBER_OF_GEARS = 6;
     
     private int _currentGear;
-
+    private float _currnetInput;
     private float _currentMotorForce;
     private float _engineRpm;
     private float _carSpeed;
@@ -37,6 +38,11 @@ public class TransmissionSystem : CarSteeringSystem
     public float CarSpeed
     {
         get { return _carSpeed; }
+    }
+
+    public int CurrentGear
+    {
+        get { return _currentGear; }
     }
 
     #endregion
@@ -84,7 +90,7 @@ public class TransmissionSystem : CarSteeringSystem
 
      private void AddForceToWheel(float input)
     {
-        if (_engineRpm < 6000)
+        if (_engineRpm < _maxRpm)
         {
             for (var i = 2; i < 4; i++) //set only for the two rear wheels
                 Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,input) / 2f;
@@ -94,12 +100,19 @@ public class TransmissionSystem : CarSteeringSystem
             for (var i = 2; i < 4; i++) //set only for the two rear wheels
                 Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,-0.25f) / 2f;
         }
+        
     }
 
     private float CalculateMotorForce(int gear,float input)
     {
-        _currentMotorForce = _motorForce * GetGearRatio(gear) * input;
-       
+        float refVelocity = 0;
+        _currnetInput = Mathf.SmoothDamp(_currnetInput, input, ref refVelocity, 0.5f);
+        Debug.Log(_currnetInput);
+        
+        float engineMultiplier = _engineCurve.Evaluate(_currnetInput);
+        Debug.Log("Engin: " + engineMultiplier);
+        _currentMotorForce = _motorForce * GetGearRatio(gear) * engineMultiplier; 
+        
         return _currentMotorForce;
     }
 

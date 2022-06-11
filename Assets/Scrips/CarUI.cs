@@ -8,6 +8,7 @@ public class CarUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI speed;
     [SerializeField] private TextMeshProUGUI enginRPM;
+    [SerializeField] private TextMeshProUGUI gear;
 
     [SerializeField] private CarController _car;
 
@@ -16,5 +17,6 @@ public class CarUI : MonoBehaviour
     {
         speed.text = _car.CarSpeed.ToString();
         enginRPM.text = _car.EngineRpm.ToString();
+        gear.text = _car.CurrentGear.ToString();
     }
 }
