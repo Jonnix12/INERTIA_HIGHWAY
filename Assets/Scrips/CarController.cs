@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CarController : TransmissionSystem
+public class CarController : CarEngineComponent
 {
     #region Fields
     
@@ -16,6 +16,7 @@ public class CarController : TransmissionSystem
     [Header("Camera LookAT")] public Transform _cameraLookAT;
 
     private float _accelerationInput;
+    private float _steeringInput;
     private bool _isBreakingInput;
 
     private float _currentBreakForce;
@@ -44,11 +45,12 @@ public class CarController : TransmissionSystem
 
     private void FixedUpdate()
     {
-        UpdateTransmission(_accelerationInput);
+        UpdateEngine(_accelerationInput);
 
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(Wheels, _currentBreakForce * _breakForce);
-
+        
+        GetSteeringInput(_steeringInput);
         UpdateWheelSteerAngel();
 
         for (var i = 0; i < Wheels.Length; i++) Wheels[i].UpdateWheel();
@@ -61,7 +63,7 @@ public class CarController : TransmissionSystem
     public void UpdateCarInputs(float acceleration, float steer, bool isBreak)
     {
         _accelerationInput = acceleration;
-        GetSteeringInput(steer);
+        _steeringInput = steer;
         _isBreakingInput = isBreak;
     }
 

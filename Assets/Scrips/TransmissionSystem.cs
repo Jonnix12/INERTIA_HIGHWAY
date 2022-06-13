@@ -11,29 +11,19 @@ public class TransmissionSystem : CarSteeringSystem
 
     //2016 Chevrolet Camaro Preliminary
     [Header("Transmission System Parameters")]
-    [SerializeField] private float _motorForce;
-
-    [SerializeField] private int _maxRpm;
-    [SerializeField] private int _minRpm;
-    [SerializeField] private AnimationCurve _engineCurve;
-    
     private const float FINAL_DRIVE_RATIO = 3.72f;
     private const int NUMBER_OF_GEARS = 6;
     
     private int _currentGear;
     private float _currnetInput;
-    private float _currentMotorForce;
-    private float _engineRpm;
+    private float _wheelRpm;
+    
     private float _carSpeed;
 
     #endregion
 
     #region Props
-
-    public float EngineRpm
-    {
-        get { return _engineRpm; }
-    }
+    
 
     public float CarSpeed
     {
@@ -49,10 +39,9 @@ public class TransmissionSystem : CarSteeringSystem
 
     #region ProtectedFunctions
 
-    protected void UpdateTransmission(float input)
+    protected void UpdateTransmission(float engineRpm,float engineTorque)
     {
-        AddForceToWheel(input);
-        CalculateEngineRpm();
+        AddForceToWheel(engineRpm,engineTorque);
         CalculateCarSpeed();
     }
 
@@ -88,32 +77,25 @@ public class TransmissionSystem : CarSteeringSystem
 
     #region PrivateFuncations
 
-     private void AddForceToWheel(float input)
+     private void AddForceToWheel(float engineRpm, float engineTorque)//Work
     {
-        if (_engineRpm < _maxRpm)
-        {
-            for (var i = 2; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,input) / 2f;
-        }
-        else
-        {
-            for (var i = 2; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,-0.25f) / 2f;
-        }
-        
+        for (var i = 2; i < 4; i++) //set only for the two rear wheels
+            Wheels[i].Collider.motorTorque = CalculateMotorForce(engineRpm,engineTorque);
+       
+        // for (var i = 2; i < 4; i++) //set only for the two rear wheels
+        //     Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear) / 2f;
     }
-
-    private float CalculateMotorForce(int gear,float input)
+    
+     
+     //Torque (N.m) = 9.5488 x Power (kW) / Speed (RPM)
+    private float CalculateMotorForce(float engineRpm,float engineTorque)
     {
-        float refVelocity = 0;
-        _currnetInput = Mathf.SmoothDamp(_currnetInput, input, ref refVelocity, 0.5f);
-        Debug.Log(_currnetInput);
-        
-        float engineMultiplier = _engineCurve.Evaluate(_currnetInput);
-        Debug.Log("Engin: " + engineMultiplier);
-        _currentMotorForce = _motorForce * GetGearRatio(gear) * engineMultiplier; 
-        
-        return _currentMotorForce;
+        _wheelRpm = engineRpm / GetGearRatio(_currentGear) / FINAL_DRIVE_RATIO;
+        float force = engineTorque;
+        //float force = 9.5488f * 339 / _wheelRpm;
+        Debug.Log("wheel Rpm cal: " + _wheelRpm);
+        Debug.Log("wheel gg: " + Wheels[2].WheelRPM);
+        return force;
     }
 
     private float GetGearRatio(int gear)
@@ -137,19 +119,6 @@ public class TransmissionSystem : CarSteeringSystem
         }
     }
     
-
-    //RPM = Wheels RPM * Transmission ratio * Final drive ratio
-    private void CalculateEngineRpm()
-    {
-        float leftWheelSpeed;
-        float rightWheelSpeed;
-        
-        leftWheelSpeed = Wheels[2].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
-        rightWheelSpeed = Wheels[3].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
-
-        _engineRpm = Mathf.Clamp((leftWheelSpeed + rightWheelSpeed) / 2, _minRpm, _maxRpm);
-        
-    }
 
     //Vehicle speed = Wheels RPM × Tire diameter × π × 60 / 1000
     private void CalculateCarSpeed()

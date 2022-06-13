@@ -63,6 +63,11 @@ public class CarSteeringSystem : MonoBehaviour
         for (var i = 0; i < _wheels.Length; i++) _wheels[i].InhitWheel(i);
     }
 
+    protected void UpdateSteeringSystem()
+    {
+        
+    }
+
     protected void GetSteeringInput(float input)
     {
         if (input < -_inputDeadZone)
