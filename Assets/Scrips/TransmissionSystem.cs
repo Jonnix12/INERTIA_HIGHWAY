@@ -81,9 +81,6 @@ public class TransmissionSystem : CarSteeringSystem
     {
         for (var i = 2; i < 4; i++) //set only for the two rear wheels
             Wheels[i].Collider.motorTorque = CalculateMotorForce(engineRpm,engineTorque);
-       
-        // for (var i = 2; i < 4; i++) //set only for the two rear wheels
-        //     Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear) / 2f;
     }
     
      
@@ -91,10 +88,9 @@ public class TransmissionSystem : CarSteeringSystem
     private float CalculateMotorForce(float engineRpm,float engineTorque)
     {
         _wheelRpm = engineRpm / GetGearRatio(_currentGear) / FINAL_DRIVE_RATIO;
-        float force = engineTorque;
+        float force = engineTorque * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO / 4f;
         //float force = 9.5488f * 339 / _wheelRpm;
-        Debug.Log("wheel Rpm cal: " + _wheelRpm);
-        Debug.Log("wheel gg: " + Wheels[2].WheelRPM);
+        
         return force;
     }
 
