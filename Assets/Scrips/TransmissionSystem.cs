@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TransmissionSystem : CarSteeringSystem
+public class TransmissionSystem : CarSteeringSystem_V2
 {
     #region Fields
 
@@ -37,6 +34,11 @@ public class TransmissionSystem : CarSteeringSystem
     public float CarSpeed
     {
         get { return _carSpeed; }
+    }
+
+    public int Gear
+    {
+        get { return _currentGear; }
     }
 
     #endregion

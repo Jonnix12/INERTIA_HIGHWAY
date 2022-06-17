@@ -57,8 +57,8 @@ public class CarSteeringSystem : MonoBehaviour
     {
         _leftAnchorBasePosition = _leftAnchor.localPosition;
         _rightAnchorBasePosition = _rightAnchor.localPosition;
-        _leftAnchorTarget = new Vector3(_leftAnchor.position.x, 0, -_maxSteerAngel);
-        _rightAnchorTarget = new Vector3(_rightAnchor.position.x, 0, -_maxSteerAngel);
+        _leftAnchorTarget = new Vector3(_leftAnchor.localPosition.x, 0, -_maxSteerAngel);
+        _rightAnchorTarget = new Vector3(_rightAnchor.localPosition.x, 0, -_maxSteerAngel);
 
         for (var i = 0; i < _wheels.Length; i++) _wheels[i].InhitWheel(i);
     }
@@ -90,13 +90,13 @@ public class CarSteeringSystem : MonoBehaviour
 
         if (_isTruningLeft)
         {
-            _wheels[0].Collider.steerAngle = -CalculateSteerAngel(_leftAnchor.position, 0);
-            _wheels[1].Collider.steerAngle = -180 + CalculateSteerAngel(_leftAnchor.position, 1);
+            _wheels[0].Collider.steerAngle = -CalculateSteerAngel(_leftAnchor.localPosition, 0);
+            _wheels[1].Collider.steerAngle = -180 + CalculateSteerAngel(_leftAnchor.localPosition, 1);
         }
         else if (_isTruningRight)
         {
-            _wheels[0].Collider.steerAngle = 180 - CalculateSteerAngel(_rightAnchor.position, 0);
-            _wheels[1].Collider.steerAngle = CalculateSteerAngel(_rightAnchor.position, 1);
+            _wheels[0].Collider.steerAngle = 180 - CalculateSteerAngel(_rightAnchor.localPosition, 0);
+            _wheels[1].Collider.steerAngle = CalculateSteerAngel(_rightAnchor.localPosition, 1);
         }
         else
         {
@@ -117,10 +117,12 @@ public class CarSteeringSystem : MonoBehaviour
 
     private float CalculateSteerAngel(Vector3 target, int index)
     {
-        var dir = _wheels[index].WheelPosition.InverseTransformPoint(target) - Vector3.zero;
+        var dir = _wheels[index].Collider.transform.InverseTransformPoint(target) - Vector3.zero;
 
         var angel = Vector3.Angle(_wheels[index].DefaultWheelSteerDir, dir.normalized);
-
+        
+        Debug.Log("Wheel index: " + index + "Angel: " + angel);
+        
         return angel;
     }
 
@@ -146,7 +148,7 @@ public class CarSteeringSystem : MonoBehaviour
             Gizmos.color = Color.red;
             var rayLeft = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirLeft);
             Gizmos.DrawRay(rayLeft);
-            var rayRight = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirRight);
+            var rayRight = new Ray(_wheels[i].Collider.transform.position, _wheels[i].WheelSidewaysDirRight );
             Gizmos.DrawRay(rayRight);
         }
 

@@ -8,13 +8,15 @@ public class CarController : TransmissionSystem
     [Header("Center Of Mass")]
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _centerOfMass;
-    
-    [Header("Motor Parameters")]
-    
+
+    [Header("Motor Parameters")] [SerializeField]
+    private float _inputSmoothDamp;
     [SerializeField] private float _breakForce;
 
     [Header("Camera LookAT")] public Transform _cameraLookAT;
 
+    private float refVelosity = 0;
+    
     private float _accelerationInput;
     private bool _isBreakingInput;
 
@@ -34,8 +36,7 @@ public class CarController : TransmissionSystem
 
     private void Start()
     {
-        InitSteeringSystem();
-        _rb.centerOfMass = _centerOfMass.position;
+        
     }
 
     #endregion
@@ -49,10 +50,9 @@ public class CarController : TransmissionSystem
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(Wheels, _currentBreakForce * _breakForce);
 
-        UpdateWheelSteerAngel();
-
         for (var i = 0; i < Wheels.Length; i++) Wheels[i].UpdateWheel();
     }
+    
 
     #endregion
 
@@ -60,8 +60,9 @@ public class CarController : TransmissionSystem
 
     public void UpdateCarInputs(float acceleration, float steer, bool isBreak)
     {
+        _accelerationInput = Mathf.SmoothDamp(_accelerationInput, acceleration, ref refVelosity, _inputSmoothDamp);
         _accelerationInput = acceleration;
-        GetSteeringInput(steer);
+        CalculateSteerackermannAngel(steer);
         _isBreakingInput = isBreak;
     }
 
