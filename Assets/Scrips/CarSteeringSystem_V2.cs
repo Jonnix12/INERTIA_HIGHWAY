@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarSteeringSystem_V2 : MonoBehaviour
+public class CarSteeringSystem_V2 : CarSuspensionSystem
 {
-    [Header("Wheels")] 
-    [SerializeField] private WheelStruct[] _wheels;
-    
     [Header("Car Specs")]
     [SerializeField]
     private float wheelBase;
@@ -27,7 +24,7 @@ public class CarSteeringSystem_V2 : MonoBehaviour
         get { return ackermannAngelRight; }
     }
     
-    public WheelStruct[] Wheels => _wheels;
+   
 
     protected void CalculateSteerackermannAngel(float input)
     {
@@ -47,8 +44,8 @@ public class CarSteeringSystem_V2 : MonoBehaviour
             ackermannAngelRight = 0;
         }
         
-        _wheels[0].Collider.steerAngle = ackermannAngelLeft;
-        _wheels[1].Collider.steerAngle = ackermannAngelRight;
+        Wheels[0].SetWheelAngel(ackermannAngelLeft);
+        Wheels[1].SetWheelAngel(ackermannAngelRight);
 
     }
 }

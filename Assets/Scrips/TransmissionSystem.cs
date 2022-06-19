@@ -48,8 +48,8 @@ public class TransmissionSystem : CarSteeringSystem_V2
     protected void UpdateTransmission(float input)
     {
         AddForceToWheel(input);
-        CalculateEngineRpm();
-        CalculateCarSpeed();
+        //CalculateEngineRpm();
+        //CalculateCarSpeed();
     }
 
     #endregion
@@ -89,19 +89,19 @@ public class TransmissionSystem : CarSteeringSystem_V2
         if (_engineRpm < 6000)
         {
             for (var i = 2; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,input) / 2f;
+                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,input) / 2f);
         }
         else
         {
             for (var i = 2; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].Collider.motorTorque = CalculateMotorForce(_currentGear,-0.25f) / 2f;
+                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,-0.25f) / 2f);
         }
     }
 
     private float CalculateMotorForce(int gear,float input)
     {
         _currentMotorForce = _motorForce * GetGearRatio(gear) * input;
-       
+        Debug.Log(_currentMotorForce);
         return _currentMotorForce;
     }
 
@@ -128,39 +128,39 @@ public class TransmissionSystem : CarSteeringSystem_V2
     
 
     //RPM = Wheels RPM * Transmission ratio * Final drive ratio
-    private void CalculateEngineRpm()
-    {
-        float leftWheelSpeed;
-        float rightWheelSpeed;
-        
-        leftWheelSpeed = Wheels[2].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
-        rightWheelSpeed = Wheels[3].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
-
-        _engineRpm = Mathf.Clamp((leftWheelSpeed + rightWheelSpeed) / 2, _minRpm, _maxRpm);
-        
-    }
-
-    //Vehicle speed = Wheels RPM × Tire diameter × π × 60 / 1000
-    private void CalculateCarSpeed()
-    {
-        float totalWheelSpeed = 0;
-
-        List<float> wheelRpm = new List<float>(4);
-
-        for (int i = 0; i < wheelRpm.Capacity; i++)
-        {
-            float temp = Wheels[i].WheelRPM * 0.4f * Mathf.PI * 60 / 1000;
-            
-            wheelRpm.Add(temp);
-        }
-
-        for (int i = 0; i < wheelRpm.Capacity; i++)
-        {
-            totalWheelSpeed += wheelRpm[i];
-        }
-        
-        _carSpeed = totalWheelSpeed / 4;
-    }
+    // private void CalculateEngineRpm()
+    // {
+    //     float leftWheelSpeed;
+    //     float rightWheelSpeed;
+    //     
+    //     leftWheelSpeed = Wheels[2].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
+    //     rightWheelSpeed = Wheels[3].WheelRPM * GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
+    //
+    //     _engineRpm = Mathf.Clamp((leftWheelSpeed + rightWheelSpeed) / 2, _minRpm, _maxRpm);
+    //     
+    // }
+    //
+    // //Vehicle speed = Wheels RPM × Tire diameter × π × 60 / 1000
+    // private void CalculateCarSpeed()
+    // {
+    //     float totalWheelSpeed = 0;
+    //
+    //     List<float> wheelRpm = new List<float>(4);
+    //
+    //     for (int i = 0; i < wheelRpm.Capacity; i++)
+    //     {
+    //         float temp = Wheels[i].WheelRPM * 0.4f * Mathf.PI * 60 / 1000;
+    //         
+    //         wheelRpm.Add(temp);
+    //     }
+    //
+    //     for (int i = 0; i < wheelRpm.Capacity; i++)
+    //     {
+    //         totalWheelSpeed += wheelRpm[i];
+    //     }
+    //     
+    //     _carSpeed = totalWheelSpeed / 4;
+    // }
 
     #endregion
    

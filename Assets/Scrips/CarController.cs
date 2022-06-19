@@ -4,10 +4,6 @@ using UnityEngine;
 public class CarController : TransmissionSystem
 {
     #region Fields
-    
-    [Header("Center Of Mass")]
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private Transform _centerOfMass;
 
     [Header("Motor Parameters")] [SerializeField]
     private float _inputSmoothDamp;
@@ -34,10 +30,6 @@ public class CarController : TransmissionSystem
     
     #region UnityCallback
 
-    private void Start()
-    {
-        
-    }
 
     #endregion
 
@@ -49,8 +41,6 @@ public class CarController : TransmissionSystem
 
         _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
         AddBrackForceToWheel(Wheels, _currentBreakForce * _breakForce);
-
-        for (var i = 0; i < Wheels.Length; i++) Wheels[i].UpdateWheel();
     }
     
 
@@ -71,9 +61,9 @@ public class CarController : TransmissionSystem
     
     #region PrivateFuncation
     
-    private void AddBrackForceToWheel(WheelStruct[] wheelColliders, float brackForce)
+    private void AddBrackForceToWheel(Wheel[] wheelColliders, float brackForce)
     {
-        for (var i = 0; i < wheelColliders.Length; i++) Wheels[i].Collider.brakeTorque = brackForce;
+        //for (var i = 0; i < wheelColliders.Length; i++) Wheels[i].Collider.brakeTorque = brackForce;
     }
 
     #endregion
