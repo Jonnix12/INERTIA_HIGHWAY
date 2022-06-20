@@ -18,22 +18,23 @@ public class Wheel : MonoBehaviour
     private float _maxLength;
     
     private float _restLength;
-    private float _springTravel;
     private float _springStiffness;
     private float _damperStiffness;
 
+    private RaycastHit _hit;
+    
     private Vector3 _wheelPosition;
+    private Vector3 _wheelPositionOffSet;
     private Vector3 _wheelVelocity;
+    
     private float _wheelRadius;
     private float _desirableWheelForce;
     private float _wheelForceZ;
     private float _wheelForceX;
     
-    //private float steerAngle;
-    
-    private Vector3 _suspensionForce;
-
     private Rigidbody _rb;
+
+    private float tempInput;
 
     #endregion
 
@@ -49,12 +50,13 @@ public class Wheel : MonoBehaviour
         _wheelRadius = wheelRadius;
         _rb = rb;
         _restLength = restLength;
-        _springTravel = springTravel;
         _springStiffness = springStiffness;
         _damperStiffness = damperStiffness;
         
         _minLength = restLength - springTravel;
         _maxLength = restLength + springTravel;
+
+        _wheelPositionOffSet = new Vector3(0, wheelRadius, 0);
     }
     
     public void SetWheelAngel(float angel)
@@ -64,36 +66,27 @@ public class Wheel : MonoBehaviour
 
     public void AddWheelForce(float force)
     {
-        Debug.Log(force);
-        _desirableWheelForce += force;
+        tempInput = force;
     }
+
+    #region UnityCallBack
+
     
+
+    #endregion
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, _maxLength + _wheelRadius)) {
-
-            _lastLength = _springLength;
+        if (Physics.Raycast(transform.position, -transform.up, out _hit, _maxLength + _wheelRadius)) {
             
-            _springLength = hit.distance - _wheelRadius;
-            _springLength = Mathf.Clamp(_springLength, _minLength, _maxLength);
-            _springVelocity = (_lastLength - _springLength) / Time.fixedDeltaTime;
-            _springForce = _springStiffness * (_restLength - _springLength);
-            _damperForce = _damperStiffness * _springVelocity;
-            
-            _suspensionForce = (_springForce + _damperForce) * transform.up;
-
-            _wheelVelocity = transform.InverseTransformDirection(_rb.GetPointVelocity(hit.point));
-            _wheelForceZ = _desirableWheelForce;
-            _wheelForceX = _wheelVelocity.x * _desirableWheelForce;
-            
-            _rb.AddForceAtPosition(_suspensionForce + _wheelForceZ * transform.forward + _wheelForceX * -transform.right , hit.point);
+            _rb.AddForceAtPosition(CalculateSuspensionForce() + CalculateForceOnWheel(), _hit.point);
+            _wheelPosition = _hit.point + _wheelPositionOffSet;
         }
         
     }
 
+    
     private void Update()
     {
-        _wheelPosition = new Vector3(transform.position.x, _springLength - _wheelRadius / 2, transform.position.z);
         UpdateWheelVisal();
     }
 
@@ -105,6 +98,29 @@ public class Wheel : MonoBehaviour
     {
         meshTransform.position = _wheelPosition;
     }
+    
+    private Vector3 CalculateSuspensionForce()
+    {
+        _lastLength = _springLength;
+            
+        _springLength = _hit.distance - _wheelRadius;
+        _springLength = Mathf.Clamp(_springLength, _minLength, _maxLength);
+        _springVelocity = (_lastLength - _springLength) / Time.fixedDeltaTime;
+        _springForce = _springStiffness * (_restLength - _springLength);
+        _damperForce = _damperStiffness * _springVelocity;
+
+        return (_springForce + _damperForce) * transform.up;
+    }
+
+    private Vector3 CalculateForceOnWheel()
+    {
+        _wheelVelocity = transform.InverseTransformDirection(_rb.GetPointVelocity(_hit.point));
+        _wheelForceZ = tempInput * _springForce * 0.5f;
+        _wheelForceX = _wheelVelocity.x * _springForce;
+
+        return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
+    }
+
 
     #endregion
    

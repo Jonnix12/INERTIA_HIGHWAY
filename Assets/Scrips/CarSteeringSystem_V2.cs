@@ -5,9 +5,7 @@ using UnityEngine;
 public class CarSteeringSystem_V2 : CarSuspensionSystem
 {
     [Header("Car Specs")]
-    [SerializeField]
-    private float wheelBase;
-
+    [SerializeField] private float wheelBase;
     [SerializeField] private float rearTranck;
     [SerializeField] private float turnRadius;
 
@@ -23,8 +21,11 @@ public class CarSteeringSystem_V2 : CarSuspensionSystem
     {
         get { return ackermannAngelRight; }
     }
-    
-   
+
+    protected void AdjustTurnRadius(float speed)
+    {
+      
+    }
 
     protected void CalculateSteerackermannAngel(float input)
     {

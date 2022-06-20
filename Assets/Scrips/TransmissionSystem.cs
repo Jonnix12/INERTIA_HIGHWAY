@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,9 +46,9 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     #region ProtectedFunctions
 
-    protected void UpdateTransmission(float input)
+    protected void UpdateTransmission(float engineForce)
     {
-        AddForceToWheel(input);
+        AddForceToWheel(engineForce);
         //CalculateEngineRpm();
         //CalculateCarSpeed();
     }
@@ -88,8 +89,9 @@ public class TransmissionSystem : CarSteeringSystem_V2
     {
         if (_engineRpm < 6000)
         {
-            for (var i = 2; i < 4; i++) //set only for the two rear wheels
+            for (var i = 0; i < 4; i++) //set only for the two rear wheels
                 Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,input) / 2f);
+            Debug.Log(CalculateMotorForce(_currentGear,input));
         }
         else
         {
@@ -100,9 +102,7 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     private float CalculateMotorForce(int gear,float input)
     {
-        _currentMotorForce = _motorForce * GetGearRatio(gear) * input;
-        Debug.Log(_currentMotorForce);
-        return _currentMotorForce;
+        return input / GetGearRatio(_currentGear) * FINAL_DRIVE_RATIO;
     }
 
     private float GetGearRatio(int gear)
