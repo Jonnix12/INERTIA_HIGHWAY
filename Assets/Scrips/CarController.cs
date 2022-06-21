@@ -5,9 +5,6 @@ public class CarController : CarEngineComponent
 {
     #region Fields
 
-    [Header("Motor Parameters")]
-    [SerializeField] private float _breakForce;
-
     [Header("Camera LookAT")] public Transform _cameraLookAT;
 
     private float _accelerationInput;
@@ -25,7 +22,6 @@ public class CarController : CarEngineComponent
     {
         UpdateEngine(_accelerationInput);
         CalculateSteerackermannAngel(_steeringInput);
-        _currentBreakForce = _isBreakingInput ? _breakForce : 0f;
     }
     
 

@@ -22,14 +22,7 @@ public class CarVFX : MonoBehaviour
 
     void Update()
     {
-        // if (_controller.Wheels[2].FowardSlip > 0.5f)
-        // {
-        //     _smoke.Play();
-        //     if (!_isCoroutineRuning)
-        //     {
-        //         StartCoroutine(ParticleTimeOut());
-        //     }
-        // }
+       _smoke.Play();
     }
 
     private IEnumerator ParticleTimeOut()

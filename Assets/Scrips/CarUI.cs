@@ -15,8 +15,8 @@ public class CarUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed.text = _car.CarSpeed.ToString();
+        //speed.text = _car.CarSpeed.ToString();
         enginRPM.text = _car.EngineRpm.ToString();
-        gear.text = _car.Gear.ToString();
+        //gear.text = _car.Gear.ToString();
     }
 }

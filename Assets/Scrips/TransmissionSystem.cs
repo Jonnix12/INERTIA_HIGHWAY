@@ -8,12 +8,7 @@ public class TransmissionSystem : CarSteeringSystem_V2
     #region Fields
 
     //2016 Chevrolet Camaro Preliminary
-    [Header("Transmission System Parameters")]
-    [SerializeField] private float _motorForce;
 
-    [SerializeField] private int _maxRpm;
-    [SerializeField] private int _minRpm;
-    
     private const float FINAL_DRIVE_RATIO = 3.72f;
     private const int NUMBER_OF_GEARS = 6;
     
@@ -46,11 +41,11 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     #region ProtectedFunctions
 
-    protected void UpdateTransmission(float engineForce)
+    protected void UpdateTransmission(float engineForce,float temp)
     {
         AddForceToWheel(engineForce);
+        _engineRpm = temp;
         //CalculateEngineRpm();
-        //CalculateCarSpeed();
     }
 
     #endregion
@@ -85,19 +80,20 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     #region PrivateFuncations
 
-     private void AddForceToWheel(float input)
+     private void AddForceToWheel(float engineForce)
     {
         if (_engineRpm < 6000)
         {
             for (var i = 0; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,input) / 2f);
-            Debug.Log(CalculateMotorForce(_currentGear,input));
+                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,engineForce) / 2f);
         }
         else
         {
             for (var i = 2; i < 4; i++) //set only for the two rear wheels
                 Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,-0.25f) / 2f);
         }
+        
+        Debug.Log(CalculateMotorForce(_currentGear,engineForce));
     }
 
     private float CalculateMotorForce(int gear,float input)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,48 +6,60 @@ using UnityEngine;
 public class CarSteeringSystem_V2 : CarSuspensionSystem
 {
     [Header("Car Specs")]
-    [SerializeField] private float wheelBase;
-    [SerializeField] private float rearTranck;
-    [SerializeField] private float turnRadius;
+    [SerializeField] private float _wheelBase;
+    [SerializeField] private float _rearTranck;
+    [SerializeField] private float _turnRadius;
 
-    private float ackermannAngelLeft;
-    private float ackermannAngelRight;
+    private float _currentTurnRadius;
+    
+    private float _ackermannAngelLeft;
+    private float _ackermannAngelRight;
 
     public float AckermannAngelLeft
     {
-        get { return ackermannAngelLeft; }
+        get { return _ackermannAngelLeft; }
     }
 
     public float AckermannAngelRight
     {
-        get { return ackermannAngelRight; }
+        get { return _ackermannAngelRight; }
     }
+    
 
     protected void AdjustTurnRadius(float speed)
     {
-      
+        if (speed > 40)
+        {
+            float tempSpeed = Mathf.Clamp(speed, 0, 180);
+            _currentTurnRadius = Mathf.Lerp(_turnRadius, _turnRadius * 5, tempSpeed / 180);
+            Debug.Log("Car Turn: " + _currentTurnRadius);
+        }
+        else
+        {
+            _currentTurnRadius = _turnRadius;
+        }
     }
 
     protected void CalculateSteerackermannAngel(float input)
     {
         if (input > 0)
         {
-            ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTranck / 2))) * input;
-            ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTranck / 2))) * input;
+            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) * input;
+            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) * input;
         }
         else if (input < 0)
         {
-            ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTranck / 2))) * input;
-            ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTranck / 2))) * input;
+            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) * input;
+            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) * input;
         }
         else
         {
-            ackermannAngelLeft = 0;
-            ackermannAngelRight = 0;
+            _ackermannAngelLeft = 0;
+            _ackermannAngelRight = 0;
         }
         
-        Wheels[0].SetWheelAngel(ackermannAngelLeft);
-        Wheels[1].SetWheelAngel(ackermannAngelRight);
+        Wheels[0].SetWheelAngel(_ackermannAngelLeft);
+        Wheels[1].SetWheelAngel(_ackermannAngelRight);
 
     }
 }

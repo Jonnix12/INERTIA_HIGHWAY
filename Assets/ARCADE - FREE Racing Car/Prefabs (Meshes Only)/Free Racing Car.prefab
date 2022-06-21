@@ -366,32 +366,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - Collider: {fileID: 846699518533448241}
-    DefaultWheelSteerDir: {x: 0, y: 0, z: 0}
-    WheelPosition: {fileID: 0}
-    meshTransform: {fileID: 580311279415431662}
-  - Collider: {fileID: 197624069553766782}
-    DefaultWheelSteerDir: {x: 0, y: 0, z: 0}
-    WheelPosition: {fileID: 0}
-    meshTransform: {fileID: 3570975274930632670}
-  - Collider: {fileID: 247011090717556407}
-    DefaultWheelSteerDir: {x: 0, y: 0, z: 0}
-    WheelPosition: {fileID: 0}
-    meshTransform: {fileID: 4837801160553823938}
-  - Collider: {fileID: 7151486969009686719}
-    DefaultWheelSteerDir: {x: 0, y: 0, z: 0}
-    WheelPosition: {fileID: 0}
-    meshTransform: {fileID: 4378188931278180833}
-  _maxSteerAngel: 6
-  _inputDeadZone: 0.15
-  _leftAnchor: {fileID: 2501659211104523433}
-  _rightAnchor: {fileID: 1389422109036349020}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  wheelRadius: 0
+  rb: {fileID: 0}
+  restLength: 0
+  springTravel: 0
+  springStiffness: 0
+  damperStiffness: 0
+  wheelBase: 0
+  rearTranck: 0
+  turnRadius: 0
   _motorForce: 1000
   _maxRpm: 6000
   _minRpm: 1000
-  _rb: {fileID: 1810582283}
-  _centerOfMass: {fileID: 4264342544223859087}
-  _inputSmoothDamp: 1.5
+  _engineCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _smoothDampTime: 0
   _breakForce: 2000
   _cameraLookAT: {fileID: 7959982216098547714}
 --- !u!114 &2652593304945152731
@@ -430,13 +427,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe9da075e41d7d54f8ba0056ed0081b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 5941300305639498453}
-  _smoke: {fileID: 2643989895111903125}
+  _smoke: {fileID: 0}
   _dust: {fileID: 4104078004516051882, guid: 9ad077e426191e64b9a3ce4839ab700e, type: 3}
   _timeToWaitForParticle: 2
 --- !u!65 &2690864471449865936
@@ -902,8 +899,7 @@ Transform:
   m_LocalPosition: {x: 0.017015435, y: 4.914347, z: -1.2008353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5861281326663677069}
+  m_Children: []
   m_Father: {fileID: 1880317207959290724}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2271,104 +2267,3 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
---- !u!1001 &8494041347107337778
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3606474404692340756}
-    m_Modifications:
-    - target: {fileID: 1041184513490279114, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_Name
-      value: Smoke
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.20000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.19999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.9970155
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.843347
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.23916471
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99920195
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.039943866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -4.578
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5859661776530846119, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5859661776530846119, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-        type: 3}
-      propertyPath: simulationSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 376e99acfa55e4944a9c38c31f0a6f99, type: 3}
---- !u!198 &2643989895111903125 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5859661776530846119, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-    type: 3}
-  m_PrefabInstance: {fileID: 8494041347107337778}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5861281326663677069 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-    type: 3}
-  m_PrefabInstance: {fileID: 8494041347107337778}
-  m_PrefabAsset: {fileID: 0}

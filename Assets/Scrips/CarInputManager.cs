@@ -15,8 +15,6 @@ public class CarInputManager : MonoBehaviour
     {
         Input = new CarInput();
         CamaraFallowCar.SetTarget(_controller._cameraLookAT);
-        Input.Default.UpShiftGear.performed += _controller.UpShifter;
-        Input.Default.DawnShiftGear.performed += _controller.DawnShifter;
     }
 
     private void OnEnable()

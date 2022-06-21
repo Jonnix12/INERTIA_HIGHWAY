@@ -69,6 +69,11 @@ public class Wheel : MonoBehaviour
         tempInput = force;
     }
 
+    public void Braek()
+    {
+        
+    }
+
     #region UnityCallBack
 
     
@@ -81,7 +86,6 @@ public class Wheel : MonoBehaviour
             _rb.AddForceAtPosition(CalculateSuspensionForce() + CalculateForceOnWheel(), _hit.point);
             _wheelPosition = _hit.point + _wheelPositionOffSet;
         }
-        
     }
 
     
@@ -115,8 +119,8 @@ public class Wheel : MonoBehaviour
     private Vector3 CalculateForceOnWheel()
     {
         _wheelVelocity = transform.InverseTransformDirection(_rb.GetPointVelocity(_hit.point));
-        _wheelForceZ = tempInput * _springForce * 0.5f;
-        _wheelForceX = _wheelVelocity.x * _springForce;
+        _wheelForceZ = tempInput * 2000 * 0.5f;
+        _wheelForceX = _wheelVelocity.x * 3000;
 
         return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
     }
