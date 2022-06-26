@@ -3,26 +3,18 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    public event Action<GameObject,int> OnCheckPoineTrigger;
-    private int _id;
+    public event Action<CarCheckPointHalper,CheckPoint> OnCheckPointTrigger;
 
-    public int ID
-    {
-        get { return _id; }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Car"))
         {
-           OnCheckPoineTrigger?.Invoke(other.gameObject,ID);
+            CarCheckPointHalper carTemp;
+            
+            if (other.TryGetComponent<CarCheckPointHalper>(out carTemp))
+            {
+                OnCheckPointTrigger?.Invoke(carTemp,this);
+            }
         }
-    }
-
-    public void SetID(int id)
-    {
-        if (_id != 0)
-            return;
-        
-        _id = id;
     }
 }

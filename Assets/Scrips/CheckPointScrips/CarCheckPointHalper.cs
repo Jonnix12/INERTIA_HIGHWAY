@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarCheckPointHalper : MonoBehaviour
 {
-    private int _currentCheckPoint = 0;
-    private int _nextCheckPoint = 1;
- 
-    public void NextCheckPoint(int checkPointId)
+    private CheckPoint _currentCheckPoint;
+    private CheckPoint _nextCheckPoint;
+
+    public CheckPoint CurrentCheckPoint
     {
-        if (checkPointId == _nextCheckPoint)
-        {
-            _currentCheckPoint++;
-            _nextCheckPoint = _currentCheckPoint + 1;
-            Debug.Log("Good");
-        }
-        else
-        {
-            Debug.Log("Worng CheckPoint");
-        }
+        get { return _currentCheckPoint; }
+    }
+
+    public CheckPoint NextCheckPoint
+    {
+        get { return _nextCheckPoint; }
+    }
+    
+    public void SetNextCheckPoint(CheckPoint nextCheckPoint)
+    {
+        _currentCheckPoint = _nextCheckPoint;
+        _nextCheckPoint = nextCheckPoint;
     }
 }
