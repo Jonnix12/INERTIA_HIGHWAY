@@ -40,12 +40,13 @@ public class CheckPointSystem : MonoBehaviour
         {
             int nextCheckPointIndex;
             
-            if (_checkPoints.IndexOf(checkPointId) + 1 > _checkPoints.Count)
+            if (_checkPoints.IndexOf(checkPointId) + 1 >= _checkPoints.Count)
             {
                 nextCheckPointIndex = 0;
             }
             else
             {
+                Debug.Log(_checkPoints.IndexOf(checkPointId));
                 nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
             }
             

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CarCheckPointHalper : MonoBehaviour
 {
-    private CheckPoint _currentCheckPoint;
+    private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
 
-    public CheckPoint CurrentCheckPoint
+    public CheckPoint PreviousCheckPoint
     {
-        get { return _currentCheckPoint; }
+        get { return _previousCheckPoint; }
     }
 
     public CheckPoint NextCheckPoint
@@ -17,7 +17,7 @@ public class CarCheckPointHalper : MonoBehaviour
     
     public void SetNextCheckPoint(CheckPoint nextCheckPoint)
     {
-        _currentCheckPoint = _nextCheckPoint;
+        _previousCheckPoint = _nextCheckPoint;
         _nextCheckPoint = nextCheckPoint;
     }
 }

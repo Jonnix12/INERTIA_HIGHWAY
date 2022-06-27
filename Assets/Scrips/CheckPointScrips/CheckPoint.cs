@@ -9,9 +9,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            CarCheckPointHalper carTemp;
-            
-            if (other.TryGetComponent<CarCheckPointHalper>(out carTemp))
+            if (other.TryGetComponent<CarCheckPointHalper>(out CarCheckPointHalper carTemp))
             {
                 OnCheckPointTrigger?.Invoke(carTemp,this);
             }
