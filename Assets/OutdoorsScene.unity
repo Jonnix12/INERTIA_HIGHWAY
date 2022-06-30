@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2025.9121, g: 1991.9629, b: 2399.043, a: 1}
+  m_IndirectSpecularColor: {r: 2158.291, g: 2260.5625, b: 3278.2617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3862,14 +3862,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1810582283, guid: f213605f4337ced4c803344a26f81069, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810582283, guid: f213605f4337ced4c803344a26f81069, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1248598967819147742, guid: f213605f4337ced4c803344a26f81069,
         type: 3}
       propertyPath: m_Name
@@ -3883,7 +3875,7 @@ PrefabInstance:
     - target: {fileID: 1880317207959290724, guid: f213605f4337ced4c803344a26f81069,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -39.69
       objectReference: {fileID: 0}
     - target: {fileID: 1880317207959290724, guid: f213605f4337ced4c803344a26f81069,
         type: 3}
@@ -3929,121 +3921,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652593304945152731, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: wheelBase
-      value: 2.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _wheelBase
-      value: 2.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: rearTranck
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: restLength
-      value: 0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: turnRadius
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _motorForce
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _rearTranck
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _turnRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: springTravel
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _smoothDampTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: damperStiffness
-      value: 4000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: springStiffness
-      value: 60000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[0].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[0].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[1].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: _engineCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7910799513887739982, guid: f213605f4337ced4c803344a26f81069,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f213605f4337ced4c803344a26f81069, type: 3}

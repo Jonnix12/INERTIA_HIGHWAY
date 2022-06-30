@@ -173,13 +173,13 @@ MonoBehaviour:
   - {fileID: 8780044168393870926}
   wheelRadius: 0.33
   rb: {fileID: 1810582283}
-  restLength: 5.57
+  restLength: 0.57
   springTravel: 0.15
-  springStiffness: 55000
+  springStiffness: 60000
   damperStiffness: 4000
   _wheelBase: 2.55
   _rearTranck: 1.5
-  _turnRadius: 5.5
+  _turnRadius: 3
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -204,7 +204,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _smoothDampTime: 1.5
+  _smoothDampTime: 0.5
   _cameraLookAT: {fileID: 7959982216098547714}
 --- !u!114 &2652593304945152731
 MonoBehaviour:
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21ffdee4ad628ea4494727d6c11d302a, type: 3}
   m_Name: 
