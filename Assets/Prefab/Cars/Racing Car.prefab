@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 5482650088193543652}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
+  - component: {fileID: 7706031911362412768}
   m_Layer: 0
   m_Name: Racing Car
   m_TagString: Car
@@ -177,7 +178,7 @@ MonoBehaviour:
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 55000
-  damperStiffness: 4000
+  damperStiffness: 3500
   _wheelBase: 2.55
   _rearTranck: 1.5
   _turnRadius: 5.5
@@ -293,6 +294,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7706031911362412768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0
