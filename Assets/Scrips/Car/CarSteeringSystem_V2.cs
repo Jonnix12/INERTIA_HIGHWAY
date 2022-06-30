@@ -32,7 +32,7 @@ public class CarSteeringSystem_V2 : CarSuspensionSystem
         {
             float tempSpeed = Mathf.Clamp(speed, 0, 180);
             _currentTurnRadius = Mathf.Lerp(_turnRadius, _turnRadius * 5, tempSpeed / 180);
-            Debug.Log("Car Turn: " + _currentTurnRadius);
+            //Debug.Log("Car Turn: " + _currentTurnRadius);
         }
         else
         {
