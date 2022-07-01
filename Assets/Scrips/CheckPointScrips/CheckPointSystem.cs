@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class CheckPointSystem : MonoBehaviour
 {
+    
     private List<CheckPoint> _checkPoints;
     private CarCheckPointHalper[] _cars;
+
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class CheckPointSystem : MonoBehaviour
         }
         else
         {
+            car.PassInCorrectCheckPoint();
             Debug.Log("Wrong CheckPoint");
         }
         
@@ -67,4 +70,5 @@ public class CheckPointSystem : MonoBehaviour
             vaCheckPoint.OnCheckPointTrigger -= OnCheckPointTrigger;
         }
     }
+
 }
