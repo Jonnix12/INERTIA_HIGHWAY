@@ -48,7 +48,6 @@ public class CheckPointSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log(_checkPoints.IndexOf(checkPointId));
                 nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
             }
             

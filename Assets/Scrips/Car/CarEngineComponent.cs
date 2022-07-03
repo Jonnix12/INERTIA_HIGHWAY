@@ -24,6 +24,11 @@ public class CarEngineComponent : CarSteeringSystem_V2
     private float _waitFor = 0.2f;
     private WaitForSeconds _waitForSpeedCalculate;
 
+    public float CarSpeed
+    {
+        get { return _carSpeed; }
+    }
+    
     public float EngineRpm
     {
         get { return _engineRpm; }

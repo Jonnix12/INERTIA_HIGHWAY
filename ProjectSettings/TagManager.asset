@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Car
   - Wall
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - CheckPoint
   - 
   - 
   - 
