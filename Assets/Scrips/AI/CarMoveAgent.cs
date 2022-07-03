@@ -31,19 +31,17 @@ public class CarMoveAgent : Agent
 
     private void AddRewardCurrntly()
     {
-        Debug.Log("AddReward");
         AddReward(+1f);
     }
 
     private void RemoveReward()
     {
-        Debug.Log("RemoveReword");
         AddReward(-1f);
     }
 
     private void SpeedReword()
     {
-        AddReward(carController.CarSpeed * 0.1f);
+        //AddReward(carController.CarSpeed * 0.1f);
     }
     
     #region MLAgentActions
@@ -57,19 +55,21 @@ public class CarMoveAgent : Agent
     {
         Vector3 checkpointForward = checkPointHalper.NextCheckPoint.transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        
+        Debug.Log(directionDot);
         sensor.AddObservation(directionDot);
         //sensor.AddObservation(checkpointForward);
-        sensor.AddObservation(transform.position);
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
         float forwardAmount = actions.ContinuousActions[0];
         float turnAmount = actions.ContinuousActions[1];
         bool breakAmput = false;
+
+        if (forwardAmount < -0.1f)
+        {
+            AddReward(-0.1f);
+        }
         
-       
-        SpeedReword();
         carController.UpdateCarInputs(forwardAmount, turnAmount,breakAmput);
     }
 
