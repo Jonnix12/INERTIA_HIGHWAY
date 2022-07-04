@@ -84,7 +84,7 @@ public class Wheel : MonoBehaviour
         if (Physics.Raycast(transform.position, -transform.up, out _hit, _maxLength + _wheelRadius)) {
             
             _rb.AddForceAtPosition(CalculateSuspensionForce() + CalculateForceOnWheel(), _hit.point);
-            _wheelPosition = _hit.point + _wheelPositionOffSet;
+            _wheelPosition = new Vector3(0, -(_springLength), 0);
         }
     }
 
@@ -100,7 +100,7 @@ public class Wheel : MonoBehaviour
 
     private void UpdateWheelVisal()
     {
-        meshTransform.position = _wheelPosition;
+        meshTransform.localPosition = _wheelPosition;
     }
     
     private Vector3 CalculateSuspensionForce()

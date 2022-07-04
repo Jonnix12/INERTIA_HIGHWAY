@@ -53,8 +53,6 @@ public class CarEngineComponent : CarSteeringSystem_V2
                 Wheels[i].AddWheelForce(CalculateMotorForce(0));
             }
         }
-
-        Debug.Log(_carSpeed);
     }
     
         private float CalculateMotorForce(float input)
@@ -85,7 +83,6 @@ public class CarEngineComponent : CarSteeringSystem_V2
 
             float distanceTraveled = Vector3.Distance(stratPos, endPos);
             _carSpeed = (distanceTraveled/ _waitFor) * 8.6f;
-            Debug.Log(_carSpeed);
         }
     }
 }
