@@ -26,7 +26,7 @@ public class CheckPointSystem : MonoBehaviour
                     temp.OnCheckPointTrigger += OnCheckPointTrigger;
             
                     _checkPoints.Add(temp);
-                    Debug.Log("Add " + temp.name + " From " + transform.name);
+                    //Debug.Log("Add " + temp.name + " From " + transform.name);
                 }
             }
         }
@@ -56,12 +56,12 @@ public class CheckPointSystem : MonoBehaviour
             }
             
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
-            Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
+            //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
         else
         {
             car.PassInCorrectCheckPoint();
-            Debug.Log("Wrong CheckPoint");
+            //Debug.Log("Wrong CheckPoint");
         }
         
     }

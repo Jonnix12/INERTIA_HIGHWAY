@@ -319,9 +319,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: ae4a941e739d41645afa6264bc6305b9, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 486f67a9d84978d4191a0368b26340ad, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: CarAgent
   TeamId: 0
   m_UseChildSensors: 1

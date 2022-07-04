@@ -56,7 +56,6 @@ public class CarMoveAgent : Agent
     {
         Vector3 checkpointForward = checkPointHalper.NextCheckPoint.transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        Debug.Log(directionDot);
         sensor.AddObservation(directionDot);
         //sensor.AddObservation(checkpointForward);
     }
@@ -64,19 +63,16 @@ public class CarMoveAgent : Agent
     {
         float forwardAmount = actions.ContinuousActions[0];
         float turnAmount = actions.ContinuousActions[1];
-        bool breakAmput = false;
+        bool isBreak = false;
 
-        if (forwardAmount < 0)
-        {
-            AddReward(-0.1f);
-        }
+       AddReward(forwardAmount/1);
 
-        // if (forwardAmount > 0)
+       // if (forwardAmount > 0)
         // {
         //     AddReward(0.1f);
         // }
         
-        carController.UpdateCarInputs(forwardAmount, turnAmount,breakAmput);
+        carController.UpdateCarInputs(forwardAmount, turnAmount,isBreak);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
