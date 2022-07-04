@@ -43,7 +43,7 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     protected void UpdateTransmission(float engineForce,float temp)
     {
-        AddForceToWheel(engineForce);
+        //AddForceToWheel(engineForce);
         _engineRpm = temp;
         //CalculateEngineRpm();
     }
@@ -80,21 +80,21 @@ public class TransmissionSystem : CarSteeringSystem_V2
 
     #region PrivateFuncations
 
-     private void AddForceToWheel(float engineForce)
-    {
-        if (_engineRpm < 6000)
-        {
-            for (var i = 0; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,engineForce) / 2f);
-        }
-        else
-        {
-            for (var i = 2; i < 4; i++) //set only for the two rear wheels
-                Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,-0.25f) / 2f);
-        }
-        
-        Debug.Log(CalculateMotorForce(_currentGear,engineForce));
-    }
+    //  private void AddForceToWheel(float engineForce)
+    // {
+    //     if (_engineRpm < 6000)
+    //     {
+    //         for (var i = 0; i < 4; i++) //set only for the two rear wheels
+    //             Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,engineForce) / 2f);
+    //     }
+    //     else
+    //     {
+    //         for (var i = 2; i < 4; i++) //set only for the two rear wheels
+    //             Wheels[i].AddWheelForce(CalculateMotorForce(_currentGear,-0.25f) / 2f);
+    //     }
+    //     
+    //     Debug.Log(CalculateMotorForce(_currentGear,engineForce));
+    // }
 
     private float CalculateMotorForce(int gear,float input)
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4378188931278180833}
   - component: {fileID: 4577325590160657876}
   - component: {fileID: 6439428870006845921}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7959982216098547714}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamLockAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,10 +130,19 @@ GameObject:
   - component: {fileID: 5482650088193543652}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
-  - component: {fileID: 7706031911362412768}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  - component: {fileID: 967718366500316798}
+  - component: {fileID: 5698209092343604468}
+  - component: {fileID: -1874463833303009389}
+  - component: {fileID: 3221202361766749804}
+  m_Layer: 3
+  m_Name: CarAI
+  m_TagString: Car
+========
   m_Layer: 0
   m_Name: Racing Car
-  m_TagString: Car
+  m_TagString: Untagged
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,11 +186,19 @@ MonoBehaviour:
   rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   springStiffness: 55000
-  damperStiffness: 3500
+  damperStiffness: 4000
   _wheelBase: 2.55
   _rearTranck: 1.5
   _turnRadius: 5.5
+========
+  springStiffness: 60000
+  damperStiffness: 4000
+  _wheelBase: 2.55
+  _rearTranck: 1.5
+  _turnRadius: 3
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -206,7 +223,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   _smoothDampTime: 1.5
+========
+  _smoothDampTime: 0.5
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   _cameraLookAT: {fileID: 7959982216098547714}
 --- !u!114 &2652593304945152731
 MonoBehaviour:
@@ -224,7 +245,11 @@ MonoBehaviour:
   enginRPM: {fileID: 0}
   gear: {fileID: 0}
   _car: {fileID: 5941300305639498453}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
 --- !u!114 &1096136781372181069
+========
+--- !u!114 &1454559328895671054
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,7 +268,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec2fcec00510b974b8363035f9d37160, type: 3}
   m_Name: 
@@ -256,7 +281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe9da075e41d7d54f8ba0056ed0081b5, type: 3}
   m_Name: 
@@ -287,14 +312,18 @@ Rigidbody:
   m_GameObject: {fileID: 1248598967819147742}
   serializedVersion: 2
   m_Mass: 1768
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  m_Drag: 1
+========
   m_Drag: 0
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7706031911362412768
+--- !u!114 &967718366500316798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,9 +332,87 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248598967819147742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 2
+      BranchSizes: 
+    VectorActionSize: 02000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 5022602860645237092, guid: 486f67a9d84978d4191a0368b26340ad, type: 3}
+  m_InferenceDevice: 0
+  m_BehaviorType: 2
+  m_BehaviorName: CarAgent
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &5698209092343604468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbf8a92983e2ce4cad391d86fb34086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 15000
+  checkPointHalper: {fileID: 1096136781372181069}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1874463833303009389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - Wall
+  - CheckPoint
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0.5
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 192
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
+--- !u!114 &3221202361766749804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +424,7 @@ GameObject:
   - component: {fileID: 2614238658241572533}
   - component: {fileID: 5579493306719816557}
   - component: {fileID: 4485099863708357545}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +509,11 @@ GameObject:
   m_Component:
   - component: {fileID: 909904997853722232}
   - component: {fileID: 1709527907469197365}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  m_Layer: 3
+========
   m_Layer: 0
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: Wheel(FrontLeft)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +545,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2542249035703675391}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+========
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 580311279415431662}
@@ -447,7 +562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3606474404692340756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +597,7 @@ GameObject:
   - component: {fileID: 6835293942701318835}
   - component: {fileID: 471725917729037219}
   - component: {fileID: 4859651589886562265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spoiler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +680,7 @@ GameObject:
   - component: {fileID: 3570975274930632670}
   - component: {fileID: 2645474277201651116}
   - component: {fileID: 5515002067374455655}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5970868136364432848}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamAnchors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +795,7 @@ GameObject:
   - component: {fileID: 4837801160553823938}
   - component: {fileID: 2292415219917698979}
   - component: {fileID: 3077395128357510525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +877,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2944889541115138945}
   - component: {fileID: 3274204849436070299}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  m_Layer: 3
+========
   m_Layer: 0
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: 'Wheel(FrontRight) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +913,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6882407955982903286}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+========
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 3570975274930632670}
@@ -809,7 +932,7 @@ GameObject:
   - component: {fileID: 580311279415431662}
   - component: {fileID: 2538313024841451235}
   - component: {fileID: 504575916490611675}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +1014,11 @@ GameObject:
   m_Component:
   - component: {fileID: 867646912884687168}
   - component: {fileID: 8780044168393870926}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  m_Layer: 3
+========
   m_Layer: 0
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: Wheel(RaerRight)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +1050,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7086561897426317053}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+========
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 4378188931278180833}
@@ -936,7 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6294174624470428800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -972,7 +1103,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1070920494441549866}
   - component: {fileID: 5777664676044734833}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+  m_Layer: 3
+========
   m_Layer: 0
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: Wheel(RaerLeft)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,7 +1139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8344480776609561667}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
   m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+========
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 4837801160553823938}
@@ -1019,6 +1158,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smoke (1)
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041184513490279114, guid: 376e99acfa55e4944a9c38c31f0a6f99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+========
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
       objectReference: {fileID: 0}
     - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
         type: 3}
@@ -1095,6 +1242,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke
       objectReference: {fileID: 0}
+<<<<<<<< HEAD:Assets/Prefab/Cars/CarAI.prefab
+    - target: {fileID: 1041184513490279114, guid: 376e99acfa55e4944a9c38c31f0a6f99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+========
+>>>>>>>> CarTest:Assets/Prefab/Cars/Racing Car.prefab
     - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
         type: 3}
       propertyPath: m_RootOrder
