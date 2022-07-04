@@ -15,12 +15,21 @@ public class CarController : CarEngineComponent
 
     #endregion
     
+
     #region Updates
 
     private void FixedUpdate()
     {
         UpdateEngine(_accelerationInput);
         CalculateSteerackermannAngel(_steeringInput);
+
+        if (_isBreakingInput)
+        {
+            for (int i = 0; i < Wheels.Length; i++)
+            {
+                Wheels[i].Brake();
+            }
+        }
     }
     
 
