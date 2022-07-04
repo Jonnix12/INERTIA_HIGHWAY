@@ -7,6 +7,8 @@ TagManager:
   - Car
   - Wall
   - CheckPoint
+  - Road
+  - End
   layers:
   - Default
   - TransparentFX

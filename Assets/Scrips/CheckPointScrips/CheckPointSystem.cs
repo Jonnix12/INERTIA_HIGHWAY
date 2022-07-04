@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckPointSystem : MonoBehaviour
@@ -18,13 +19,16 @@ public class CheckPointSystem : MonoBehaviour
         
         foreach (Transform transform in transform)
         {
-            CheckPoint temp;
+            foreach (Transform checkPoint in transform)
+            {
+                if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
+                {
+                    temp.OnCheckPointTrigger += OnCheckPointTrigger;
             
-            transform.TryGetComponent<CheckPoint>(out temp);
-            
-            temp.OnCheckPointTrigger += OnCheckPointTrigger;
-            
-            _checkPoints.Add(temp);
+                    _checkPoints.Add(temp);
+                    Debug.Log("Add " + temp.name + " From " + transform.name);
+                }
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,10 +66,15 @@ public class CarMoveAgent : Agent
         float turnAmount = actions.ContinuousActions[1];
         bool breakAmput = false;
 
-        if (forwardAmount < -0.1f)
+        if (forwardAmount < 0)
         {
             AddReward(-0.1f);
         }
+
+        // if (forwardAmount > 0)
+        // {
+        //     AddReward(0.1f);
+        // }
         
         carController.UpdateCarInputs(forwardAmount, turnAmount,breakAmput);
     }
@@ -104,5 +110,14 @@ public class CarMoveAgent : Agent
             AddReward(-0.1f);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("End"))
+        {
+            EndEpisode();
+        }
+    }
+
     #endregion
 }
