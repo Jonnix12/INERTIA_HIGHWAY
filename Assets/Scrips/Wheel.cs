@@ -7,7 +7,8 @@ public class Wheel : MonoBehaviour
     #region Fields
 
     [SerializeField] private Transform meshTransform;
-    
+
+    private float _brakeForce;
     private float _springLength;
     private float _springForce;
     private float _damperForce;
@@ -21,10 +22,12 @@ public class Wheel : MonoBehaviour
     private float _springStiffness;
     private float _damperStiffness;
 
+    private int _forceMultiplierZ = 1000;
+    private int _forceMultiplierX = 2500;
+
     private RaycastHit _hit;
     
     private Vector3 _wheelPosition;
-    private Vector3 _wheelPositionOffSet;
     private Vector3 _wheelVelocity;
     
     private float _wheelRadius;
@@ -45,18 +48,18 @@ public class Wheel : MonoBehaviour
     
     #region PublicFuncation
 
-    public void InhitWheel(Rigidbody rb, float wheelRadius,float restLength,float springTravel,float springStiffness , float damperStiffness)
+    public void InhitWheel(Rigidbody rb, float wheelRadius,float restLength,float springTravel,float springStiffness , float damperStiffness,float brakeForce)
     {
         _wheelRadius = wheelRadius;
         _rb = rb;
         _restLength = restLength;
         _springStiffness = springStiffness;
         _damperStiffness = damperStiffness;
+        _brakeForce = brakeForce;
         
         _minLength = restLength - springTravel;
         _maxLength = restLength + springTravel;
-
-        _wheelPositionOffSet = new Vector3(0, wheelRadius, 0);
+        
     }
     
     public void SetWheelAngel(float angel)
@@ -64,31 +67,22 @@ public class Wheel : MonoBehaviour
         transform.localRotation = Quaternion.Euler(transform.rotation.x,transform.rotation.y + angel,transform.rotation.z);
     }
 
-    public void AddWheelForce(float force)
-    {
-        tempInput = force;
-    }
-
-    public void Braek()
-    {
-        
-    }
-
-    #region UnityCallBack
-
-    
-
-    #endregion
-    private void FixedUpdate()
+    public void AddWheelForce(float force,float SpeedStopMultiplier)
     {
         if (Physics.Raycast(transform.position, -transform.up, out _hit, _maxLength + _wheelRadius)) {
             
-            _rb.AddForceAtPosition(CalculateSuspensionForce() + CalculateForceOnWheel(), _hit.point);
-            _wheelPosition = new Vector3(0, -(_springLength), 0);
+            _rb.AddForceAtPosition(CalculateSuspensionForce() + CalculateForceOnWheel(force,SpeedStopMultiplier), _hit.point);
         }
     }
 
-    
+    public void Brake()
+    {
+        Vector3 refVector = Vector3.zero;
+        Vector3.SmoothDamp(_rb.GetPointVelocity(_hit.point), Vector3.zero, ref refVector, 0.5f);
+        
+        _rb.AddForceAtPosition(refVector * _brakeForce,_hit.point);
+    }
+
     private void Update()
     {
         UpdateWheelVisal();
@@ -100,6 +94,7 @@ public class Wheel : MonoBehaviour
 
     private void UpdateWheelVisal()
     {
+        _wheelPosition = new Vector3(0, -(_springLength), 0);
         meshTransform.localPosition = _wheelPosition;
     }
     
@@ -116,16 +111,14 @@ public class Wheel : MonoBehaviour
         return (_springForce + _damperForce) * transform.up;
     }
 
-    private Vector3 CalculateForceOnWheel()
+    private Vector3 CalculateForceOnWheel(float input, float SpeedStopMultiplier)
     {
         _wheelVelocity = transform.InverseTransformDirection(_rb.GetPointVelocity(_hit.point));
-        _wheelForceZ = tempInput * 2000 * 0.5f;
-        _wheelForceX = _wheelVelocity.x * 3000;
-
+        _wheelForceZ = input * _forceMultiplierZ / SpeedStopMultiplier;
+        _wheelForceX = _wheelVelocity.x * _forceMultiplierX;
         return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
     }
-
-
+    
     #endregion
    
 }

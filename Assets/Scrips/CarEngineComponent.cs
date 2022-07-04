@@ -10,6 +10,8 @@ public class CarEngineComponent : CarSteeringSystem_V2
     [Header("Engine Parameters:")]
     [SerializeField] private AnimationCurve _engineCurve;
     [SerializeField] private float _smoothDampTime;
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _speedLimitMultiplier;
     
     private const int MAX_RPM = 6500;
 
@@ -39,19 +41,8 @@ public class CarEngineComponent : CarSteeringSystem_V2
     {
         for (int i = 0; i < Wheels.Length; i++)
         {
-            if (input != 0 && _carSpeed < 180)
-            {
-                Wheels[i].AddWheelForce(CalculateMotorForce(input));
-                AdjustTurnRadius(_carSpeed);
-            }
-            else if (input == 0 && _carSpeed > 40)
-            {
-                Wheels[i].AddWheelForce(CalculateMotorForce(-0.25f));
-            }
-            else
-            {
-                Wheels[i].AddWheelForce(CalculateMotorForce(0));
-            }
+            Wheels[i].AddWheelForce(CalculateMotorForce(input),CalculateSpeedMultiplier());
+            AdjustTurnRadius(_carSpeed);
         }
     }
     
@@ -60,7 +51,6 @@ public class CarEngineComponent : CarSteeringSystem_V2
         _tempInput = Mathf.SmoothDamp(_tempInput, Mathf.Abs(input), ref _refVelosty, _smoothDampTime);
         _engineRpm = Mathf.Lerp(0, MAX_RPM, _tempInput);
         
-
         if (input > 0)
         {
             return _engineCurve.Evaluate(_engineRpm / MAX_RPM);
@@ -73,6 +63,13 @@ public class CarEngineComponent : CarSteeringSystem_V2
         return 0;
     }
 
+    private float CalculateSpeedMultiplier()
+    {
+        float temp = _speedLimitMultiplier * (-_carSpeed / -_maxSpeed);
+        temp = Mathf.Clamp(temp, 1, 5);
+        return temp;
+    }
+        
     private IEnumerator SpeedCalculate()
     {
         while (true)
@@ -83,6 +80,7 @@ public class CarEngineComponent : CarSteeringSystem_V2
 
             float distanceTraveled = Vector3.Distance(stratPos, endPos);
             _carSpeed = (distanceTraveled/ _waitFor) * 8.6f;
+            Debug.Log("Car speed " + _carSpeed);
         }
     }
 }
