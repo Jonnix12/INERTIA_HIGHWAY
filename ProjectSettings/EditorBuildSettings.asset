@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CarTest/OutdoorsScene.unity
+    path: Assets/Scenes/AnimEffectTest/AnimEffectTest.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e9e13510ac8d9a24a932e58023a8e238,

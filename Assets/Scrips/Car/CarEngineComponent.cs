@@ -31,6 +31,13 @@ public class CarEngineComponent : CarSteeringSystem_V2
         get { return _engineRpm; }
     }
 
+    public float speed
+    {
+        get
+        {
+            return _carSpeed;
+        }
+    }
     private void Awake()
     {
         _waitForSpeedCalculate = new WaitForSeconds(_waitFor);
