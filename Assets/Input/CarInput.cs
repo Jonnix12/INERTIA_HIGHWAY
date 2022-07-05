@@ -77,7 +77,7 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""accelerationGamePad"",
                     ""id"": ""965ed002-6165-42b7-9627-2f5e1d2418ba"",
-                    ""path"": ""1DAxis(minValue=-0.65)"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -110,7 +110,7 @@ public partial class @CarInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""accelerationKeybord"",
                     ""id"": ""50d4c2c1-7b32-4258-a455-96acb86cc018"",
-                    ""path"": ""1DAxis(minValue=-0.65)"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
