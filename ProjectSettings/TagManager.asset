@@ -6,15 +6,18 @@ TagManager:
   tags:
   - Car
   - Wall
+  - CheckPoint
+  - Road
+  - End
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Car
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - CheckPoint
   - 
   - 
   - 

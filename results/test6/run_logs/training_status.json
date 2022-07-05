@@ -1,0 +1,65 @@
+{
+    "CarAgent": {
+        "checkpoints": [
+            {
+                "steps": 999971,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-999971.onnx",
+                "reward": null,
+                "creation_time": 1656927505.711875,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-999971.pt"
+                ]
+            },
+            {
+                "steps": 1000035,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-1000035.onnx",
+                "reward": null,
+                "creation_time": 1656927505.7429028,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-1000035.pt"
+                ]
+            },
+            {
+                "steps": 1130176,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-1130176.onnx",
+                "reward": null,
+                "creation_time": 1656947308.7412646,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-1130176.pt"
+                ]
+            },
+            {
+                "steps": 1499986,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-1499986.onnx",
+                "reward": 12153.601287841797,
+                "creation_time": 1656947603.650698,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-1499986.pt"
+                ]
+            },
+            {
+                "steps": 1747617,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-1747617.onnx",
+                "reward": null,
+                "creation_time": 1656947809.7010198,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-1747617.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1747617,
+            "file_path": "results\\test6\\CarAgent.onnx",
+            "reward": null,
+            "creation_time": 1656947809.7010198,
+            "auxillary_file_paths": [
+                "results\\test6\\CarAgent\\CarAgent-1747617.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

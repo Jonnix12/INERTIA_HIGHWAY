@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1656668924",
+        "python_version": "3.7.9 (tags/v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jonha\\Documents\\GitHub\\Unity\\CarTest\\venv\\Scripts\\mlagents-learn --run-id=test1--force",
+        "mlagents_version": "0.28.0",
+        "mlagents_envs_version": "0.28.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.6",
+        "end_time_seconds": "1656668939"
+    },
+    "total": 15.481345899999997,
+    "count": 1,
+    "self": 0.004726699999999084,
+    "children": {
+        "run_training.setup": {
+            "total": 0.06906860000000004,
+            "count": 1,
+            "self": 0.06906860000000004
+        },
+        "TrainerController.start_learning": {
+            "total": 15.407550599999999,
+            "count": 1,
+            "self": 0.00033010000000111006,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 15.40721,
+                    "count": 1,
+                    "self": 15.40721
+                },
+                "trainer_threads": {
+                    "total": 9.999999974752427e-07,
+                    "count": 1,
+                    "self": 9.999999974752427e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 9.500000000883801e-06,
+                    "count": 1,
+                    "self": 9.500000000883801e-06
+                }
+            }
+        }
+    }
+}
