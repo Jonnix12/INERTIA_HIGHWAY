@@ -7,6 +7,8 @@ public class CarCheckPointHalper : MonoBehaviour
     public event Action OnPassCheckPoint;
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
+    private int _checkPointCount = 0;
+    private int _numberOfCheckPointToEnd = 0;
 
     public  CheckPoint PreviousCheckPoint
     {
@@ -25,10 +27,17 @@ public class CarCheckPointHalper : MonoBehaviour
         OnPassCheckPoint?.Invoke();
         _previousCheckPoint = _nextCheckPoint;
         _nextCheckPoint = nextCheckPoint;
+        _numberOfCheckPointToEnd--;
     }
     public void PassInCorrectCheckPoint()
     {
         PassWrongCheckPass?.Invoke();
+    }
+
+    public void SetCheckPointCount(int count)
+    {
+        _checkPointCount = count;
+        _numberOfCheckPointToEnd = _checkPointCount;
     }
     
 }
