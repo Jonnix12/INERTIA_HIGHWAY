@@ -6,8 +6,6 @@ public class CarController : CarEngineComponent
 {
     #region Fields
 
-    [Header("Camera LookAT")] public Transform _cameraLookAT;
-
     private float _accelerationInput;
     private float _steeringInput;
     private bool _isBreakingInput;
@@ -22,7 +20,6 @@ public class CarController : CarEngineComponent
     private void Start()
     {
         InitSuspension();
-        CamaraFallowCar.SetTarget(_cameraLookAT);
     }
 
     private void FixedUpdate()

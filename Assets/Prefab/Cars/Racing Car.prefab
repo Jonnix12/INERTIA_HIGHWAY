@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880317207959290724}
   - component: {fileID: 5941300305639498453}
+  - component: {fileID: 7886876877696879077}
   - component: {fileID: 8314477958352051973}
   - component: {fileID: 2652593304945152731}
   - component: {fileID: 1454559328895671054}
@@ -209,8 +210,19 @@ MonoBehaviour:
   _smoothDampTime: 0.5
   _maxSpeed: 130
   _speedLimitMultiplier: 3
-  _cameraLookAT: {fileID: 1880317207959290724, guid: dbab81e23cc3e20448f4ed436ad2e9e8,
-    type: 3}
+--- !u!114 &7886876877696879077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa5f68e2226cbc4bb13df55c73abd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraLookAT: {fileID: 2614238658241572533}
 --- !u!114 &8314477958352051973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _racePosition: 0
 --- !u!114 &2652593304945152731
 MonoBehaviour:
   m_ObjectHideFlags: 0
