@@ -8,7 +8,7 @@ public class CheckPointSystem : MonoBehaviour
 {
     
     private List<CheckPoint> _checkPoints;
-    private CarCheckPointHalper[] _cars;
+    private CarCheckPointHelper[] _cars;
     private int _id;
 
 
@@ -16,7 +16,7 @@ public class CheckPointSystem : MonoBehaviour
     {
         _checkPoints = new List<CheckPoint>();
 
-        _cars = FindObjectsOfType<CarCheckPointHalper>();
+        _cars = FindObjectsOfType<CarCheckPointHelper>();
         
         foreach (Transform note in transform)
         {
@@ -46,7 +46,7 @@ public class CheckPointSystem : MonoBehaviour
         }
     }
 
-    private void OnCheckPointTrigger(CarCheckPointHalper car,CheckPoint checkPointId)
+    private void OnCheckPointTrigger(CarCheckPointHelper car,CheckPoint checkPointId)
     {
         if (car.NextCheckPoint == checkPointId)
         {
@@ -72,7 +72,7 @@ public class CheckPointSystem : MonoBehaviour
         
     }
 
-    public CarCheckPointHalper[] getCarCheckPointHalpers()
+    public CarCheckPointHelper[] getCarCheckPointHalpers()
     {
         return _cars;
     }

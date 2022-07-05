@@ -168,12 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - {fileID: 1709527907469197365, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 3274204849436070299, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 5777664676044734833, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 8780044168393870926, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  - {fileID: 1709527907469197365}
+  - {fileID: 3274204849436070299}
+  - {fileID: 5777664676044734833}
+  - {fileID: 8780044168393870926}
   wheelRadius: 0.33
-  rb: {fileID: 1810582283, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 60000

@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-public class CarCheckPointHalper : MonoBehaviour
+public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelper>
 {
     public event Action PassWrongCheckPass;
     public event Action OnPassCheckPoint;
-    private int _racePosition = 0;
     
+    [SerializeField] private int _racePosition = 0;
     
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
@@ -53,5 +53,34 @@ public class CarCheckPointHalper : MonoBehaviour
     {
         _racePosition = position;
     }
-    
+
+    public int CompareTo(CarCheckPointHelper otherCar)
+    {
+        if (_numberOfCheckPointToEnd > otherCar.NumberOfCheckPointToEnd)
+        {
+            return 1;
+        }
+        else if(_numberOfCheckPointToEnd < otherCar.NumberOfCheckPointToEnd)
+        {
+            return -1;
+        }
+        else
+        {
+            float myDis = Vector3.Distance(transform.position, NextCheckPoint.transform.position);
+            float otherDis = Vector3.Distance(otherCar.transform.position, otherCar.NextCheckPoint.transform.position);
+
+            if (myDis > otherDis)
+            {
+                return 1;
+            }
+            else if(myDis < otherDis)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 }
