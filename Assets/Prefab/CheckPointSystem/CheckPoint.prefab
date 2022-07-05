@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1161242492343896150}
   - component: {fileID: 6714413390506501463}
   - component: {fileID: 3033273316130519885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CheckPoint
-  m_TagString: Untagged
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2961040713307010600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.71, y: 2.56, z: 5.4}
-  m_LocalScale: {x: 10, y: 5, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 14, y: 4.6666665, z: 0.18666667}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

@@ -7,34 +7,34 @@ public class CarInputManager : MonoBehaviour
     #region ScrifsReference
 
     [SerializeField] private CarController _controller;
-    private CarInput _input;
+    public CarInput Input;
 
     #endregion
 
     private void Awake()
     {
-        _input = new CarInput();
+        Input = new CarInput();
         CamaraFallowCar.SetTarget(_controller._cameraLookAT);
     }
 
     private void OnEnable()
     {
-        _input.Enable();
+        Input.Enable();
     }
 
     private void OnDisable()
     {
-        _input.Disable();
+        Input.Disable();
     }
 
     private void Update()
     {
-        float acceleration = _input.Default.Acceleration.ReadValue<float>();
-        float steer = _input.Default.Steering.ReadValue<float>();
-        bool isBreak = _input.Default.Break.IsPressed();
+        float acceleration = Input.Default.Acceleration.ReadValue<float>();
+        float steer = Input.Default.Steering.ReadValue<float>();
+        bool isBreak = Input.Default.Break.IsPressed();
 
         _controller.UpdateCarInputs(acceleration,steer,isBreak);
 
-        CamaraFallowCar.IsLookBackInput = _input.CamControl.CamControl.IsPressed();
+        CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
     }
 }

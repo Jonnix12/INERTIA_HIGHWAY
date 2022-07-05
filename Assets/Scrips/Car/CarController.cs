@@ -22,6 +22,14 @@ public class CarController : CarEngineComponent
     {
         UpdateEngine(_accelerationInput);
         CalculateSteerackermannAngel(_steeringInput);
+
+        if (_isBreakingInput)
+        {
+            for (int i = 0; i < Wheels.Length; i++)
+            {
+                Wheels[i].Brake();
+            }
+        }
     }
     
 

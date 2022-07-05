@@ -125,14 +125,13 @@ GameObject:
   - component: {fileID: 1880317207959290724}
   - component: {fileID: 5941300305639498453}
   - component: {fileID: 2652593304945152731}
-  - component: {fileID: 1096136781372181069}
   - component: {fileID: 1454559328895671054}
   - component: {fileID: 5482650088193543652}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
   m_Layer: 0
   m_Name: Racing Car
-  m_TagString: Car
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,11 +175,12 @@ MonoBehaviour:
   rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
-  springStiffness: 55000
+  springStiffness: 60000
   damperStiffness: 4000
+  _brakeForce: 2500
   _wheelBase: 2.55
   _rearTranck: 1.5
-  _turnRadius: 5.5
+  _turnRadius: 3
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -205,7 +205,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _smoothDampTime: 1.5
+  _smoothDampTime: 0.5
+  _maxSpeed: 130
+  _speedLimitMultiplier: 3
   _cameraLookAT: {fileID: 7959982216098547714}
 --- !u!114 &2652593304945152731
 MonoBehaviour:
@@ -223,18 +225,6 @@ MonoBehaviour:
   enginRPM: {fileID: 0}
   gear: {fileID: 0}
   _car: {fileID: 5941300305639498453}
---- !u!114 &1096136781372181069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1454559328895671054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe9da075e41d7d54f8ba0056ed0081b5, type: 3}
   m_Name: 
@@ -421,7 +411,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2542249035703675391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 580311279415431662}
@@ -440,7 +430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3606474404692340756
 Transform:
   m_ObjectHideFlags: 0
@@ -781,7 +771,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6882407955982903286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 3570975274930632670}
@@ -910,7 +900,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7086561897426317053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 4378188931278180833}
@@ -991,7 +981,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8344480776609561667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488a119d0f8bdf040955daac6c4a5d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 25f103d7d1e19d94f9e510fdb1213dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshTransform: {fileID: 4837801160553823938}
