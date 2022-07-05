@@ -1501,6 +1501,7 @@ namespace GSD.Roads{
 			if(bInterseOn){
 				MeshSetup1_IntersectionParts();
 			}
+			
 			MeshBuffer = null;
 		}
 		
@@ -1519,13 +1520,13 @@ namespace GSD.Roads{
 			//Cleanups:
 			foreach(GSDRoadIntersection GSDRI in tGSDRIs){
 				GSDIntersectionObjects.CleanupIntersectionObjects(GSDRI.transform.gameObject);
-				if(GSDRI.iDefaultIntersectionType == GSDRoadIntersection.iIntersectionTypeEnum.StopSign_AllWay){
+				if(GSDRI.iStopType == GSDRoadIntersection.iStopTypeEnum.StopSign_AllWay){
 					GSDIntersectionObjects.CreateStopSignsAllWay(GSDRI.transform.gameObject,true);
-				}else if(GSDRI.iDefaultIntersectionType == GSDRoadIntersection.iIntersectionTypeEnum.TrafficLight1){
+				}else if(GSDRI.iStopType == GSDRoadIntersection.iStopTypeEnum.TrafficLight1){
 					GSDIntersectionObjects.CreateTrafficLightBases(GSDRI.transform.gameObject,true);
-				}else if(GSDRI.iDefaultIntersectionType == GSDRoadIntersection.iIntersectionTypeEnum.TrafficLight2){
+				}else if(GSDRI.iStopType == GSDRoadIntersection.iStopTypeEnum.TrafficLight2){
 					
-				}else if(GSDRI.iDefaultIntersectionType == GSDRoadIntersection.iIntersectionTypeEnum.None){
+				}else if(GSDRI.iStopType == GSDRoadIntersection.iStopTypeEnum.None){
 					//Do nothing.
 				}
 			}

@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckPointSystem : MonoBehaviour
 {
+    
     private List<CheckPoint> _checkPoints;
     private CarCheckPointHalper[] _cars;
+
 
     private void Awake()
     {
@@ -14,15 +17,21 @@ public class CheckPointSystem : MonoBehaviour
 
         _cars = FindObjectsOfType<CarCheckPointHalper>();
         
-        foreach (Transform transform in transform)
+        foreach (Transform note in transform)
         {
-            CheckPoint temp;
+            foreach (Transform edgeObject in note)
+            {
+                foreach (Transform checkPoint in edgeObject)
+                {
+                    if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
+                    {
+                        temp.OnCheckPointTrigger += OnCheckPointTrigger;
             
-            transform.TryGetComponent<CheckPoint>(out temp);
-            
-            temp.OnCheckPointTrigger += OnCheckPointTrigger;
-            
-            _checkPoints.Add(temp);
+                        _checkPoints.Add(temp);
+                        Debug.Log("Add " + temp.name + " From " + transform.name);
+                    }
+                }
+            }
         }
     }
 
@@ -46,16 +55,16 @@ public class CheckPointSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log(_checkPoints.IndexOf(checkPointId));
                 nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
             }
             
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
-            Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
+            //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
         else
         {
-            Debug.Log("Wrong CheckPoint");
+            car.PassInCorrectCheckPoint();
+            //Debug.Log("Wrong CheckPoint");
         }
         
     }
@@ -67,4 +76,5 @@ public class CheckPointSystem : MonoBehaviour
             vaCheckPoint.OnCheckPointTrigger -= OnCheckPointTrigger;
         }
     }
+
 }

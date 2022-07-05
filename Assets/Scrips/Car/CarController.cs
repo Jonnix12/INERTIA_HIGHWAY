@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarController : CarEngineComponent
@@ -18,10 +19,24 @@ public class CarController : CarEngineComponent
 
     #region Updates
 
+    private void Start()
+    {
+        InitSuspension();
+        CamaraFallowCar.SetTarget(_cameraLookAT);
+    }
+
     private void FixedUpdate()
     {
         UpdateEngine(_accelerationInput);
         CalculateSteerackermannAngel(_steeringInput);
+
+        if (_isBreakingInput)
+        {
+            for (int i = 0; i < Wheels.Length; i++)
+            {
+                Wheels[i].Brake();
+            }
+        }
     }
     
 

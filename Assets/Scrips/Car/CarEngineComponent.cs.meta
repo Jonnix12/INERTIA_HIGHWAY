@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scrips/AI/CarMoveAgent.cs.meta
+guid: c51db2c5204f9e94fb02379e9f2ba498
+========
 guid: 11ead9a2633a32f4391dbe0e1bdccac7
+>>>>>>>> CarTest:Assets/Scrips/CarEngineComponent.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

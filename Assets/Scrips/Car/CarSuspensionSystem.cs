@@ -14,14 +14,16 @@ public class CarSuspensionSystem : MonoBehaviour {
     public float springTravel;
     public float springStiffness;
     public float damperStiffness;
+
+    [Header("Brakes")] [SerializeField] private float _brakeForce;
     
     public Wheel[] Wheels => _wheels;
     
-    void Start() 
+    protected void InitSuspension() 
     {
         for (int i = 0; i < Wheels.Length; i++)
         {
-            _wheels[i].InhitWheel(rb,wheelRadius,restLength,springTravel,springStiffness,damperStiffness);
+            _wheels[i].InhitWheel(rb,wheelRadius,restLength,springTravel,springStiffness,damperStiffness,_brakeForce);
         }
     }
 

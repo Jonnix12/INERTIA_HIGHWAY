@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scrips/AI/CarMoveAgent.cs.meta
+guid: 5dbf8a92983e2ce4cad391d86fb34086
+========
+guid: 11ead9a2633a32f4391dbe0e1bdccac7
+>>>>>>>> CarTest:Assets/Scrips/CarEngineComponent.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
