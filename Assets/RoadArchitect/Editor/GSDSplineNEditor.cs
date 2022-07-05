@@ -1175,71 +1175,46 @@ public class GSDSplineNEditor : Editor {
 
 			if(!EOM.bEdgeSignLabelInit){
 				EOM.bEdgeSignLabel = false;
-				if(EOM.EM.EdgeObject!=null)
-                {
-					if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSignDiamond") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-diamond";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSignSquare-Small") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-Square";
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSignSquare") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-Square";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign988-Small") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-988";
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign988") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-988";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign861-Small") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-861";
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign861") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-861";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign617-Small") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-617";
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign617") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-617";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign396") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-396";
-
-					}
-					else if (string.CompareOrdinal(EOM.EM.EdgeObject.name, "GSDSign330") == 0)
-					{
-						EOM.bEdgeSignLabel = true;
-						EOM.EdgeSignLabel = "GSDFedSign-330";
-					}
+				if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSignDiamond") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-diamond";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSignSquare-Small") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-Square";
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSignSquare") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-Square";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign988-Small") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-988";
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign988") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-988";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign861-Small") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-861";
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign861") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-861";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign617-Small") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-617";
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign617") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-617";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign396") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-396";
+					
+				}else if(string.CompareOrdinal(EOM.EM.EdgeObject.name,"GSDSign330") == 0){
+					EOM.bEdgeSignLabel = true;
+					EOM.EdgeSignLabel = "GSDFedSign-330";
 				}
-				
 			}
 
 			if(EOM.bMaterialOverride){
@@ -1851,8 +1826,6 @@ public class GSDSplineNEditor : Editor {
 	}
 	
 	void EnforceCurve(ref AnimationCurve tCurve){
-		if (tCurve == null)
-			return;
 		if(tCurve.keys.Length == 0){
 			tCurve.AddKey(0f,1f);
 			tCurve.AddKey(1f,1f);
