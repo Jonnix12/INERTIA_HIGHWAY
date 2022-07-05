@@ -17,16 +17,19 @@ public class CheckPointSystem : MonoBehaviour
 
         _cars = FindObjectsOfType<CarCheckPointHalper>();
         
-        foreach (Transform transform in transform)
+        foreach (Transform note in transform)
         {
-            foreach (Transform checkPoint in transform)
+            foreach (Transform edgeObject in note)
             {
-                if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
+                foreach (Transform checkPoint in edgeObject)
                 {
-                    temp.OnCheckPointTrigger += OnCheckPointTrigger;
+                    if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
+                    {
+                        temp.OnCheckPointTrigger += OnCheckPointTrigger;
             
-                    _checkPoints.Add(temp);
-                    //Debug.Log("Add " + temp.name + " From " + transform.name);
+                        _checkPoints.Add(temp);
+                        Debug.Log("Add " + temp.name + " From " + transform.name);
+                    }
                 }
             }
         }

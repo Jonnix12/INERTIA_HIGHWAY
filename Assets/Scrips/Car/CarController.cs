@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarController : CarEngineComponent
@@ -17,6 +18,12 @@ public class CarController : CarEngineComponent
     
 
     #region Updates
+
+    private void Start()
+    {
+        InitSuspension();
+        CamaraFallowCar.SetTarget(_cameraLookAT);
+    }
 
     private void FixedUpdate()
     {

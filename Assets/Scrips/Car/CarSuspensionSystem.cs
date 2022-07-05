@@ -19,7 +19,7 @@ public class CarSuspensionSystem : MonoBehaviour {
     
     public Wheel[] Wheels => _wheels;
     
-    void Start() 
+    protected void InitSuspension() 
     {
         for (int i = 0; i < Wheels.Length; i++)
         {

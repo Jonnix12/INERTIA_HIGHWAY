@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248598967819147742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7711a693a71542e49a668ca893697316, type: 3}
+  m_Script: {fileID: 11500000, guid: b3b9e8e5e85c09342bb3e0fd6dfa29c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
@@ -171,44 +171,26 @@ MonoBehaviour:
   - {fileID: 3274204849436070299}
   - {fileID: 5777664676044734833}
   - {fileID: 8780044168393870926}
-  wheelRadius: 0.33
-  rb: {fileID: 1810582283}
-  restLength: 0.57
-  springTravel: 0.15
-  springStiffness: 60000
-  damperStiffness: 4000
-  _brakeForce: 2500
-  _wheelBase: 2.55
-  _rearTranck: 1.5
-  _turnRadius: 3
+  wheelRadius: 0
+  rb: {fileID: 0}
+  restLength: 0
+  springTravel: 0
+  springStiffness: 0
+  damperStiffness: 0
+  _brakeForce: 0
+  _wheelBase: 0
+  _rearTranck: 0
+  _turnRadius: 0
   _engineCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _smoothDampTime: 0.5
-  _maxSpeed: 130
-  _speedLimitMultiplier: 3
-  _cameraLookAT: {fileID: 7959982216098547714}
+  _smoothDampTime: 0
+  _maxSpeed: 0
+  _speedLimitMultiplier: 0
+  _cameraLookAT: {fileID: 0}
 --- !u!114 &2652593304945152731
 MonoBehaviour:
   m_ObjectHideFlags: 0
