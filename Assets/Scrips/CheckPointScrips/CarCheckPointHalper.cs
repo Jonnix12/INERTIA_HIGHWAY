@@ -5,10 +5,18 @@ public class CarCheckPointHalper : MonoBehaviour
 {
     public event Action PassWrongCheckPass;
     public event Action OnPassCheckPoint;
+    private int _racePosition = 0;
+    
+    
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
     private int _checkPointCount = 0;
     private int _numberOfCheckPointToEnd = 0;
+
+    public int NumberOfCheckPointToEnd
+    {
+        get { return _numberOfCheckPointToEnd; }
+    }
 
     public  CheckPoint PreviousCheckPoint
     {
@@ -38,6 +46,12 @@ public class CarCheckPointHalper : MonoBehaviour
     {
         _checkPointCount = count;
         _numberOfCheckPointToEnd = _checkPointCount;
+    }
+
+
+    public void SetRacePosition(int position)
+    {
+        _racePosition = position;
     }
     
 }

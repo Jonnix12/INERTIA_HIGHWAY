@@ -72,6 +72,11 @@ public class CheckPointSystem : MonoBehaviour
         
     }
 
+    public CarCheckPointHalper[] getCarCheckPointHalpers()
+    {
+        return _cars;
+    }
+
     private void OnDisable()
     {
         foreach (var vaCheckPoint in _checkPoints)
