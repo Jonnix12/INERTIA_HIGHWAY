@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880317207959290724}
   - component: {fileID: 5941300305639498453}
+  - component: {fileID: 8314477958352051973}
   - component: {fileID: 2652593304945152731}
   - component: {fileID: 1454559328895671054}
   - component: {fileID: 5482650088193543652}
@@ -131,7 +132,7 @@ GameObject:
   - component: {fileID: 1810582283}
   m_Layer: 0
   m_Name: Racing Car
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,30 +168,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - {fileID: 1709527907469197365}
-  - {fileID: 3274204849436070299}
-  - {fileID: 5777664676044734833}
-  - {fileID: 8780044168393870926}
-  wheelRadius: 0
-  rb: {fileID: 0}
-  restLength: 0
-  springTravel: 0
-  springStiffness: 0
-  damperStiffness: 0
-  _brakeForce: 0
-  _wheelBase: 0
-  _rearTranck: 0
-  _turnRadius: 0
+  - {fileID: 1709527907469197365, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  - {fileID: 3274204849436070299, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  - {fileID: 5777664676044734833, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  - {fileID: 8780044168393870926, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  wheelRadius: 0.33
+  rb: {fileID: 1810582283, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  restLength: 0.57
+  springTravel: 0.15
+  springStiffness: 60000
+  damperStiffness: 4000
+  _brakeForce: 2500
+  _wheelBase: 2.55
+  _rearTranck: 1.5
+  _turnRadius: 3
   _engineCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _smoothDampTime: 0
-  _maxSpeed: 0
-  _speedLimitMultiplier: 0
-  _cameraLookAT: {fileID: 0}
+  _smoothDampTime: 0.5
+  _maxSpeed: 130
+  _speedLimitMultiplier: 3
+  _cameraLookAT: {fileID: 1880317207959290724, guid: dbab81e23cc3e20448f4ed436ad2e9e8,
+    type: 3}
+--- !u!114 &8314477958352051973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2652593304945152731
 MonoBehaviour:
   m_ObjectHideFlags: 0
