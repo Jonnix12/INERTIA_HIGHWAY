@@ -14,7 +14,6 @@ public class CarInputManager : MonoBehaviour
     private void Awake()
     {
         Input = new CarInput();
-        CamaraFallowCar.SetTarget(_controller._cameraLookAT);
     }
 
     private void OnEnable()
