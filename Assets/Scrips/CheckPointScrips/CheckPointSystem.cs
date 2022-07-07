@@ -76,12 +76,12 @@ public class CheckPointSystem : MonoBehaviour
             }
             
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
-            //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
+            Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
         else
         {
             car.PassInCorrectCheckPoint();
-            //Debug.LogError("Wrong CheckPoint" + checkPointId.ID);
+            Debug.LogError("Wrong CheckPoint" + checkPointId.ID);
         }
         
     }
