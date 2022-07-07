@@ -8,14 +8,15 @@ public class CheckPointSystem : MonoBehaviour
 {
     
     private List<CheckPoint> _checkPoints;
-    private CarCheckPointHalper[] _cars;
+    private CarCheckPointHelper[] _cars;
+    private int _id;
 
 
     private void Awake()
     {
         _checkPoints = new List<CheckPoint>();
 
-        _cars = FindObjectsOfType<CarCheckPointHalper>();
+        _cars = FindObjectsOfType<CarCheckPointHelper>();
         
         foreach (Transform note in transform)
         {
@@ -26,7 +27,8 @@ public class CheckPointSystem : MonoBehaviour
                     if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
                     {
                         temp.OnCheckPointTrigger += OnCheckPointTrigger;
-            
+                        temp.SetId(_id);
+                        _id++;
                         _checkPoints.Add(temp);
                         Debug.Log("Add " + temp.name + " From " + transform.name);
                     }
@@ -39,11 +41,12 @@ public class CheckPointSystem : MonoBehaviour
     {
         for (int i = 0; i < _cars.Length; i++)
         {
+            _cars[i].SetCheckPointCount(_checkPoints.Count);
             _cars[i].SetNextCheckPoint(_checkPoints[0]);
         }
     }
 
-    private void OnCheckPointTrigger(CarCheckPointHalper car,CheckPoint checkPointId)
+    private void OnCheckPointTrigger(CarCheckPointHelper car,CheckPoint checkPointId)
     {
         if (car.NextCheckPoint == checkPointId)
         {
@@ -67,6 +70,11 @@ public class CheckPointSystem : MonoBehaviour
             //Debug.Log("Wrong CheckPoint");
         }
         
+    }
+
+    public CarCheckPointHelper[] getCarCheckPointHalpers()
+    {
+        return _cars;
     }
 
     private void OnDisable()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4378188931278180833}
   - component: {fileID: 4577325590160657876}
   - component: {fileID: 6439428870006845921}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7959982216098547714}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamLockAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,9 +133,9 @@ GameObject:
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
   - component: {fileID: 2559627648980061530}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Racing Car(AI)
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  checkPointHalper: {fileID: 6916289286158849140}
+  checkPointHelper: {fileID: 6916289286158849140}
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &5107433620467390785
 MonoBehaviour:
@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _racePosition: 0
 --- !u!65 &2690864471449865936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -387,7 +388,7 @@ GameObject:
   - component: {fileID: 2614238658241572533}
   - component: {fileID: 5579493306719816557}
   - component: {fileID: 4485099863708357545}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 909904997853722232}
   - component: {fileID: 1709527907469197365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wheel(FrontLeft)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3606474404692340756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +553,7 @@ GameObject:
   - component: {fileID: 6835293942701318835}
   - component: {fileID: 471725917729037219}
   - component: {fileID: 4859651589886562265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spoiler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +636,7 @@ GameObject:
   - component: {fileID: 3570975274930632670}
   - component: {fileID: 2645474277201651116}
   - component: {fileID: 5515002067374455655}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5970868136364432848}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamAnchors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +751,7 @@ GameObject:
   - component: {fileID: 4837801160553823938}
   - component: {fileID: 2292415219917698979}
   - component: {fileID: 3077395128357510525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2944889541115138945}
   - component: {fileID: 3274204849436070299}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'Wheel(FrontRight) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +880,7 @@ GameObject:
   - component: {fileID: 580311279415431662}
   - component: {fileID: 2538313024841451235}
   - component: {fileID: 504575916490611675}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867646912884687168}
   - component: {fileID: 8780044168393870926}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wheel(RaerRight)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6294174624470428800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1070920494441549866}
   - component: {fileID: 5777664676044734833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wheel(RaerLeft)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1089,6 +1090,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smoke (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041184513490279114, guid: 376e99acfa55e4944a9c38c31f0a6f99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
         type: 3}
@@ -1164,6 +1170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041184513490279114, guid: 376e99acfa55e4944a9c38c31f0a6f99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
         type: 3}

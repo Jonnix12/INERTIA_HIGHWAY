@@ -9,7 +9,7 @@ using Unity.MLAgents.Actuators;
 public class CarMoveAgent : Agent
 {
     #region fields
-    [SerializeField] private CarCheckPointHalper checkPointHalper;
+    [SerializeField] private CarCheckPointHelper checkPointHelper;
     [SerializeField] private Vector3 SpawnPoint;
     
 
@@ -26,8 +26,8 @@ public class CarMoveAgent : Agent
 
     private void Start()
     {
-        checkPointHalper.OnPassCheckPoint += AddRewardCurrntly;
-        checkPointHalper.PassWrongCheckPass += RemoveReward;
+        checkPointHelper.OnPassCheckPoint += AddRewardCurrntly;
+        checkPointHelper.PassWrongCheckPass += RemoveReward;
     }
 
     private void AddRewardCurrntly()
@@ -54,7 +54,7 @@ public class CarMoveAgent : Agent
     
     public override void CollectObservations(VectorSensor sensor)
     {
-        Vector3 checkpointForward = checkPointHalper.NextCheckPoint.transform.forward;
+        Vector3 checkpointForward = checkPointHelper.NextCheckPoint.transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
         sensor.AddObservation(directionDot);
         //sensor.AddObservation(checkpointForward);
