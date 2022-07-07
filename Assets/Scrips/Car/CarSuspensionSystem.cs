@@ -7,13 +7,14 @@ public class CarSuspensionSystem : MonoBehaviour {
     [Header("Wheels")] 
     [SerializeField] private Wheel[] _wheels;
     public float wheelRadius;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody _rb;
     
     [Header("Suspension")]
     public float restLength;
     public float springTravel;
     public float springStiffness;
     public float damperStiffness;
+    [SerializeField] private float _wheelRotation;
 
     [Header("Brakes")] [SerializeField] private float _brakeForce;
     
@@ -23,7 +24,7 @@ public class CarSuspensionSystem : MonoBehaviour {
     {
         for (int i = 0; i < Wheels.Length; i++)
         {
-            _wheels[i].InhitWheel(rb,wheelRadius,restLength,springTravel,springStiffness,damperStiffness,_brakeForce);
+            _wheels[i].InhitWheel(_rb,wheelRadius,restLength,springTravel,springStiffness,damperStiffness,_brakeForce,_wheelRotation);
         }
     }
 

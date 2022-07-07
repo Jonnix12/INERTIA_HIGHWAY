@@ -174,11 +174,12 @@ MonoBehaviour:
   - {fileID: 5777664676044734833}
   - {fileID: 8780044168393870926}
   wheelRadius: 0.33
-  rb: {fileID: 1810582283}
+  _rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 60000
   damperStiffness: 4000
+  _wheelRotation: 10
   _brakeForce: 2500
   _wheelBase: 2.55
   _rearTranck: 1.5
