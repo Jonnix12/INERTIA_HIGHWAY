@@ -4555,6 +4555,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
         type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 2043266354}
+    - target: {fileID: 5941300305639498453, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
       propertyPath: _wheelRotation
       value: 10
       objectReference: {fileID: 0}
@@ -5675,6 +5680,12 @@ Transform:
   m_Father: {fileID: 372067617}
   m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2043266354 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 105115991918602670, guid: f213605f4337ced4c803344a26f81069,
+    type: 3}
+  m_PrefabInstance: {fileID: 1540743401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055421735
 GameObject:
   m_ObjectHideFlags: 0

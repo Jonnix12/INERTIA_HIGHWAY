@@ -89,11 +89,10 @@ public class Wheel : MonoBehaviour
     
     #region PrivateFuncation
 
-    public void UpdateWheelVisal(float carSpeed)
+    public void UpdateWheelVisal()
     {
         _wheelPosition = new Vector3(0, -(_springLength), 0);
         meshTransform.localPosition = _wheelPosition;
-        WheelRotation(carSpeed);
     }
     
     private Vector3 CalculateSuspensionForce()
@@ -117,11 +116,6 @@ public class Wheel : MonoBehaviour
         return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
     }
 
-    private void WheelRotation(float carSpeed)
-    {
-        meshTransform.localRotation = Quaternion.Euler(meshTransform.localRotation.eulerAngles.x + carSpeed * _wheelRotation,0,0);
-    }
-    
     #endregion
    
 }
