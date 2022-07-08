@@ -11,6 +11,11 @@ public class CheckPointSystem : MonoBehaviour
     private CarCheckPointHelper[] _cars;
     private int _id;
 
+    private const string CHECK_POINT_TAG = "CheckPoint";
+    private const int CHECK_POINT_LAYER = 7;
+    private const string WALL_TAG = "Wall";
+    private const int WALL_LAYER = 6;
+
 
     private void Awake()
     {
@@ -20,14 +25,23 @@ public class CheckPointSystem : MonoBehaviour
         
         foreach (Transform note in transform)
         {
+           
             foreach (Transform edgeObject in note)
             {
+                if (edgeObject.TryGetComponent<Wall>(out Wall wall))
+                {
+                    wall.gameObject.tag = WALL_TAG;
+                    wall.gameObject.layer = WALL_LAYER;
+                }
+                
                 foreach (Transform checkPoint in edgeObject)
                 {
                     if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
                     {
                         temp.OnCheckPointTrigger += OnCheckPointTrigger;
                         temp.SetId(_id);
+                        temp.gameObject.tag = CHECK_POINT_TAG;
+                        temp.gameObject.layer = CHECK_POINT_LAYER;
                         _id++;
                         _checkPoints.Add(temp);
                         Debug.Log("Add " + temp.name + " From " + transform.name);
@@ -62,12 +76,12 @@ public class CheckPointSystem : MonoBehaviour
             }
             
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
-            //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
+            Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
         else
         {
             car.PassInCorrectCheckPoint();
-            //Debug.Log("Wrong CheckPoint");
+            Debug.LogError("Wrong CheckPoint" + checkPointId.ID);
         }
         
     }

@@ -49,6 +49,7 @@ public class CarEngineComponent : CarSteeringSystem_V2
         for (int i = 0; i < Wheels.Length; i++)
         {
             Wheels[i].AddWheelForce(CalculateMotorForce(input),CalculateSpeedMultiplier());
+            Wheels[i].UpdateWheelVisal(_carSpeed);
             AdjustTurnRadius(_carSpeed);
         }
     }
