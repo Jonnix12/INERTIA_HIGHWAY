@@ -96,7 +96,7 @@ public class CarEngineComponent : CarSteeringSystem_V2
 
             float distanceTraveled = Vector3.Distance(stratPos, endPos);
             _carSpeed = (distanceTraveled/ _waitFor) * 8.6f;
-            Debug.Log("Car speed " + _carSpeed);
+            //Debug.Log("Car speed " + _carSpeed);
         }
     }
 }

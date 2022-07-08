@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AnimEffectTest/AnimEffectTest.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
+    path: Assets/Scenes/PrsestanScene.unity
+    guid: 6673df00fac1a8f4ab1c4075b02d5076
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: eebb6ec7a03cb714aa6fdb203b5f731e
+  - enabled: 1
+    path: Assets/Scenes/Halotzi/Race1.unity
+    guid: b7635b85354b7914aa195605420d8058
+  - enabled: 1
+    path: Assets/Scenes/Halotzi/Race2.unity
+    guid: 89f17035979a0614295a401f13adcd6d
+  - enabled: 1
+    path: Assets/Scenes/Halotzi/Race3.unity
+    guid: 652a724074af204488c4e1037a8f5237
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e9e13510ac8d9a24a932e58023a8e238,
       type: 2}
