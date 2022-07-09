@@ -7,11 +7,10 @@ using TMPro;
 public class OptionsCanvas : MonoBehaviour
 {
     [Header("Volume Setting")]
-    [SerializeField] private Text volumeTextValue = null;
+    [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
+    [SerializeField] private float defaultVolume = 1.0f;
 
-
-    [SerializeField] GameObject confirmationPrompt = null;
 
     [Header("Resolution Dropdowns")]
     public TMP_Dropdown resolutionDropdown;
@@ -57,13 +56,15 @@ public class OptionsCanvas : MonoBehaviour
     public void VolumeApply()
     {
         PlayerPrefs.SetFloat("volumeSettings", AudioListener.volume);
-        //Show Promt
     }
 
-    public IEnumerable ConfirmationBox()
+    public void ResetBuuton(string MenuType)
     {
-        confirmationPrompt.SetActive(true);
-        yield return new WaitForSeconds(2);
-        confirmationPrompt.SetActive(false);
+        if(MenuType== "Audio")
+        {
+            AudioListener.volume = defaultVolume;
+            volumeSlider.value = defaultVolume;
+            volumeTextValue.text = defaultVolume.ToString("0.0");
+        }
     }
 }
