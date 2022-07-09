@@ -127,7 +127,7 @@ public class Audio : MonoBehaviour
                 m_HighDecel.pitch = pitch * highPitchMultiplier * pitchMultiplier;
 
                 // get values for fading the sounds based on the acceleration
-                float accFade = Mathf.Abs(car.EngineRpm);
+                float accFade = Mathf.Abs((carInputManager.CarAcceleration >0) ? carInputManager.CarAcceleration : 0);
                 float decFade = 1 - accFade;
 
                 // get the high fade value based on the cars revs
