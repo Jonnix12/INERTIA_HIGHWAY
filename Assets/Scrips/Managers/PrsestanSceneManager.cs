@@ -7,6 +7,12 @@ public class PrsestanSceneManager : MonoBehaviour
 {
    [SerializeField] private GameObject _viewPort;
    [SerializeField] private Image _backGround;
+   private bool _isFadeIn = true;
+
+   public bool IsFadeIn
+   {
+      get { return _isFadeIn; }
+   }
    
    public void FadeViewPort(bool toFade)
    {
@@ -31,7 +37,8 @@ public class PrsestanSceneManager : MonoBehaviour
          yield return null;
          _backGround.color = color;
       }
-      
+
+      _isFadeIn = true;
    }
    
    private IEnumerator FadeOut()
@@ -45,5 +52,6 @@ public class PrsestanSceneManager : MonoBehaviour
          _backGround.color = color;
       }
       _viewPort.SetActive(false);
+      _isFadeIn = false;
    }
 }

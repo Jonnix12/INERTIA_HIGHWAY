@@ -19,7 +19,7 @@ public class SceneManager : MonoBehaviour
     {
         Scene preventsScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(preventsScene);
-        
+
         AsyncOperation nextScene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index);
 
         nextScene.allowSceneActivation = false;
@@ -40,6 +40,7 @@ public class SceneManager : MonoBehaviour
     public AsyncOperation LoadManu()
     {
        AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
+       
        scene.allowSceneActivation = false;
 
        return scene;
