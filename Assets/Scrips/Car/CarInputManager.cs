@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class CarInputManager : MonoBehaviour
+public class CarInputManager : MonoBehaviour , Idisable
 {
     #region ScrifsReference
 
@@ -31,10 +31,10 @@ public class CarInputManager : MonoBehaviour
     [ContextMenu("EnableInput")]
     private void ForceEnable()
     {
-        EnableInput(true);
+        InputState(true);
     }
 
-    public void EnableInput(bool stats)
+    private void InputState(bool stats)
     {
         if (stats)
         {
@@ -44,5 +44,11 @@ public class CarInputManager : MonoBehaviour
         {
             Input.Disable();
         }
+    }
+
+
+    public void EnableInput(bool enable)
+    {
+        InputState(enable);
     }
 }

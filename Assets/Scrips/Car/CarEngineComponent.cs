@@ -60,7 +60,7 @@ public class CarEngineComponent : CarSteeringSystem_V2
         private float CalculateMotorForce(float input)
     {
         _tempInput = Mathf.SmoothDamp(_tempInput, Mathf.Abs(input), ref _refVelosty, _smoothDampTime);
-        _engineRpm = Mathf.Lerp(0, MAX_RPM, _tempInput);
+        _engineRpm = Mathf.Lerp(1000, MAX_RPM, _tempInput);
         
         if (input > 0)
         {

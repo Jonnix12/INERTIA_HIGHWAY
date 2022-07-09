@@ -5,13 +5,16 @@ public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelp
 {
     public event Action PassWrongCheckPass;
     public event Action OnPassCheckPoint;
-    
+
+    public event Action<CarCheckPointHelper> OnCompletedTheRace; 
+
     [SerializeField] private int _racePosition = 0;
     
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
     private int _checkPointCount = 0;
     private int _numberOfCheckPointToEnd = 0;
+    private int _numberOfLaps = 0;
 
     public int NumberOfCheckPointToEnd
     {
@@ -56,10 +59,25 @@ public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelp
         _numberOfCheckPointToEnd = _checkPointCount;
     }
 
+    public void CompletedALap()
+    {
+        _numberOfLaps--;
+
+        if (_numberOfLaps <= 0)
+        {
+            OnCompletedTheRace?.Invoke(this);
+        }
+    }
+
 
     public void SetRacePosition(int position)
     {
         _racePosition = position;
+    }
+
+    public void SetNumberOfLaps(int count)
+    {
+        _numberOfLaps = count;
     }
 
     public int CompareTo(CarCheckPointHelper otherCar)

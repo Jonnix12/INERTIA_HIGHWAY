@@ -6,12 +6,12 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 
-public class CarMoveAgent : Agent
+public class CarMoveAgent : Agent , Idisable
 {
     #region fields
     [SerializeField] private CarCheckPointHelper checkPointHelper;
     [SerializeField] private Vector3 SpawnPoint;
-    
+    private bool _isEnable = false;
 
     private CarController carController;
     
@@ -61,18 +61,21 @@ public class CarMoveAgent : Agent
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
-        float forwardAmount = actions.ContinuousActions[0];
-        float turnAmount = actions.ContinuousActions[1];
-        bool isBreak = false;
+        if (_isEnable)
+        {
+            float forwardAmount = actions.ContinuousActions[0];
+            float turnAmount = actions.ContinuousActions[1];
+            bool isBreak = false;
 
-       AddReward(forwardAmount/1);
+            AddReward(forwardAmount/1);
 
-       // if (forwardAmount > 0)
-        // {
-        //     AddReward(0.1f);
-        // }
+            // if (forwardAmount > 0)
+            // {
+            //     AddReward(0.1f);
+            // }
         
-        carController.UpdateCarInputs(forwardAmount, turnAmount,isBreak);
+            carController.UpdateCarInputs(forwardAmount, turnAmount,isBreak);
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -124,4 +127,10 @@ public class CarMoveAgent : Agent
     }
 
     #endregion
+
+
+    public void EnableInput(bool enable)
+    {
+        _isEnable = enable;
+    }
 }

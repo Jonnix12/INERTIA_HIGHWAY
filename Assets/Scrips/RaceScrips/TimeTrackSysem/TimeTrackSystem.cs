@@ -28,12 +28,12 @@ public class TimeTrackSystem : MonoBehaviour
         _secondsRemain = _countDownSeconds;
     }
 
-    public void StartRace(CarInputManager[] carInputManagers)
+    public void StartRace(Idisable[] carInputManagers)
     {
         StartCoroutine(RaceCountDown(carInputManagers));
     }
 
-    private IEnumerator RaceCountDown(CarInputManager[] carInputManagers)
+    private IEnumerator RaceCountDown(Idisable[] carInputManagers)
     { 
         for (int i = 0; i < _countDownSeconds; i++)
         {

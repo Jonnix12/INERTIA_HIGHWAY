@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
   - component: {fileID: 2559627648980061530}
+  - component: {fileID: 5470389249548740039}
   m_Layer: 3
   m_Name: Racing Car(Training AI)
   m_TagString: Car
@@ -176,15 +177,17 @@ MonoBehaviour:
   - {fileID: 5777664676044734833}
   - {fileID: 8780044168393870926}
   wheelRadius: 0.33
-  rb: {fileID: 1810582283}
+  _rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 60000
   damperStiffness: 4000
+  _wheelRotation: 0
   _brakeForce: 2500
   _wheelBase: 2.55
   _rearTranck: 1.5
   _turnRadius: 3
+  _animator: {fileID: 5470389249548740039}
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -252,7 +255,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 486f67a9d84978d4191a0368b26340ad, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: CarAgent
@@ -276,14 +279,13 @@ MonoBehaviour:
   m_DetectableTags:
   - Wall
   - CheckPoint
-  - Car
   m_RaysPerDirection: 3
   m_MaxRayDegrees: 75
   m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 192
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -377,6 +379,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 1
   TakeActionsBetweenDecisions: 1
+--- !u!95 &5470389249548740039
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 82efcc1c4c35384499068607dc833df2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0

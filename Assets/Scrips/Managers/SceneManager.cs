@@ -33,24 +33,6 @@ public class SceneManager : MonoBehaviour
         await Task.Delay(100);
         StartCoroutine(WaitForSceneToLoad(nextScene, nextSceneRef));
     }
-
-    public void LoadScene(int index)
-    {
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(index - 1);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(index,LoadSceneMode.Additive);
-    }
-
-    public AsyncOperation LoadManu()
-    {
-       AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
-       
-       Scene nextSceneRef = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(1);
-       
-       UnityEngine.SceneManagement.SceneManager.SetActiveScene(nextSceneRef);
-       scene.allowSceneActivation = false;
-
-       return scene;
-    }
     
     public async void LoadNextScene()
     {

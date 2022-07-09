@@ -9,7 +9,9 @@ public class RaceManager : MonoBehaviour
    [SerializeField] private TimeTrackSystem _timeTrackSystem;
    [SerializeField] private PositionSystem _positionSystem;
 
-   private List<CarInputManager> _carInputs;
+   [SerializeField] private int _numberOfLaps;
+   
+   private List<Idisable> _carInputs;
    private List<GameObject> _cars;
 
    private void Awake()
@@ -31,7 +33,7 @@ public class RaceManager : MonoBehaviour
       
       List<TimeTrack> tempCarTrackTime = new List<TimeTrack>();
 
-      _carInputs = new List<CarInputManager>();
+      _carInputs = new List<Idisable>();
 
       for (int i = 0; i < _cars.Count; i++)
       {
@@ -45,7 +47,7 @@ public class RaceManager : MonoBehaviour
             tempCarTrackTime.Add(tempTimeTrack);
          }
 
-         if (_cars[i].TryGetComponent<CarInputManager>(out CarInputManager carInput))
+         if (_cars[i].TryGetComponent<Idisable>(out Idisable carInput))
          {
             _carInputs.Add(carInput);
          }
@@ -54,7 +56,7 @@ public class RaceManager : MonoBehaviour
       CarCheckPointHelper[] tempArrayCheckPointHelpers = tempCarCheckPointHelpers.ToArray();
       TimeTrack[] tempArrayTimeTracks = tempCarTrackTime.ToArray();
       
-      _checkPointSystem.InitSystem(tempArrayCheckPointHelpers);
+      _checkPointSystem.InitSystem(tempArrayCheckPointHelpers,_numberOfLaps);
       _positionSystem.InitSystem(tempArrayCheckPointHelpers);
       _timeTrackSystem.InitSystem(tempArrayTimeTracks);
       StartRace();

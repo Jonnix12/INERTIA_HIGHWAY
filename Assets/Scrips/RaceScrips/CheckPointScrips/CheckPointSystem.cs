@@ -17,12 +17,12 @@ public class CheckPointSystem : MonoBehaviour
     private const int WALL_LAYER = 6;
 
 
-    public void InitSystem(CarCheckPointHelper[] cars)
+    public void InitSystem(CarCheckPointHelper[] cars , int numberOfLaps)
     {
         _checkPoints = new List<CheckPoint>();
 
         _cars = cars;
-        
+
         foreach (Transform note in transform)
         {
            
@@ -54,6 +54,7 @@ public class CheckPointSystem : MonoBehaviour
         {
             _cars[i].SetCheckPointCount(_checkPoints.Count);
             _cars[i].SetNextCheckPoint(_checkPoints[0]);
+            _cars[i].SetNumberOfLaps(numberOfLaps);
         }
     }
     
@@ -66,6 +67,7 @@ public class CheckPointSystem : MonoBehaviour
             if (_checkPoints.IndexOf(checkPointId) + 1 >= _checkPoints.Count)
             {
                 nextCheckPointIndex = 0;
+                car.CompletedALap();
             }
             else
             {
