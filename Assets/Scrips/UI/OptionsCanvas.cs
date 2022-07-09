@@ -50,7 +50,9 @@ public class OptionsCanvas : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+        volumeSlider.value = defaultVolume;
         volumeTextValue.text = volume.ToString("0.0");
+        VolumeApply();
     }
 
     public void VolumeApply()
