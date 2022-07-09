@@ -98,10 +98,18 @@ public class CarMoveAgent : Agent
         {
             AddReward(-0.5f);
         }
+        if (collision.gameObject.CompareTag("Car"))
+        {
+            AddReward(-0.5f);
+        }
     }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
+        {
+            AddReward(-0.1f);
+        }
+        if (collision.gameObject.CompareTag("Car"))
         {
             AddReward(-0.1f);
         }

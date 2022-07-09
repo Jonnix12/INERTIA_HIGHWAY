@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class CarEngineComponent : CarSteeringSystem_V2
 {
+    [SerializeField] private Animator _animator;
+    
     [Header("Engine Parameters:")]
     [SerializeField] private AnimationCurve _engineCurve;
     [SerializeField] private float _smoothDampTime;
@@ -49,8 +51,10 @@ public class CarEngineComponent : CarSteeringSystem_V2
         for (int i = 0; i < Wheels.Length; i++)
         {
             Wheels[i].AddWheelForce(CalculateMotorForce(input),CalculateSpeedMultiplier());
+            Wheels[i].UpdateWheelVisal();
             AdjustTurnRadius(_carSpeed);
         }
+        UpdateWheelRotation(_carSpeed/_maxSpeed);
     }
     
         private float CalculateMotorForce(float input)
@@ -76,7 +80,12 @@ public class CarEngineComponent : CarSteeringSystem_V2
         temp = Mathf.Clamp(temp, 1, 5);
         return temp;
     }
-        
+       
+    private void UpdateWheelRotation(float speedPrecedent)
+    {
+        _animator.speed = speedPrecedent;
+    }
+    
     private IEnumerator SpeedCalculate()
     {
         while (true)

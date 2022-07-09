@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class CarInputManager : MonoBehaviour
@@ -14,18 +15,9 @@ public class CarInputManager : MonoBehaviour
     private void Awake()
     {
         Input = new CarInput();
-    }
-
-    private void OnEnable()
-    {
-        Input.Enable();
-    }
-
-    private void OnDisable()
-    {
         Input.Disable();
     }
-
+    
     private void Update()
     {
         float acceleration = Input.Default.Acceleration.ReadValue<float>();
@@ -35,5 +27,17 @@ public class CarInputManager : MonoBehaviour
         _controller.UpdateCarInputs(acceleration,steer,isBreak);
 
         CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
+    }
+
+    public void EnableInput(bool stats)
+    {
+        if (stats)
+        {
+            Input.Enable();
+        }
+        else
+        {
+            Input.Disable();
+        }
     }
 }

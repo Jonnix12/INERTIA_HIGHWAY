@@ -127,11 +127,13 @@ GameObject:
   - component: {fileID: 5941300305639498453}
   - component: {fileID: 7886876877696879077}
   - component: {fileID: 8314477958352051973}
+  - component: {fileID: 1460911654750654008}
   - component: {fileID: 2652593304945152731}
   - component: {fileID: 1454559328895671054}
   - component: {fileID: 5482650088193543652}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
+  - component: {fileID: 105115991918602670}
   m_Layer: 0
   m_Name: Racing Car
   m_TagString: Car
@@ -201,15 +203,17 @@ MonoBehaviour:
   - {fileID: 5777664676044734833}
   - {fileID: 8780044168393870926}
   wheelRadius: 0.33
-  rb: {fileID: 1810582283}
+  _rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 60000
   damperStiffness: 4000
+  _wheelRotation: 10
   _brakeForce: 2500
   _wheelBase: 2.55
   _rearTranck: 1.5
   _turnRadius: 3
+  _animator: {fileID: 105115991918602670}
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -263,6 +267,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _racePosition: 0
+--- !u!114 &1460911654750654008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72aed9ab301d0f4b99c194079879db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2652593304945152731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +353,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &105115991918602670
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 82efcc1c4c35384499068607dc833df2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0

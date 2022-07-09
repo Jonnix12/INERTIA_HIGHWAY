@@ -34,6 +34,7 @@ public class Wheel : MonoBehaviour
     private float _desirableWheelForce;
     private float _wheelForceZ;
     private float _wheelForceX;
+    private float _wheelRotation;
     
     private Rigidbody _rb;
 
@@ -48,7 +49,7 @@ public class Wheel : MonoBehaviour
     
     #region PublicFuncation
 
-    public void InhitWheel(Rigidbody rb, float wheelRadius,float restLength,float springTravel,float springStiffness , float damperStiffness,float brakeForce)
+    public void InhitWheel(Rigidbody rb, float wheelRadius,float restLength,float springTravel,float springStiffness , float damperStiffness,float brakeForce,float wheelRotation)
     {
         _wheelRadius = wheelRadius;
         _rb = rb;
@@ -56,6 +57,7 @@ public class Wheel : MonoBehaviour
         _springStiffness = springStiffness;
         _damperStiffness = damperStiffness;
         _brakeForce = brakeForce;
+        _wheelRotation = wheelRotation;
         
         _minLength = restLength - springTravel;
         _maxLength = restLength + springTravel;
@@ -83,16 +85,11 @@ public class Wheel : MonoBehaviour
         _rb.AddForceAtPosition(refVector * _brakeForce,_hit.point);
     }
 
-    private void Update()
-    {
-        UpdateWheelVisal();
-    }
-
     #endregion
     
     #region PrivateFuncation
 
-    private void UpdateWheelVisal()
+    public void UpdateWheelVisal()
     {
         _wheelPosition = new Vector3(0, -(_springLength), 0);
         meshTransform.localPosition = _wheelPosition;
@@ -118,7 +115,7 @@ public class Wheel : MonoBehaviour
         _wheelForceX = _wheelVelocity.x * _forceMultiplierX;
         return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
     }
-    
+
     #endregion
    
 }
