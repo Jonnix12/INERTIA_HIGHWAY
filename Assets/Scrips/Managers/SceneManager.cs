@@ -17,14 +17,17 @@ public class SceneManager : MonoBehaviour
 
     public async void LoadSceneAsync(int index)
     {
-        AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index);
+        Scene preventsScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(preventsScene);
 
-        scene.allowSceneActivation = false;
+        AsyncOperation nextScene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index);
 
-        if (scene.isDone)
+        nextScene.allowSceneActivation = false;
+
+        if (nextScene.isDone)
         {
             await Task.Delay(500);
-            scene.allowSceneActivation = true;
+            nextScene.allowSceneActivation = true;
         }
     }
 
@@ -37,6 +40,7 @@ public class SceneManager : MonoBehaviour
     public AsyncOperation LoadManu()
     {
        AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive);
+       
        scene.allowSceneActivation = false;
 
        return scene;

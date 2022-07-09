@@ -28,8 +28,20 @@ public class GameManager : MonoBehaviour
 
    private void Start()
    {
-      AsyncOperation manuScene = SceneManager.LoadManu();
+      StartCoroutine(LoadSceneManu());
+   }
+
+   private IEnumerator LoadSceneManu()
+   {
+      //AsyncOperation manuScene = SceneManager.LoadManu();
+      
       _prsestanScene.FadeViewPort(false);
-      manuScene.allowSceneActivation = true;
+      
+      while (_prsestanScene.IsFadeIn)
+      {
+         yield return null;
+      }
+
+     // manuScene.allowSceneActivation = true;
    }
 }

@@ -6,6 +6,6 @@ public class ManuManager : MonoBehaviour
 {
    public void LoadRace1()
    {
-      GameManager.Instance.SceneManager.LoadScene(2);
+      GameManager.Instance.SceneManager.LoadSceneAsync(2);
    }
 }
