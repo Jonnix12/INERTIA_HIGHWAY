@@ -30,9 +30,9 @@ public class ALIyerEdonAssets_Lighting : EditorWindow
         maxSize = new Vector2(windowWidth, windowHeight);
         minSize = maxSize;
 
-        if (EditorPrefs.GetInt("dontShow_OAK_Pine_Tree") == 3)
+        if (EditorPrefs.GetInt("dontShow_Palm_Pack_Free") == 3)
             dontShow = true;
-        if (EditorPrefs.GetInt("dontShow_OAK_Pine_Tree") != 3)
+        if (EditorPrefs.GetInt("dontShow_Palm_Pack_Free") != 3)
             dontShow = false;
 
         if (!GameObject.FindObjectOfType<LightingTools_Offer>())
@@ -135,9 +135,9 @@ public class ALIyerEdonAssets_Lighting : EditorWindow
         if (dontShowRef != dontShow)
         {
             if (dontShow == true)            
-                EditorPrefs.SetInt("dontShow_OAK_Pine_Tree", 3); // 3 == true
+                EditorPrefs.SetInt("dontShow_Palm_Pack_Free", 3); // 3 == true
             if (dontShow == false)
-                EditorPrefs.SetInt("dontShow_OAK_Pine_Tree", 0); // 0 = false
+                EditorPrefs.SetInt("dontShow_Palm_Pack_Free", 0); // 0 = false
         }
 
         if (GameObject.FindObjectOfType<LightingTools_Offer>().isLoading)
@@ -234,22 +234,22 @@ public class Startup
 {
     static Startup() 
     {
-        EditorPrefs.SetInt("showCounts_OAK_Pine_Tree", EditorPrefs.GetInt("showCounts_OAK_Pine_Tree") + 1);
-        if (EditorPrefs.GetInt("showCounts_OAK_Pine_Tree") < 2)
+        EditorPrefs.SetInt("showCounts_Palm_Pack_Free", EditorPrefs.GetInt("showCounts_Palm_Pack_Free") + 1);
+        if (EditorPrefs.GetInt("showCounts_Palm_Pack_Free") < 2)
         { 
             EditorApplication.ExecuteMenuItem("Window/Lighting Tools");            
         }                 
         else          
         {   
-            if (EditorPrefs.GetInt("dontShow_OAK_Pine_Tree") == 3)
+            if (EditorPrefs.GetInt("dontShow_Palm_Pack_Free") == 3)
             {
-                if (EditorPrefs.GetInt("showCounts_OAK_Pine_Tree") >= 210)
-                    EditorPrefs.SetInt("showCounts_OAK_Pine_Tree", 0);
+                if (EditorPrefs.GetInt("showCounts_Palm_Pack_Free") >= 210)
+                    EditorPrefs.SetInt("showCounts_Palm_Pack_Free", 0);
             }
             else
             {
-                if (EditorPrefs.GetInt("showCounts_OAK_Pine_Tree") >= 50)
-                    EditorPrefs.SetInt("showCounts_OAK_Pine_Tree", 0);
+                if (EditorPrefs.GetInt("showCounts_Palm_Pack_Free") >= 50)
+                    EditorPrefs.SetInt("showCounts_Palm_Pack_Free", 0);
             }
         }            
     }
