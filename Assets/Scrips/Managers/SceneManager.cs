@@ -17,14 +17,17 @@ public class SceneManager : MonoBehaviour
 
     public async void LoadSceneAsync(int index)
     {
-        AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index);
+        Scene preventsScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(preventsScene);
+        
+        AsyncOperation nextScene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index);
 
-        scene.allowSceneActivation = false;
+        nextScene.allowSceneActivation = false;
 
-        if (scene.isDone)
+        if (nextScene.isDone)
         {
             await Task.Delay(500);
-            scene.allowSceneActivation = true;
+            nextScene.allowSceneActivation = true;
         }
     }
 
