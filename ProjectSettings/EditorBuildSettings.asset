@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PrsestanScene.unity
-    guid: 6673df00fac1a8f4ab1c4075b02d5076
+    path: Assets/Scenes/PrsestanScene/PrsestanScene.unity
+    guid: 94e64fdbadacddc46a9c2af19e7d4553
   - enabled: 1
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: eebb6ec7a03cb714aa6fdb203b5f731e

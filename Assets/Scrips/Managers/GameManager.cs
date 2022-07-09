@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
    private IEnumerator LoadSceneManu()
    {
-      //AsyncOperation manuScene = SceneManager.LoadManu();
+      SceneManager.LoadSceneAsync(1,false);
       
       _prsestanScene.FadeViewPort(false);
       
@@ -41,7 +41,24 @@ public class GameManager : MonoBehaviour
       {
          yield return null;
       }
-
-     // manuScene.allowSceneActivation = true;
+   }
+   
+   public IEnumerator LoadScene(int index)
+   {
+      _prsestanScene.FadeViewPort(true);
+      
+      while (!_prsestanScene.IsFadeIn)
+      {
+         yield return null;
+      }
+      
+      SceneManager.LoadSceneAsync(index,true);
+      
+      _prsestanScene.FadeViewPort(false);
+      
+      while (_prsestanScene.IsFadeIn)
+      {
+         yield return null;
+      }
    }
 }

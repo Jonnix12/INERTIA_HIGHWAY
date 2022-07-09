@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ManuManager : MonoBehaviour
 {
-   public void LoadRace1()
+    public void LoadRace(int index)
    {
-      GameManager.Instance.SceneManager.LoadSceneAsync(2);
+       StartCoroutine(GameManager.Instance.LoadScene(index));
    }
 }
