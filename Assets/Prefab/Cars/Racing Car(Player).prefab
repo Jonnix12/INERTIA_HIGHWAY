@@ -339,6 +339,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
+      propertyPath: carInputManager
+      value: 
+      objectReference: {fileID: 7107840785699773334}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f213605f4337ced4c803344a26f81069, type: 3}
 --- !u!114 &1644749629211364935 stripped
