@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
+#region
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+#endregion
 
 public class CheckPointSystem : MonoBehaviour
 {
-    
     private List<CheckPoint> _checkPoints;
     private CarCheckPointHelper[] _cars;
     private int _id;
@@ -17,7 +17,7 @@ public class CheckPointSystem : MonoBehaviour
     private const int WALL_LAYER = 6;
 
 
-    public void InitSystem(CarCheckPointHelper[] cars , int numberOfLaps)
+    public void InitSystem(CarCheckPointHelper[] cars, int numberOfLaps)
     {
         _checkPoints = new List<CheckPoint>();
 
@@ -25,18 +25,17 @@ public class CheckPointSystem : MonoBehaviour
 
         foreach (Transform note in transform)
         {
-           
             foreach (Transform edgeObject in note)
             {
-                if (edgeObject.TryGetComponent<Wall>(out Wall wall))
+                if (edgeObject.TryGetComponent(out Wall wall))
                 {
                     wall.gameObject.tag = WALL_TAG;
                     wall.gameObject.layer = WALL_LAYER;
                 }
-                
+
                 foreach (Transform checkPoint in edgeObject)
                 {
-                    if (checkPoint.TryGetComponent<CheckPoint>(out CheckPoint temp))
+                    if (checkPoint.TryGetComponent(out CheckPoint temp))
                     {
                         temp.OnCheckPointTrigger += OnCheckPointTrigger;
                         temp.SetId(_id);
@@ -49,7 +48,7 @@ public class CheckPointSystem : MonoBehaviour
                 }
             }
         }
-        
+
         for (int i = 0; i < _cars.Length; i++)
         {
             _cars[i].SetCheckPointCount(_checkPoints.Count);
@@ -57,13 +56,13 @@ public class CheckPointSystem : MonoBehaviour
             _cars[i].SetNumberOfLaps(numberOfLaps);
         }
     }
-    
-    private void OnCheckPointTrigger(CarCheckPointHelper car,CheckPoint checkPointId)
+
+    private void OnCheckPointTrigger(CarCheckPointHelper car, CheckPoint checkPointId)
     {
         if (car.NextCheckPoint == checkPointId)
         {
             int nextCheckPointIndex;
-            
+
             if (_checkPoints.IndexOf(checkPointId) + 1 >= _checkPoints.Count)
             {
                 nextCheckPointIndex = 0;
@@ -73,7 +72,7 @@ public class CheckPointSystem : MonoBehaviour
             {
                 nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
             }
-            
+
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
             //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
@@ -82,7 +81,6 @@ public class CheckPointSystem : MonoBehaviour
             car.PassInCorrectCheckPoint();
             //Debug.LogError("Wrong CheckPoint" + checkPointId.ID);
         }
-        
     }
 
     private void OnDisable()
@@ -92,5 +90,4 @@ public class CheckPointSystem : MonoBehaviour
             vaCheckPoint.OnCheckPointTrigger -= OnCheckPointTrigger;
         }
     }
-
 }

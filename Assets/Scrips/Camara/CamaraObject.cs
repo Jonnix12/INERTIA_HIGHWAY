@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+#region
+
 using UnityEngine;
+
+#endregion
 
 public class CamaraObject : MonoBehaviour
 {
-    [Header("Camera LookAT")] 
-    [SerializeField] private Transform _cameraLookAT;
+    [Header("Camera LookAT")] [SerializeField]
+    private Transform _cameraLookAT;
+
     void Start()
     {
         CamaraFallowCar.SetTarget(_cameraLookAT);
     }
-    
 }

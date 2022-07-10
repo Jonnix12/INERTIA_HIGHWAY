@@ -1,7 +1,10 @@
+#region
+
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+#endregion
 
 public class TimeTrackSystem : MonoBehaviour
 {
@@ -9,21 +12,21 @@ public class TimeTrackSystem : MonoBehaviour
 
     [SerializeField] private int _countDownSeconds;
     private int _secondsRemain;
-    
+
     private TimeTrack[] _carsTimer;
     private WaitForSeconds _waitForOneCSecond;
 
     private bool isRaceStart = false;
-    
+
     public void InitSystem(TimeTrack[] cars)
     {
         _carsTimer = cars;
-        
+
         for (int i = 0; i < _carsTimer.Length; i++)
         {
             OnStartRace += _carsTimer[i].StartRaceTimer;
         }
-        
+
         _waitForOneCSecond = new WaitForSeconds(1);
         _secondsRemain = _countDownSeconds;
     }
@@ -34,20 +37,21 @@ public class TimeTrackSystem : MonoBehaviour
     }
 
     private IEnumerator RaceCountDown(Idisable[] carInputManagers)
-    { 
+    {
         for (int i = 0; i < _countDownSeconds; i++)
         {
-                yield return _waitForOneCSecond;
-                _secondsRemain--;
+            yield return _waitForOneCSecond;
+            _secondsRemain--;
 
-                if (_secondsRemain == 0)
+            if (_secondsRemain == 0)
+            {
+                for (int j = 0; j < carInputManagers.Length; j++)
                 {
-                    for (int j = 0; j < carInputManagers.Length; j++)
-                    {
-                        carInputManagers[j].EnableInput(true);
-                    }
-                    OnStartRace?.Invoke();
+                    carInputManagers[j].EnableInput(true);
                 }
+
+                OnStartRace?.Invoke();
+            }
         }
     }
 

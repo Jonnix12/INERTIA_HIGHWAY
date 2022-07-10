@@ -1,19 +1,21 @@
-using System;
+#region
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+#endregion
 
 public class TimeTrack : MonoBehaviour
 {
-    private float _trackLapTime = 0;
-   
-    private bool _isRaceing = true;
+    private float _trackLapTime;
+
+    private readonly bool _isRaceing = true;
 
     public float LapTime
     {
         get { return _trackLapTime; }
     }
+
     private void Start()
     {
     }

@@ -1,16 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+#region
+
 using UnityEngine;
 
-public class CarInputManager : MonoBehaviour , Idisable
+#endregion
+
+public class CarInputManager : MonoBehaviour, Idisable
 {
     #region ScrifsReference
 
     [SerializeField] private CarController _controller;
     public CarInput Input;
     private float acceleration;
-    public float CarAcceleration { get { return acceleration; } }
+
+    public float CarAcceleration
+    {
+        get { return acceleration; }
+    }
+
     #endregion
 
     private void Awake()
@@ -18,16 +24,17 @@ public class CarInputManager : MonoBehaviour , Idisable
         Input = new CarInput();
         Input.Disable();
     }
-    
+
     public void Update()
     {
         acceleration = Input.Default.Acceleration.ReadValue<float>();
         float steer = Input.Default.Steering.ReadValue<float>();
         bool isBreak = Input.Default.Break.IsPressed();
-        _controller.UpdateCarInputs(acceleration,steer,isBreak);
+        _controller.UpdateCarInputs(acceleration, steer, isBreak);
 
         CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
     }
+
     [ContextMenu("EnableInput")]
     private void ForceEnable()
     {
