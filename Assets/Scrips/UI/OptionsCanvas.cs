@@ -9,20 +9,26 @@ using UnityEngine.UI;
 
 public class OptionsCanvas : MonoBehaviour
 {
-    [Header("Volume Setting")] [SerializeField]
-    private TMP_Text volumeTextValue;
+    [Header("Volume Setting")] 
+    [SerializeField] private TMP_Text _volumeTextValue;
+    [SerializeField] private Slider _volumeSlider;
+    [SerializeField] private float _defaultVolume = 1.0f;
 
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private float defaultVolume = 1.0f;
+    [Header("Resolution Setting")] 
+    [SerializeField] private Slider _brightness;
+    [SerializeField] private TMP_Text __brightnessTextValue;
+    [SerializeField] private float _defaultBrightness = 1;
 
+    private bool _isFullScreen;
+    private float _brightnessLevel;
 
     [Header("Resolution Dropdowns")] public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
     private void Start()
     {
-        volumeTextValue.text = PlayerPrefs.GetFloat("volumeSettings").ToString("0.0");
-        volumeSlider.value = PlayerPrefs.GetFloat("volumeSettings");
+        _volumeTextValue.text = PlayerPrefs.GetFloat("volumeSettings").ToString("0.0");
+        _volumeSlider.value = PlayerPrefs.GetFloat("volumeSettings");
 
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -53,10 +59,29 @@ public class OptionsCanvas : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+    public void SetBrighness (float brightness)
+    {
+        _brightnessLevel = brightness;
+        __brightnessTextValue.text = brightness.ToString("0.0");
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        _isFullScreen = isFullScreen;
+    }
+
+    public void GraphicsApply()
+    {
+        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel);
+        PlayerPrefs.SetInt("fullscreenSettings", (_isFullScreen ? 1 : 0));
+        Screen.fullScreen = _isFullScreen;
+    }
+
+
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
-        volumeTextValue.text = volume.ToString("0.0");
+        _volumeTextValue.text = volume.ToString("0.0");
     }
 
     public void VolumeApply()
@@ -68,9 +93,10 @@ public class OptionsCanvas : MonoBehaviour
     {
         if (MenuType == "Audio")
         {
-            AudioListener.volume = defaultVolume;
-            volumeSlider.value = defaultVolume;
-            volumeTextValue.text = defaultVolume.ToString("0.0");
+            AudioListener.volume = _defaultVolume;
+            _volumeSlider.value = _defaultVolume;
+            _volumeTextValue.text = _defaultVolume.ToString("0.0");
+            VolumeApply();
         }
     }
 }
