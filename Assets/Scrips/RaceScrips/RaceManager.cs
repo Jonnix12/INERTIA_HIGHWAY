@@ -1,69 +1,71 @@
-using System;
-using System.Collections;
+#region
+
 using System.Collections.Generic;
 using UnityEngine;
 
+#endregion
+
 public class RaceManager : MonoBehaviour
 {
-   [SerializeField] private CheckPointSystem _checkPointSystem;
-   [SerializeField] private TimeTrackSystem _timeTrackSystem;
-   [SerializeField] private PositionSystem _positionSystem;
+    [SerializeField] private CheckPointSystem _checkPointSystem;
+    [SerializeField] private TimeTrackSystem _timeTrackSystem;
+    [SerializeField] private PositionSystem _positionSystem;
 
-   [SerializeField] private int _numberOfLaps;
-   
-   private List<Idisable> _carInputs;
-   private List<GameObject> _cars;
+    [SerializeField] private int _numberOfLaps;
 
-   private void Awake()
-   {
-      GameObject[] tempCars;
-      tempCars = GameObject.FindGameObjectsWithTag("Car");
+    private List<Idisable> _carInputs;
+    private List<GameObject> _cars;
 
-      _cars = new List<GameObject>();
-      
-      for (int i = 0; i < tempCars.Length; i++)
-      {
-         _cars.Add(tempCars[i]);
-      }
-   }
+    private void Awake()
+    {
+        GameObject[] tempCars;
+        tempCars = GameObject.FindGameObjectsWithTag("Car");
 
-   private void Start()
-   {
-      List<CarCheckPointHelper> tempCarCheckPointHelpers = new List<CarCheckPointHelper>();
-      
-      List<TimeTrack> tempCarTrackTime = new List<TimeTrack>();
+        _cars = new List<GameObject>();
 
-      _carInputs = new List<Idisable>();
+        for (int i = 0; i < tempCars.Length; i++)
+        {
+            _cars.Add(tempCars[i]);
+        }
+    }
 
-      for (int i = 0; i < _cars.Count; i++)
-      {
-         if (_cars[i].TryGetComponent<CarCheckPointHelper>(out CarCheckPointHelper tempCheckPointHelper))
-         {
-            tempCarCheckPointHelpers.Add(tempCheckPointHelper);
-         }
+    private void Start()
+    {
+        List<CarCheckPointHelper> tempCarCheckPointHelpers = new List<CarCheckPointHelper>();
 
-         if (_cars[i].TryGetComponent<TimeTrack>(out TimeTrack tempTimeTrack))
-         {
-            tempCarTrackTime.Add(tempTimeTrack);
-         }
+        List<TimeTrack> tempCarTrackTime = new List<TimeTrack>();
 
-         if (_cars[i].TryGetComponent<Idisable>(out Idisable carInput))
-         {
-            _carInputs.Add(carInput);
-         }
-      }
+        _carInputs = new List<Idisable>();
 
-      CarCheckPointHelper[] tempArrayCheckPointHelpers = tempCarCheckPointHelpers.ToArray();
-      TimeTrack[] tempArrayTimeTracks = tempCarTrackTime.ToArray();
-      
-      _checkPointSystem.InitSystem(tempArrayCheckPointHelpers,_numberOfLaps);
-      _positionSystem.InitSystem(tempArrayCheckPointHelpers);
-      _timeTrackSystem.InitSystem(tempArrayTimeTracks);
-      StartRace();
-   }
+        for (int i = 0; i < _cars.Count; i++)
+        {
+            if (_cars[i].TryGetComponent(out CarCheckPointHelper tempCheckPointHelper))
+            {
+                tempCarCheckPointHelpers.Add(tempCheckPointHelper);
+            }
 
-   private void StartRace()
-   {
-      _timeTrackSystem.StartRace(_carInputs.ToArray());
-   }
+            if (_cars[i].TryGetComponent(out TimeTrack tempTimeTrack))
+            {
+                tempCarTrackTime.Add(tempTimeTrack);
+            }
+
+            if (_cars[i].TryGetComponent(out Idisable carInput))
+            {
+                _carInputs.Add(carInput);
+            }
+        }
+
+        CarCheckPointHelper[] tempArrayCheckPointHelpers = tempCarCheckPointHelpers.ToArray();
+        TimeTrack[] tempArrayTimeTracks = tempCarTrackTime.ToArray();
+
+        _checkPointSystem.InitSystem(tempArrayCheckPointHelpers, _numberOfLaps);
+        _positionSystem.InitSystem(tempArrayCheckPointHelpers);
+        _timeTrackSystem.InitSystem(tempArrayTimeTracks);
+        StartRace();
+    }
+
+    private void StartRace()
+    {
+        _timeTrackSystem.StartRace(_carInputs.ToArray());
+    }
 }

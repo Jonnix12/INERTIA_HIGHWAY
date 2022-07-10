@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+#region
+
 using UnityEngine;
+
+#endregion
 
 public class ManuManager : MonoBehaviour
 {
     public void LoadRace(int index)
-   {
-       StartCoroutine(GameManager.Instance.LoadScene(index));
-   }
+    {
+        StartCoroutine(GameManager.Instance.LoadScene(index));
+    }
 }

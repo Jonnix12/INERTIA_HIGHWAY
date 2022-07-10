@@ -1,10 +1,14 @@
+#region
+
 using System;
 using UnityEngine;
 
+#endregion
+
 public class CheckPoint : MonoBehaviour
 {
-    public event Action<CarCheckPointHelper,CheckPoint> OnCheckPointTrigger;
-    private int _id = 0;
+    public event Action<CarCheckPointHelper, CheckPoint> OnCheckPointTrigger;
+    private int _id;
 
     public int ID
     {
@@ -15,14 +19,14 @@ public class CheckPoint : MonoBehaviour
     {
         _id = id;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Car"))
         {
-            if (other.TryGetComponent<CarCheckPointHelper>(out CarCheckPointHelper carTemp))
+            if (other.TryGetComponent(out CarCheckPointHelper carTemp))
             {
-                OnCheckPointTrigger?.Invoke(carTemp,this);
+                OnCheckPointTrigger?.Invoke(carTemp, this);
             }
         }
     }

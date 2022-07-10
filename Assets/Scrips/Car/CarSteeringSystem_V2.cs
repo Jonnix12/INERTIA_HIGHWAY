@@ -1,17 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+#region
+
 using UnityEngine;
+
+#endregion
 
 public class CarSteeringSystem_V2 : CarSuspensionSystem
 {
-    [Header("Car Specs")]
-    [SerializeField] private float _wheelBase;
+    [Header("Car Specs")] [SerializeField] private float _wheelBase;
     [SerializeField] private float _rearTranck;
     [SerializeField] private float _turnRadius;
 
     private float _currentTurnRadius;
-    
+
     private float _ackermannAngelLeft;
     private float _ackermannAngelRight;
 
@@ -24,7 +24,7 @@ public class CarSteeringSystem_V2 : CarSuspensionSystem
     {
         get { return _ackermannAngelRight; }
     }
-    
+
 
     protected void AdjustTurnRadius(float speed)
     {
@@ -43,22 +43,25 @@ public class CarSteeringSystem_V2 : CarSuspensionSystem
     {
         if (input > 0)
         {
-            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) * input;
-            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) * input;
+            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) *
+                                  input;
+            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) *
+                                   input;
         }
         else if (input < 0)
         {
-            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) * input;
-            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) * input;
+            _ackermannAngelLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius - (_rearTranck / 2))) *
+                                  input;
+            _ackermannAngelRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_currentTurnRadius + (_rearTranck / 2))) *
+                                   input;
         }
         else
         {
             _ackermannAngelLeft = 0;
             _ackermannAngelRight = 0;
         }
-        
+
         Wheels[0].SetWheelAngel(_ackermannAngelLeft);
         Wheels[1].SetWheelAngel(_ackermannAngelRight);
-
     }
 }

@@ -1,7 +1,3 @@
-using System;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class CarController : CarEngineComponent
 {
     #region Fields
@@ -13,7 +9,7 @@ public class CarController : CarEngineComponent
     private float _currentBreakForce;
 
     #endregion
-    
+
     #region Updates
 
     private void Start()
@@ -33,10 +29,7 @@ public class CarController : CarEngineComponent
                 Wheels[i].Brake();
             }
         }
-        
-        
     }
-    
 
     #endregion
 
@@ -49,7 +42,5 @@ public class CarController : CarEngineComponent
         _isBreakingInput = isBreak;
     }
 
-    
     #endregion
-
 }

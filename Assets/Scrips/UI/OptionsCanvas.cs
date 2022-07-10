@@ -1,19 +1,22 @@
-using System.Collections;
+#region
+
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
+#endregion
 
 public class OptionsCanvas : MonoBehaviour
 {
-    [Header("Volume Setting")]
-    [SerializeField] private TMP_Text volumeTextValue = null;
-    [SerializeField] private Slider volumeSlider = null;
+    [Header("Volume Setting")] [SerializeField]
+    private TMP_Text volumeTextValue;
+
+    [SerializeField] private Slider volumeSlider;
     [SerializeField] private float defaultVolume = 1.0f;
 
 
-    [Header("Resolution Dropdowns")]
-    public TMP_Dropdown resolutionDropdown;
+    [Header("Resolution Dropdowns")] public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
     private void Start()
@@ -30,7 +33,7 @@ public class OptionsCanvas : MonoBehaviour
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 currentResolutionIndex = i;
             }
@@ -62,7 +65,7 @@ public class OptionsCanvas : MonoBehaviour
 
     public void ResetBuuton(string MenuType)
     {
-        if(MenuType== "Audio")
+        if (MenuType == "Audio")
         {
             AudioListener.volume = defaultVolume;
             volumeSlider.value = defaultVolume;

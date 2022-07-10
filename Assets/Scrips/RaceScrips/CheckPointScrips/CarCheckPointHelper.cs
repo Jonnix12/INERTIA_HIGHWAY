@@ -1,27 +1,31 @@
+#region
+
 using System;
 using UnityEngine;
 
-public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelper>
+#endregion
+
+public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelper>
 {
     public event Action PassWrongCheckPass;
     public event Action OnPassCheckPoint;
 
-    public event Action<CarCheckPointHelper> OnCompletedTheRace; 
+    public event Action<CarCheckPointHelper> OnCompletedTheRace;
 
-    [SerializeField] private int _racePosition = 0;
-    
+    [SerializeField] private int _racePosition;
+
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
-    private int _checkPointCount = 0;
-    private int _numberOfCheckPointToEnd = 0;
-    private int _numberOfLaps = 0;
+    private int _checkPointCount;
+    private int _numberOfCheckPointToEnd;
+    private int _numberOfLaps;
 
     public int NumberOfCheckPointToEnd
     {
         get { return _numberOfCheckPointToEnd; }
     }
 
-    public  CheckPoint PreviousCheckPoint
+    public CheckPoint PreviousCheckPoint
     {
         get { return _previousCheckPoint; }
     }
@@ -30,7 +34,7 @@ public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelp
     {
         get { return _nextCheckPoint; }
     }
-    
+
     public int RacePosition
     {
         get { return _racePosition; }
@@ -42,12 +46,13 @@ public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelp
         _previousCheckPoint = _nextCheckPoint;
         _nextCheckPoint = nextCheckPoint;
         _numberOfCheckPointToEnd--;
-        
+
         if (_numberOfCheckPointToEnd <= 0)
         {
             _numberOfCheckPointToEnd = _checkPointCount;
         }
     }
+
     public void PassInCorrectCheckPoint()
     {
         PassWrongCheckPass?.Invoke();
@@ -86,27 +91,25 @@ public class CarCheckPointHelper : MonoBehaviour , IComparable<CarCheckPointHelp
         {
             return 1;
         }
-        else if(_numberOfCheckPointToEnd < otherCar.NumberOfCheckPointToEnd)
+
+        if (_numberOfCheckPointToEnd < otherCar.NumberOfCheckPointToEnd)
         {
             return -1;
         }
-        else
-        {
-            float myDis = Vector3.Distance(transform.position, NextCheckPoint.transform.position);
-            float otherDis = Vector3.Distance(otherCar.transform.position, otherCar.NextCheckPoint.transform.position);
 
-            if (myDis > otherDis)
-            {
-                return 1;
-            }
-            else if(myDis < otherDis)
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
+        float myDis = Vector3.Distance(transform.position, NextCheckPoint.transform.position);
+        float otherDis = Vector3.Distance(otherCar.transform.position, otherCar.NextCheckPoint.transform.position);
+
+        if (myDis > otherDis)
+        {
+            return 1;
         }
+
+        if (myDis < otherDis)
+        {
+            return -1;
+        }
+
+        return 0;
     }
 }

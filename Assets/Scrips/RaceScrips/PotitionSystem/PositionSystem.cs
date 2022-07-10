@@ -1,8 +1,9 @@
+#region
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+#endregion
 
 public class PositionSystem : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PositionSystem : MonoBehaviour
     {
         for (int i = 0; i < _cars.Length; i++)
         {
-            _cars[i].SetRacePosition(i+1);
+            _cars[i].SetRacePosition(i + 1);
         }
     }
 }

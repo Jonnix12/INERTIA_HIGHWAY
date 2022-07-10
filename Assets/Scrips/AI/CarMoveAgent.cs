@@ -1,23 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
-using Unity.MLAgents.Actuators;
+#region
 
-public class CarMoveAgent : Agent , Idisable
+using Unity.MLAgents;
+using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
+using UnityEngine;
+
+#endregion
+
+public class CarMoveAgent : Agent, Idisable
 {
     #region fields
+
     [SerializeField] private CarCheckPointHelper checkPointHelper;
     [SerializeField] private Vector3 SpawnPoint;
-    private bool _isEnable = false;
+    private bool _isEnable;
 
     private CarController carController;
-    
 
     #endregion
-    
+
     private void Awake()
     {
         carController = GetComponent<CarController>();
@@ -44,14 +45,15 @@ public class CarMoveAgent : Agent , Idisable
     {
         //AddReward(carController.CarSpeed * 0.1f);
     }
-    
+
     #region MLAgentActions
+
     public override void OnEpisodeBegin()
     {
         transform.position = SpawnPoint;
         transform.rotation = new Quaternion(0, 0, 0, 0);
     }
-    
+
     public override void CollectObservations(VectorSensor sensor)
     {
         Vector3 checkpointForward = checkPointHelper.NextCheckPoint.transform.forward;
@@ -59,6 +61,7 @@ public class CarMoveAgent : Agent , Idisable
         sensor.AddObservation(directionDot);
         //sensor.AddObservation(checkpointForward);
     }
+
     public override void OnActionReceived(ActionBuffers actions)
     {
         if (_isEnable)
@@ -67,14 +70,14 @@ public class CarMoveAgent : Agent , Idisable
             float turnAmount = actions.ContinuousActions[1];
             bool isBreak = false;
 
-            AddReward(forwardAmount/1);
+            AddReward(forwardAmount / 1);
 
             // if (forwardAmount > 0)
             // {
             //     AddReward(0.1f);
             // }
-        
-            carController.UpdateCarInputs(forwardAmount, turnAmount,isBreak);
+
+            carController.UpdateCarInputs(forwardAmount, turnAmount, isBreak);
         }
     }
 
@@ -92,26 +95,31 @@ public class CarMoveAgent : Agent , Idisable
         continuousActions[0] = forwardAction;
         continuousActions[1] = turnAction;
     }
+
     #endregion
-    
+
     #region collison
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
             AddReward(-0.5f);
         }
+
         if (collision.gameObject.CompareTag("Car"))
         {
             AddReward(-0.5f);
         }
     }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
             AddReward(-0.1f);
         }
+
         if (collision.gameObject.CompareTag("Car"))
         {
             AddReward(-0.1f);
