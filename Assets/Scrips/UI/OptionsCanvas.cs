@@ -18,6 +18,9 @@ public class OptionsCanvas : MonoBehaviour
 
     private void Start()
     {
+        volumeTextValue.text = PlayerPrefs.GetFloat("volumeSettings").ToString("0.0");
+        volumeSlider.value = PlayerPrefs.GetFloat("volumeSettings");
+
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -50,9 +53,7 @@ public class OptionsCanvas : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
-        volumeSlider.value = defaultVolume;
         volumeTextValue.text = volume.ToString("0.0");
-        VolumeApply();
     }
 
     public void VolumeApply()
