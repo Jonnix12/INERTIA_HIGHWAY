@@ -12,8 +12,9 @@ public class CarMoveAgent : Agent, Idisable
     #region fields
 
     [SerializeField] private CarCheckPointHelper checkPointHelper;
-    [SerializeField] private Vector3 SpawnPoint;
-    private bool _isEnable;
+    [SerializeField] private Vector3 _spawnPoint;
+    [SerializeField] private Vector3 _rotatePoint;
+    private bool _isEnable = true;
 
     private CarController carController;
 
@@ -22,13 +23,14 @@ public class CarMoveAgent : Agent, Idisable
     private void Awake()
     {
         carController = GetComponent<CarController>();
-        SpawnPoint = transform.position;
+        _spawnPoint = transform.position;
+        _rotatePoint = transform.rotation.eulerAngles;
     }
 
     private void Start()
     {
         checkPointHelper.OnPassCheckPoint += AddRewardCurrntly;
-        checkPointHelper.PassWrongCheckPass += RemoveReward;
+        checkPointHelper.PassWrongCheckPass += RemoveReward; 
     }
 
     private void AddRewardCurrntly()
@@ -50,8 +52,8 @@ public class CarMoveAgent : Agent, Idisable
 
     public override void OnEpisodeBegin()
     {
-        transform.position = SpawnPoint;
-        transform.rotation = new Quaternion(0, 0, 0, 0);
+        transform.position = _spawnPoint;
+        //transform.rotation = Quaternion.Euler(_rotatePoint);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -70,7 +72,7 @@ public class CarMoveAgent : Agent, Idisable
             float turnAmount = actions.ContinuousActions[1];
             bool isBreak = false;
 
-            AddReward(forwardAmount / 1);
+            //AddReward(forwardAmount / 1);
 
             // if (forwardAmount > 0)
             // {
