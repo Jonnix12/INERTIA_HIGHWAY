@@ -49,6 +49,7 @@ MonoBehaviour:
   _checkPointSystem: {fileID: 0}
   _timeTrackSystem: {fileID: 5726348350078482342}
   _positionSystem: {fileID: 5726348350078482343}
+  _numberOfLaps: 0
 --- !u!114 &5726348350078482342
 MonoBehaviour:
   m_ObjectHideFlags: 0
