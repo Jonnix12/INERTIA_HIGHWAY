@@ -9,7 +9,7 @@ public class CamaraObject : MonoBehaviour
     [Header("Camera LookAT")] [SerializeField]
     private Transform _cameraLookAT;
 
-    void Start()
+    void Awake()
     {
         CamaraFallowCar.SetTarget(_cameraLookAT);
     }

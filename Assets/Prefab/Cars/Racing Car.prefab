@@ -123,13 +123,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1880317207959290724}
-  - component: {fileID: 7628692153561976555}
   - component: {fileID: 5941300305639498453}
-  - component: {fileID: 7886876877696879077}
   - component: {fileID: 8314477958352051973}
   - component: {fileID: 1460911654750654008}
-  - component: {fileID: 2652593304945152731}
-  - component: {fileID: 5482650088193543652}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
   - component: {fileID: 105115991918602670}
@@ -158,32 +154,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7628692153561976555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b621e672236d63b48aaa7b99d7802b87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  engineSoundStyle: 1
-  lowAccelClip: {fileID: 8300000, guid: c4d8928c75c21af43998193f0f038429, type: 3}
-  lowDecelClip: {fileID: 8300000, guid: 03bf91d88fce91c41995d27de63cc967, type: 3}
-  highAccelClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
-  highDecelClip: {fileID: 8300000, guid: 5699dddcce16c4543b95951c4ce0e092, type: 3}
-  pitchMultiplier: 1
-  lowPitchMin: 1
-  lowPitchMax: 6
-  highPitchMultiplier: 0.25
-  maxRolloffDistance: 500
-  dopplerLevel: 1
-  useDoppler: 1
-  car: {fileID: 5941300305639498453}
-  carInputManager: {fileID: 0}
 --- !u!114 &5941300305639498453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,19 +210,6 @@ MonoBehaviour:
   _smoothDampTime: 0.5
   _maxSpeed: 130
   _speedLimitMultiplier: 3
---- !u!114 &7886876877696879077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa5f68e2226cbc4bb13df55c73abd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cameraLookAT: {fileID: 2614238658241572533}
 --- !u!114 &8314477958352051973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,38 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72aed9ab301d0f4b99c194079879db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2652593304945152731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ffdee4ad628ea4494727d6c11d302a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {fileID: 0}
-  enginRPM: {fileID: 0}
-  gear: {fileID: 0}
-  _car: {fileID: 5941300305639498453}
---- !u!114 &5482650088193543652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9da075e41d7d54f8ba0056ed0081b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 5941300305639498453}
-  _smoke: {fileID: 2643989895111903125}
-  _dust: {fileID: 4104078004516051882, guid: 9ad077e426191e64b9a3ce4839ab700e, type: 3}
-  _timeToWaitForParticle: 2
 --- !u!65 &2690864471449865936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1205,12 +1130,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376e99acfa55e4944a9c38c31f0a6f99, type: 3}
---- !u!198 &2643989895111903125 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5859661776530846119, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-    type: 3}
-  m_PrefabInstance: {fileID: 8494041347107337778}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5861281326663677069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,
