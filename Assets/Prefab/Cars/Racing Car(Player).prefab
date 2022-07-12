@@ -25,19 +25,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2941200048260532989}
-  m_LocalRotation: {x: 0.0000000032596283, y: -0, z: 0.009378587, w: 0.999956}
-  m_LocalPosition: {x: 0, y: 0, z: -112.00686}
+  m_LocalRotation: {x: 0.004828473, y: 0.007555521, z: -0.0038350157, w: 0.9999525}
+  m_LocalPosition: {x: 0, y: 0, z: -112.00687}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1263422024173114677}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.075}
+  m_LocalEulerAnglesHint: {x: 0.557, y: 0.864, z: -0.435}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.0001831, y: -45.451736}
-  m_SizeDelta: {x: 125, y: 15}
-  m_Pivot: {x: 0.9, y: 0.5}
+  m_AnchoredPosition: {x: 4.255615, y: -34.5}
+  m_SizeDelta: {x: 92.8026, y: 10.0752}
+  m_Pivot: {x: 0.89985937, y: 0.43090662}
 --- !u!222 &8723138986129544398
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 1644749629211364935}
   maxSpeed: 200
-  minSpeedArrowAngle: 1
-  maxSpeedArrowAngle: -170.313
+  minSpeedArrowAngle: -0.435
+  maxSpeedArrowAngle: -174.379
   arrow: {fileID: 8732538262311156131}
 --- !u!1 &7178064444320813654
 GameObject:
@@ -231,8 +231,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 129.79999, y: 0}
-  m_SizeDelta: {x: 260.6921, y: 179.3035}
+  m_AnchoredPosition: {x: 98.88281, y: 0}
+  m_SizeDelta: {x: 198.8578, y: 126.6786}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1688898913109410823
 CanvasRenderer:
@@ -341,9 +341,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
         type: 3}
+      propertyPath: lowAccelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 57ad6bce29f66a040a07618314a4e8a8, type: 3}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
+      propertyPath: lowDecelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 57ad6bce29f66a040a07618314a4e8a8, type: 3}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
+      propertyPath: highAccelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 238b374af16b0004cbbfe61a710622f6, type: 3}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
+      propertyPath: highDecelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c56d8ed148d8170488817805c0c865da, type: 3}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
       propertyPath: carInputManager
       value: 
       objectReference: {fileID: 7107840785699773334}
+    - target: {fileID: 7628692153561976555, guid: f213605f4337ced4c803344a26f81069,
+        type: 3}
+      propertyPath: pitchMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f213605f4337ced4c803344a26f81069, type: 3}
 --- !u!114 &1644749629211364935 stripped

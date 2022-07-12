@@ -27,10 +27,7 @@ public class RaceManager : MonoBehaviour
         {
             _cars.Add(tempCars[i]);
         }
-    }
 
-    private void Start()
-    {
         List<CarCheckPointHelper> tempCarCheckPointHelpers = new List<CarCheckPointHelper>();
 
         List<TimeTrack> tempCarTrackTime = new List<TimeTrack>();
@@ -63,6 +60,8 @@ public class RaceManager : MonoBehaviour
         _timeTrackSystem.InitSystem(tempArrayTimeTracks);
         StartRace();
     }
+
+
 
     private void StartRace()
     {
