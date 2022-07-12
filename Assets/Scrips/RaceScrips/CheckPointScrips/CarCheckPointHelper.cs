@@ -56,12 +56,19 @@ public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelpe
     public void PassInCorrectCheckPoint()
     {
         PassWrongCheckPass?.Invoke();
+        FlashCheckPoint(_nextCheckPoint);
     }
 
     public void SetCheckPointCount(int count)
     {
         _checkPointCount = count;
         _numberOfCheckPointToEnd = _checkPointCount;
+    }
+
+    private void FlashCheckPoint(CheckPoint checkPoint)
+    {
+        MeshRenderer meshRenderer = checkPoint.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = true;
     }
 
     public void CompletedALap()
