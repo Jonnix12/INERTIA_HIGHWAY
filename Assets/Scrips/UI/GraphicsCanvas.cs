@@ -9,7 +9,7 @@ public class GraphicsCanvas : MonoBehaviour
     [SerializeField] private Slider _brightnessSlider;
     [SerializeField] private Toggle _isFullScreenToggle;
     [SerializeField] private TMP_Text __brightnessTextValue;
-    [SerializeField] private float _defaultBrightness = 1;
+    [SerializeField] private int _defaultBrightness = 50;
 
     private bool _isFullScreen;
     private float _brightnessLevel;
@@ -40,6 +40,9 @@ public class GraphicsCanvas : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        _isFullScreenToggle.isOn = Screen.fullScreen;
+        _brightnessSlider.value = PlayerPrefs.GetFloat("brightnessSettings") * 100;
     }
 
     public void SetResolution(int resolutionIndex)
@@ -51,7 +54,7 @@ public class GraphicsCanvas : MonoBehaviour
     public void SetBrighness(float brightness)
     {
         _brightnessLevel = brightness;
-        __brightnessTextValue.text = brightness.ToString("0.0");
+        __brightnessTextValue.text = brightness.ToString();
     }
 
     public void SetFullScreen(bool isFullScreen)
@@ -61,7 +64,8 @@ public class GraphicsCanvas : MonoBehaviour
 
     public void GraphicsApply()
     {
-        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel);
+        Screen.brightness = _brightnessLevel;
+        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel/100);
         PlayerPrefs.SetInt("fullscreenSettings", (_isFullScreen ? 1 : 0));
         Screen.fullScreen = _isFullScreen;
     }
@@ -71,7 +75,7 @@ public class GraphicsCanvas : MonoBehaviour
         if (MenuType == "Graphics")
         {
             _brightnessSlider.value = _defaultBrightness;
-            __brightnessTextValue.text = _defaultBrightness.ToString("0.0");
+            __brightnessTextValue.text = _defaultBrightness.ToString();
             _isFullScreenToggle.isOn = true;
             Screen.fullScreen = true;
 
