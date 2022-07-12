@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class TimeTrackSystem : MonoBehaviour
 {
+    public static event Action<int> CountDown; 
     public event Action OnStartRace;
 
     [SerializeField] private int _countDownSeconds;
@@ -42,7 +43,7 @@ public class TimeTrackSystem : MonoBehaviour
         {
             yield return _waitForOneCSecond;
             _secondsRemain--;
-
+            CountDown?.Invoke(_secondsRemain);
             if (_secondsRemain == 0)
             {
                 for (int j = 0; j < carInputManagers.Length; j++)

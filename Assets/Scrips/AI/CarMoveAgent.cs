@@ -14,7 +14,7 @@ public class CarMoveAgent : Agent, Idisable
     [SerializeField] private CarCheckPointHelper checkPointHelper;
     [SerializeField] private Vector3 _spawnPoint;
     [SerializeField] private Vector3 _rotatePoint;
-    private bool _isEnable = true;
+    private bool _isEnable;
 
     private CarController carController;
 

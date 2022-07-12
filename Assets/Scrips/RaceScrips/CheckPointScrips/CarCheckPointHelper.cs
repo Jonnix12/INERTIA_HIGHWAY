@@ -40,6 +40,11 @@ public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelpe
         get { return _racePosition; }
     }
 
+    public int NumberOfLaps
+    {
+        get { return _numberOfLaps; }
+    }
+
     public void SetNextCheckPoint(CheckPoint nextCheckPoint)
     {
         OnPassCheckPoint?.Invoke();
