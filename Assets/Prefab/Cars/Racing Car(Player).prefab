@@ -258,17 +258,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8450449400789866223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b621e672236d63b48aaa7b99d7802b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   engineSoundStyle: 1
-  lowAccelClip: {fileID: 0}
-  lowDecelClip: {fileID: 0}
-  highAccelClip: {fileID: 0}
-  highDecelClip: {fileID: 0}
-  pitchMultiplier: 1
+  lowAccelClip: {fileID: 8300000, guid: 57ad6bce29f66a040a07618314a4e8a8, type: 3}
+  lowDecelClip: {fileID: 8300000, guid: 57ad6bce29f66a040a07618314a4e8a8, type: 3}
+  highAccelClip: {fileID: 8300000, guid: 238b374af16b0004cbbfe61a710622f6, type: 3}
+  highDecelClip: {fileID: 8300000, guid: c56d8ed148d8170488817805c0c865da, type: 3}
+  pitchMultiplier: 0.8
   lowPitchMin: 1
   lowPitchMax: 6
   highPitchMultiplier: 0.25
