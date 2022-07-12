@@ -2,24 +2,6 @@
     "CarAgent": {
         "checkpoints": [
             {
-                "steps": 2519472,
-                "file_path": "results\\test6\\CarAgent\\CarAgent-2519472.onnx",
-                "reward": null,
-                "creation_time": 1657195905.7704906,
-                "auxillary_file_paths": [
-                    "results\\test6\\CarAgent\\CarAgent-2519472.pt"
-                ]
-            },
-            {
-                "steps": 2555214,
-                "file_path": "results\\test6\\CarAgent\\CarAgent-2555214.onnx",
-                "reward": null,
-                "creation_time": 1657621512.2627988,
-                "auxillary_file_paths": [
-                    "results\\test6\\CarAgent\\CarAgent-2555214.pt"
-                ]
-            },
-            {
                 "steps": 2556942,
                 "file_path": "results\\test6\\CarAgent\\CarAgent-2556942.onnx",
                 "reward": null,
@@ -45,15 +27,33 @@
                 "auxillary_file_paths": [
                     "results\\test6\\CarAgent\\CarAgent-2880582.pt"
                 ]
+            },
+            {
+                "steps": 2891310,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-2891310.onnx",
+                "reward": null,
+                "creation_time": 1657625882.607713,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-2891310.pt"
+                ]
+            },
+            {
+                "steps": 2904510,
+                "file_path": "results\\test6\\CarAgent\\CarAgent-2904510.onnx",
+                "reward": null,
+                "creation_time": 1657626681.5178723,
+                "auxillary_file_paths": [
+                    "results\\test6\\CarAgent\\CarAgent-2904510.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2880582,
+            "steps": 2904510,
             "file_path": "results\\test6\\CarAgent.onnx",
-            "reward": -143.43333678775363,
-            "creation_time": 1657625761.9972897,
+            "reward": null,
+            "creation_time": 1657626681.5178723,
             "auxillary_file_paths": [
-                "results\\test6\\CarAgent\\CarAgent-2880582.pt"
+                "results\\test6\\CarAgent\\CarAgent-2904510.pt"
             ]
         }
     },

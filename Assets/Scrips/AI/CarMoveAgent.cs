@@ -53,7 +53,7 @@ public class CarMoveAgent : Agent, Idisable
     public override void OnEpisodeBegin()
     {
         transform.position = _spawnPoint;
-        //transform.rotation = Quaternion.Euler(_rotatePoint);
+        transform.rotation = Quaternion.Euler(_rotatePoint);
     }
 
     public override void CollectObservations(VectorSensor sensor)
