@@ -9,19 +9,18 @@ public class GraphicsCanvas : MonoBehaviour
     [SerializeField] private Slider _brightnessSlider;
     [SerializeField] private Toggle _isFullScreenToggle;
     [SerializeField] private TMP_Text __brightnessTextValue;
-    [SerializeField] private int _defaultBrightness = 50;
+    [SerializeField] private const int DEFAULT_BRIGHTNESS = 50;
 
-    private bool _isFullScreen;
     private float _brightnessLevel;
 
-    [Header("Resolution Dropdowns")] public TMP_Dropdown resolutionDropdown;
+    [Header("Resolution Dropdowns")] 
+    public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+
     // Start is called before the first frame update
     void Start()
     {
         resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
@@ -30,25 +29,46 @@ public class GraphicsCanvas : MonoBehaviour
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
+        }
 
-            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+        if (PlayerPrefs.GetInt("resolutionSettings") == 0)
+        {
+            for (int i = 0; i < resolutions.Length; i++)
             {
-                currentResolutionIndex = i;
+                if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+                {
+                    currentResolutionIndex = i;
+                    SetResolution(i);
+                    PlayerPrefs.SetInt("resolutionSettings", i);
+                    break;
+                }
             }
         }
+
+        else
+            SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
+        
         _isFullScreenToggle.isOn = Screen.fullScreen;
         _brightnessSlider.value = PlayerPrefs.GetFloat("brightnessSettings") * 100;
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution()
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = resolutions[resolutionDropdown.value];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("resolutionSettings", resolutionDropdown.value);
+    }
+
+    private void SetResolution(int index)
+    {
+        Resolution resolution = resolutions[index];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("resolutionSettings", resolutionDropdown.value);
     }
 
     public void SetBrighness(float brightness)
@@ -57,32 +77,27 @@ public class GraphicsCanvas : MonoBehaviour
         __brightnessTextValue.text = brightness.ToString();
     }
 
-    public void SetFullScreen(bool isFullScreen)
+    public void SetFullScreen()
     {
-        _isFullScreen = isFullScreen;
+            Screen.fullScreen = _isFullScreenToggle.isOn;
     }
 
     public void GraphicsApply()
     {
         Screen.brightness = _brightnessLevel;
         PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel/100);
-        PlayerPrefs.SetInt("fullscreenSettings", (_isFullScreen ? 1 : 0));
-        Screen.fullScreen = _isFullScreen;
+        PlayerPrefs.SetInt("fullscreenSettings", (_isFullScreenToggle.isOn ? 1 : 0));
+        SetResolution();
+        SetFullScreen();
     }
 
-    public void ResetBuuton(string MenuType)
+    public void ResetButton()
     {
-        if (MenuType == "Graphics")
-        {
-            _brightnessSlider.value = _defaultBrightness;
-            __brightnessTextValue.text = _defaultBrightness.ToString();
+            _brightnessSlider.value = DEFAULT_BRIGHTNESS;
+            __brightnessTextValue.text = DEFAULT_BRIGHTNESS.ToString();
             _isFullScreenToggle.isOn = true;
             Screen.fullScreen = true;
-
-            Resolution currentResolution = Screen.currentResolution;
-            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
-            resolutionDropdown.value = resolutions.Length;
+            SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
             GraphicsApply();
-        }
     }
 }
