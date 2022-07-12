@@ -12,17 +12,22 @@ public class VolumeCanvas : MonoBehaviour
     [Header("Volume Setting")] 
     [SerializeField] private TMP_Text _volumeTextValue;
     [SerializeField] private Slider _volumeSlider;
-    [SerializeField] private float _defaultVolume = 1.0f;
+    [SerializeField] private int _defaultVolume = 50;
+
+    private void Start()
+    {
+        _volumeSlider.value = PlayerPrefs.GetFloat("volumeSettings")*100;
+    }
 
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
-        _volumeTextValue.text = volume.ToString("0.0");
+        _volumeTextValue.text = volume.ToString();
     }
 
     public void VolumeApply()
     {
-        PlayerPrefs.SetFloat("volumeSettings", AudioListener.volume);
+        PlayerPrefs.SetFloat("volumeSettings", AudioListener.volume/100f);
     }
 
     public void ResetBuuton(string MenuType)
@@ -31,7 +36,7 @@ public class VolumeCanvas : MonoBehaviour
         {
             AudioListener.volume = _defaultVolume;
             _volumeSlider.value = _defaultVolume;
-            _volumeTextValue.text = _defaultVolume.ToString("0.0");
+            _volumeTextValue.text = _defaultVolume.ToString();
             VolumeApply();
         }
     }
