@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public SceneManager _sceneManager;
+    public SceneHandler _sceneManager;
     public PrsestanSceneManager _prsestanScene;
 
-    public SceneManager SceneManager
+    public SceneHandler SceneManager
     {
         get { return _sceneManager; }
     }

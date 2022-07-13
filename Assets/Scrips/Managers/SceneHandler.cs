@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 #endregion
 
-public class SceneManager : MonoBehaviour
+public class SceneHandler : MonoBehaviour
 {
     private int _currentScene;
 
@@ -60,5 +60,10 @@ public class SceneManager : MonoBehaviour
         scene.allowSceneActivation = true;
         yield return new WaitForSeconds(1);
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(sceneRef);
+    }
+
+    public Scene GetActiveSecene()
+    {
+        return SceneManager.GetActiveScene();
     }
 }
