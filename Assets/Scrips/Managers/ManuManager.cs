@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ManuManager : MonoBehaviour
 {
-    public void LoadRace(int index)
+    public void LoadLevelSelection(int index)
     {
         StartCoroutine(GameManager.Instance.LoadScene(index));
     }

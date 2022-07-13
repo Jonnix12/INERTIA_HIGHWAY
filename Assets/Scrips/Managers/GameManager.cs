@@ -8,8 +8,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [SerializeField] private SceneManager _sceneManager;
-    [SerializeField] private PrsestanSceneManager _prsestanScene;
+
+    public SceneManager _sceneManager;
+    public PrsestanSceneManager _prsestanScene;
 
     public SceneManager SceneManager
     {
