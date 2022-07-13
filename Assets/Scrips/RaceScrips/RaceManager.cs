@@ -14,14 +14,19 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private int _numberOfLaps;
 
     private List<Idisable> _carInputs;
-    private List<GameObject> _cars;
+    private List<CarRaceManager> _cars;
+
+    public IReadOnlyList<CarRaceManager> Cars
+    {
+        get { return _cars; }
+    }
 
     private void Awake()
     {
-        GameObject[] tempCars;
-        tempCars = GameObject.FindGameObjectsWithTag("Car");
+        CarRaceManager[] tempCars;
+        tempCars = FindObjectsOfType<CarRaceManager>();
 
-        _cars = new List<GameObject>();
+        _cars = new List<CarRaceManager>();
 
         for (int i = 0; i < tempCars.Length; i++)
         {
@@ -36,17 +41,17 @@ public class RaceManager : MonoBehaviour
 
         for (int i = 0; i < _cars.Count; i++)
         {
-            if (_cars[i].TryGetComponent(out CarCheckPointHelper tempCheckPointHelper))
+            if (_cars[i].gameObject.TryGetComponent(out CarCheckPointHelper tempCheckPointHelper))
             {
                 tempCarCheckPointHelpers.Add(tempCheckPointHelper);
             }
 
-            if (_cars[i].TryGetComponent(out TimeTrack tempTimeTrack))
+            if (_cars[i].gameObject.TryGetComponent(out TimeTrack tempTimeTrack))
             {
                 tempCarTrackTime.Add(tempTimeTrack);
             }
 
-            if (_cars[i].TryGetComponent(out Idisable carInput))
+            if (_cars[i].gameObject.TryGetComponent(out Idisable carInput))
             {
                 _carInputs.Add(carInput);
             }
@@ -61,7 +66,10 @@ public class RaceManager : MonoBehaviour
         StartRace();
     }
 
-
+    public void EndRace()
+    {
+        
+    }
 
     private void StartRace()
     {

@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
   - component: {fileID: 105115991918602670}
-  - component: {fileID: 6088960869379987721}
+  - component: {fileID: 4557911037445420393}
   m_Layer: 0
   m_Name: Racing Car
   m_TagString: Car
@@ -285,7 +285,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6088960869379987721
+--- !u!114 &4557911037445420393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,10 +294,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248598967819147742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed2bfe179257204386b5b410881ec3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c5a1ad669883ac44b3ef36c3cbea67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 4485099863708357545}
+  _timeTrack: {fileID: 1460911654750654008}
+  _checkPointHelper: {fileID: 8314477958352051973}
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0

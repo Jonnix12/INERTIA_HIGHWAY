@@ -58,7 +58,6 @@ public class CheckPointSystem : MonoBehaviour
             _cars[i].SetCheckPointCount(_checkPoints.Count);
             _cars[i].SetNextCheckPoint(_checkPoints[0]);
             _cars[i].SetNumberOfLaps(numberOfLaps);
-            _cars[i].OnCompletedTheRace += CarCompletedTheRace;
         }
     }
 
@@ -94,10 +93,5 @@ public class CheckPointSystem : MonoBehaviour
         {
             vaCheckPoint.OnCheckPointTrigger -= OnCheckPointTrigger;
         }
-    }
-
-    private void CarCompletedTheRace(CarCheckPointHelper car)
-    {
-        Debug.Log(car.name + " fine");
     }
 }

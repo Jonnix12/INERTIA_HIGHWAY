@@ -62,8 +62,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
         
         AsyncOperation scene = _sceneManager.LoadSceneAsync(index, isAdditive);
-
-        //yield return new WaitUntil(() => (scene.progress > 0.85f));
+        
 
         while (scene.progress < 0.85f)
         {
