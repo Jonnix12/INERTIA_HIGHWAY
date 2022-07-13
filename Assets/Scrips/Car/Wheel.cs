@@ -25,7 +25,7 @@ public class Wheel : MonoBehaviour
     private float _damperStiffness;
 
     private readonly int _forceMultiplierZ = 1000;
-    private readonly int _forceMultiplierX = 2500;
+    private readonly int _forceMultiplierX = 2000;
 
     private RaycastHit _hit;
 
@@ -51,7 +51,7 @@ public class Wheel : MonoBehaviour
 
     #region PublicFuncation
 
-    public void InhitWheel(Rigidbody rb, float wheelRadius, float restLength, float springTravel, float springStiffness,
+    public void InitWheel(Rigidbody rb, float wheelRadius, float restLength, float springTravel, float springStiffness,
         float damperStiffness, float brakeForce, float wheelRotation)
     {
         _wheelRadius = wheelRadius;
@@ -116,7 +116,7 @@ public class Wheel : MonoBehaviour
     {
         _wheelVelocity = transform.InverseTransformDirection(_rb.GetPointVelocity(_hit.point));
         _wheelForceZ = input * _forceMultiplierZ / SpeedStopMultiplier;
-        _wheelForceX = _wheelVelocity.x * _forceMultiplierX;
+        _wheelForceX = _wheelVelocity.x * _springForce;
         return _wheelForceZ * transform.forward + _wheelForceX * -transform.right;
     }
 

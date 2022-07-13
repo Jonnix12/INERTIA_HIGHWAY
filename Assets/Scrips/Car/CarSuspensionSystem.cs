@@ -24,7 +24,7 @@ public class CarSuspensionSystem : MonoBehaviour
     {
         for (int i = 0; i < Wheels.Length; i++)
         {
-            _wheels[i].InhitWheel(_rb, wheelRadius, restLength, springTravel, springStiffness, damperStiffness,
+            _wheels[i].InitWheel(_rb, wheelRadius, restLength, springTravel, springStiffness, damperStiffness,
                 _brakeForce, _wheelRotation);
         }
     }

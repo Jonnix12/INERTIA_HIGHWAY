@@ -31,7 +31,7 @@ public class CarSteeringSystem_V2 : CarSuspensionSystem
         if (speed > 40)
         {
             float tempSpeed = Mathf.Clamp(speed, 0, 180);
-            _currentTurnRadius = Mathf.Lerp(_turnRadius, _turnRadius * 5, tempSpeed / 180);
+            _currentTurnRadius = Mathf.Lerp(_turnRadius, _turnRadius * 7, tempSpeed / 180);
         }
         else
         {
