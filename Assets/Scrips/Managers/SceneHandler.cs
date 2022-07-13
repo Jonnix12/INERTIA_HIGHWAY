@@ -32,11 +32,9 @@ public class SceneHandler : MonoBehaviour
         
         SceneManager.UnloadSceneAsync(preventsScene);
         
-        _scene = SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
-        //_scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
+        //_scene = SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
+        _scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
         _sceneRef = SceneManager.GetSceneByBuildIndex(index);
-
-        SceneManager.SetActiveScene(_sceneRef);
         
         _scene.allowSceneActivation = false;
 

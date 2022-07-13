@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LaodManu());
+        StartCoroutine(LoadManu());
     }
 
-    public IEnumerator LaodManu()
+    public IEnumerator LoadManu()
     {
         _prsestanScene.FadeViewPort(true);
         
@@ -46,12 +46,13 @@ public class GameManager : MonoBehaviour
         
         yield return new WaitUntil(() => scene.progress > 0.85f);
 
-        scene.allowSceneActivation = true;
         
         _prsestanScene.FadeViewPort(false);
         
         yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
         
+        scene.allowSceneActivation = true;
+        yield return new WaitForSeconds(1);
         _sceneManager.ActiveCurrentSecne();
     }
 
@@ -69,12 +70,18 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        scene.allowSceneActivation = true;
+        
         
         _prsestanScene.FadeViewPort(false);
+
+        while (!_prsestanScene.IsFadeIn)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         
-        yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
-        
+        scene.allowSceneActivation = true;
+        yield return new WaitForSeconds(1);
+
         _sceneManager.ActiveCurrentSecne();
     }
 }
