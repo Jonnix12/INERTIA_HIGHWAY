@@ -7,6 +7,7 @@ public class CarRaceManager : MonoBehaviour
 {
     [SerializeField] private TimeTrack _timeTrack;
     [SerializeField] private CarCheckPointHelper _checkPointHelper;
+    [SerializeField] private CarControl _carControl;
 
     [SerializeField] private string _name;
 
@@ -23,5 +24,10 @@ public class CarRaceManager : MonoBehaviour
     public string Name
     {
         get { return _name; }
+    }
+
+    public void CarFinished()
+    {
+        _carControl.OnEndRace();
     }
 }

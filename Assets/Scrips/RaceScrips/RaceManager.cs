@@ -13,9 +13,16 @@ public class RaceManager : MonoBehaviour
 
     [SerializeField] private int _numberOfLaps;
 
+    private string[,] _endList;
+    
     private List<Idisable> _carInputs;
     private List<CarRaceManager> _cars;
 
+    public string[,] EndList
+    {
+        get { return _endList; }
+    }
+    
     public IReadOnlyList<CarRaceManager> Cars
     {
         get { return _cars; }

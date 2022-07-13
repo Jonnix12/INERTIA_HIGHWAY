@@ -36,6 +36,8 @@ public class SceneHandler : MonoBehaviour
         //_scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
         _sceneRef = SceneManager.GetSceneByBuildIndex(index);
 
+        SceneManager.SetActiveScene(_sceneRef);
+        
         _scene.allowSceneActivation = false;
 
         return _scene;
