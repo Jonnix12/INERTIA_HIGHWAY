@@ -70,19 +70,9 @@ public class LevelSelectionManager : MonoBehaviour
         //if the player chose the batmobile- is this scene the yellow car will be setactvie false
         //both of the cars need to be in the scene but only one of them will be active
         //We can use _carChoice to know the car index
-        if (_levelChoice == 3)
+        if (_levelChoice == 3 || _levelChoice == 4 || _levelChoice == 5)
         {
-            //load farm
-        }
-
-        if (_levelChoice == 4)
-        {
-            //load desert
-        }
-
-        if (_levelChoice == 5)
-        {
-            //load mountaints
+            StartCoroutine(GameManager.Instance.LoadScene(_levelChoice,true));
         }
     }
 
