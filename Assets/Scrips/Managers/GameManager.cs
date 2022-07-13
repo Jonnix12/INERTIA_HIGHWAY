@@ -1,6 +1,7 @@
 #region
 
 using System.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 #endregion
@@ -9,9 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public SceneHandler _sceneManager;
-    public PrsestanSceneManager _prsestanScene;
-
+    [SerializeField] private SceneHandler _sceneManager;
+    [SerializeField] private PrsestanSceneManager _prsestanScene;
+ 
     public SceneHandler SceneManager
     {
         get { return _sceneManager; }
@@ -31,37 +32,50 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadSceneManu());
+        StartCoroutine(LaodManu());
     }
 
-    private IEnumerator LoadSceneManu()
-    {
-        SceneManager.LoadSceneAsync(1, false);
-
-        _prsestanScene.FadeViewPort(false);
-
-        while (_prsestanScene.IsFadeIn)
-        {
-            yield return null;
-        }
-    }
-
-    public IEnumerator LoadScene(int index)
+    public IEnumerator LaodManu()
     {
         _prsestanScene.FadeViewPort(true);
+        
+        yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
 
-        while (!_prsestanScene.IsFadeIn)
-        {
-            yield return null;
-        }
+        AsyncOperation scene = _sceneManager.LoadSceneAsyncFirstScene(1, true);
 
-        SceneManager.LoadSceneAsync(index, true);
+        
+        yield return new WaitUntil(() => scene.progress > 0.85f);
 
+        scene.allowSceneActivation = true;
+        
         _prsestanScene.FadeViewPort(false);
+        
+        yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
+        
+        _sceneManager.ActiveCurrentSecne();
+    }
 
-        while (_prsestanScene.IsFadeIn)
+    public IEnumerator LoadScene(int index,bool isAdditive)
+    {
+        _prsestanScene.FadeViewPort(true);
+        
+        yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
+        
+        AsyncOperation scene = _sceneManager.LoadSceneAsync(index, isAdditive);
+
+        //yield return new WaitUntil(() => (scene.progress > 0.85f));
+
+        while (scene.progress < 0.85f)
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
+
+        scene.allowSceneActivation = true;
+        
+        _prsestanScene.FadeViewPort(false);
+        
+        yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
+        
+        _sceneManager.ActiveCurrentSecne();
     }
 }

@@ -11,36 +11,57 @@ public class SceneHandler : MonoBehaviour
 {
     private int _currentScene;
 
+    private bool _isSceneLoaded;
+
+    private AsyncOperation _scene;
+    private Scene _sceneRef;
+    private Scene _presistanScene;
+
     private void Awake()
     {
-        _currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        _presistanScene = SceneManager.GetActiveScene();
     }
 
-    public async void LoadSceneAsync(int index, bool toUnload)
+    public AsyncOperation LoadSceneAsync(int index, bool isAdditive)
     {
-        if (toUnload)
-        {
-            Scene preventsScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(preventsScene);
-        }
+        _isSceneLoaded = false;
 
-        AsyncOperation nextScene =
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        Scene preventsScene = SceneManager.GetActiveScene();
+        
+        SceneManager.SetActiveScene(_presistanScene);
+        
+        SceneManager.UnloadSceneAsync(preventsScene);
+        
+        _scene = SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
+        //_scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
+        _sceneRef = SceneManager.GetSceneByBuildIndex(index);
 
-        Scene nextSceneRef = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(index);
+        _scene.allowSceneActivation = false;
 
-        nextScene.allowSceneActivation = false;
+        return _scene;
+    }
+    
+    public AsyncOperation LoadSceneAsyncFirstScene(int index, bool isAdditive)
+    {
+        _isSceneLoaded = false;
+        
+        Scene preventsScene = SceneManager.GetActiveScene();
+        SceneManager.UnloadScene(preventsScene);
+        
+        _scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
+        
+        _sceneRef = SceneManager.GetSceneByBuildIndex(index);
 
+        _scene.allowSceneActivation = false;
 
-        await Task.Delay(100);
-        StartCoroutine(WaitForSceneToLoad(nextScene, nextSceneRef));
+        return _scene;
     }
 
     public async void LoadNextScene()
     {
         _currentScene++;
 
-        AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(_currentScene);
+        AsyncOperation scene = SceneManager.LoadSceneAsync(_currentScene);
 
         scene.allowSceneActivation = false;
 
@@ -49,17 +70,10 @@ public class SceneHandler : MonoBehaviour
             await Task.Delay(500);
         }
     }
-
-    private IEnumerator WaitForSceneToLoad(AsyncOperation scene, Scene sceneRef)
+    
+    public void ActiveCurrentSecne()
     {
-        while (scene.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        scene.allowSceneActivation = true;
-        yield return new WaitForSeconds(1);
-        UnityEngine.SceneManagement.SceneManager.SetActiveScene(sceneRef);
+        SceneManager.SetActiveScene(_sceneRef);
     }
 
     public Scene GetActiveSecene()

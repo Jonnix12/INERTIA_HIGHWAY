@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class ManuManager : MonoBehaviour
 {
-    public void LoadLevelSelection(int index)
+    public void LoadLevel(int index)
     {
-        StartCoroutine(GameManager.Instance.LoadScene(index));
+        StartCoroutine(GameManager.Instance.LoadScene(index,false));
     }
 }

@@ -8690,7 +8690,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 926101970}
         m_TargetAssemblyTypeName: ManuManager, Assembly-CSharp
-        m_MethodName: LoadLevelSelection
+        m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

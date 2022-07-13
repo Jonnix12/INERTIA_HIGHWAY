@@ -38,8 +38,8 @@ public class GameplayCanvasManager : MonoBehaviour
 
     public void Restart()
     {
-        Scene scene = GameManager.Instance._sceneManager.GetActiveSecene();
-        GameManager.Instance.SceneManager.LoadSceneAsync(scene.buildIndex, true);
+        Scene scene = GameManager.Instance.SceneManager.GetActiveSecene();
+        StartCoroutine(GameManager.Instance.LoadScene(scene.buildIndex,false));
     }
 
     public void MoveToLevelSelection()

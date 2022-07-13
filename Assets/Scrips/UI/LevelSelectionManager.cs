@@ -27,7 +27,7 @@ public class LevelSelectionManager : MonoBehaviour
 
     public void MoveBackToMainMenu()
     {
-        GameManager.Instance.SceneManager.LoadSceneAsync(1, true);
+        StartCoroutine(GameManager.Instance.LoadScene(1,false));
     }
 
     public void MoveToLevelSelection()
