@@ -11,19 +11,26 @@ public class GraphicsCanvas : MonoBehaviour
     [SerializeField] private TMP_Text __brightnessTextValue;
     [SerializeField] private const int DEFAULT_BRIGHTNESS = 50;
 
-    private float _brightnessLevel;
-
     [Header("Resolution Dropdowns")] 
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         RefreshResolutions();
+        
+    }
+    void Start()
+    {
         //_isFullScreenToggle.isOn = PlayerPrefs.GetInt("fullscreenSettings") ? 1 : 0;
         _isFullScreenToggle.isOn = Screen.fullScreen;
+        if (PlayerPrefs.GetFloat("brightnessSettings") == 0)
+            PlayerPrefs.SetFloat("brightnessSettings", 0.5f);
+        else
         _brightnessSlider.value = PlayerPrefs.GetFloat("brightnessSettings") * 100;
+        __brightnessTextValue.text = _brightnessSlider.value.ToString();
     }
 
     private void RefreshResolutions()
@@ -39,7 +46,12 @@ public class GraphicsCanvas : MonoBehaviour
             options.Add(option);
         }
 
-        if (PlayerPrefs.GetInt("resolutionSettings") == 0)
+        if (PlayerPrefs.GetInt("resolutionSettings") != 0)
+        {
+            SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
+        }
+
+        else 
         {
             for (int i = 0; i < resolutions.Length; i++)
             {
@@ -52,9 +64,6 @@ public class GraphicsCanvas : MonoBehaviour
                 }
             }
         }
-
-        else
-            SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
@@ -72,14 +81,16 @@ public class GraphicsCanvas : MonoBehaviour
     {
         Resolution resolution = resolutions[index];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        resolutionDropdown.value = index;
+        resolutionDropdown.RefreshShownValue();
         PlayerPrefs.SetInt("resolutionSettings", resolutionDropdown.value);
     }
 
     public void SetBrighness()
     {
-        _brightnessLevel = _brightnessSlider.value;
         __brightnessTextValue.text = _brightnessSlider.value.ToString();
-        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel / 100);
+        Screen.brightness = _brightnessSlider.value / 100;
+        PlayerPrefs.SetFloat("brightnessSettings", _brightnessSlider.value / 100);
     }
 
     public void SetFullScreen()
@@ -90,8 +101,9 @@ public class GraphicsCanvas : MonoBehaviour
 
     public void ResetButton()
     {
+             Screen.brightness = DEFAULT_BRIGHTNESS/100;
             _brightnessSlider.value = DEFAULT_BRIGHTNESS;
-            __brightnessTextValue.text = (DEFAULT_BRIGHTNESS*100).ToString();
+            __brightnessTextValue.text = (DEFAULT_BRIGHTNESS).ToString();
             _isFullScreenToggle.isOn = true;
             Screen.fullScreen = true;
             SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
