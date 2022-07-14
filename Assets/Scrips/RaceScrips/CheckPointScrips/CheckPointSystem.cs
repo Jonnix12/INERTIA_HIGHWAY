@@ -67,8 +67,6 @@ public class CheckPointSystem : MonoBehaviour
         
         if (car.NextCheckPoint == checkPointId)
         {
-            Debug.Log(_checkPoints.IndexOf(checkPointId) + "id");
-            Debug.Log(_checkPoints.Count);
             if (_checkPoints.IndexOf(checkPointId) + 1 == _checkPoints.Count)
             {
                 car.SetNextCheckPoint(_checkPoints[0]);
@@ -79,7 +77,6 @@ public class CheckPointSystem : MonoBehaviour
             nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
             
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
-            //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }
         else
         {
