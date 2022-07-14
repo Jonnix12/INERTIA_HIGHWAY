@@ -37,6 +37,7 @@ public class RaceManager : MonoBehaviour
         else
             bumble.gameObject.SetActive(true);
 
+
         WaitToLoad(5);
         CarRaceManager[] tempCars;
         tempCars = FindObjectsOfType<CarRaceManager>();

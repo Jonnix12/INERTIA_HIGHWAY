@@ -18,11 +18,11 @@ public class GameplayCanvasManager : MonoBehaviour
 
     private void Awake()
     {
+        _miniMap.gameObject.SetActive(true);
+        _speedUI.gameObject.SetActive(true);
         _batPauseMenu.gameObject.SetActive(false);
         _bumblePauseMenu.gameObject.SetActive(false);
         _endRaceMenu.gameObject.SetActive(false);
-        _miniMap.gameObject.SetActive(true);
-        _speedUI.gameObject.SetActive(true);
     }
     private void Update()
     {
@@ -44,6 +44,8 @@ public class GameplayCanvasManager : MonoBehaviour
         _batPauseMenu.gameObject.SetActive(true);
         else
             _bumblePauseMenu.gameObject.SetActive(true);
+        _isPaused = true;
+        
         Time.timeScale = 0;
     }
     
@@ -55,6 +57,7 @@ public class GameplayCanvasManager : MonoBehaviour
             _batPauseMenu.gameObject.SetActive(false);
         else
             _bumblePauseMenu.gameObject.SetActive(false);
+        _isPaused = false;
         Time.timeScale = 1;
     }
 }
