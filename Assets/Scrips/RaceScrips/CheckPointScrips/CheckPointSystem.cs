@@ -63,20 +63,21 @@ public class CheckPointSystem : MonoBehaviour
 
     private void OnCheckPointTrigger(CarCheckPointHelper car, CheckPoint checkPointId)
     {
+        int nextCheckPointIndex = 0;
+        
         if (car.NextCheckPoint == checkPointId)
         {
-            int nextCheckPointIndex;
-
-            if (_checkPoints.IndexOf(checkPointId) + 1 >= _checkPoints.Count)
+            Debug.Log(_checkPoints.IndexOf(checkPointId) + "id");
+            Debug.Log(_checkPoints.Count);
+            if (_checkPoints.IndexOf(checkPointId) + 1 == _checkPoints.Count)
             {
-                nextCheckPointIndex = 0;
+                car.SetNextCheckPoint(_checkPoints[0]);
                 car.CompletedALap();
+                return;
             }
-            else
-            {
-                nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
-            }
-
+            
+            nextCheckPointIndex = _checkPoints.IndexOf(checkPointId) + 1;
+            
             car.SetNextCheckPoint(_checkPoints[nextCheckPointIndex]);
             //Debug.Log(car.gameObject.name + " Move to CheckPoint " + checkPointId.name);
         }

@@ -8,9 +8,9 @@ public class EndGameManu : MonoBehaviour
 {
     [SerializeField] private RaceManager _raceManager;
     
-    private TextMeshProUGUI[] _names;
+    [SerializeField] private TextMeshProUGUI[] _names;
     
-    private TextMeshProUGUI[] _times;
+    [SerializeField] private TextMeshProUGUI[] _times;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class EndGameManu : MonoBehaviour
     {
         for (int i = 0; i < _raceManager.Cars.Count; i++)
         {
-            _names[i].text = _raceManager.Cars[i].name;
+            _names[i].text = _raceManager.Cars[i].Name;
             _times[i].text = _raceManager.Cars[i].TimeOfLap.ToString();
         }
         
