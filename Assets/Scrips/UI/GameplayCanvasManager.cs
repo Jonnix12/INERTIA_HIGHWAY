@@ -23,7 +23,6 @@ public class GameplayCanvasManager : MonoBehaviour
         _endRaceMenu.gameObject.SetActive(false);
         _miniMap.gameObject.SetActive(true);
         _speedUI.gameObject.SetActive(true);
-
     }
     private void Update()
     {
@@ -41,7 +40,10 @@ public class GameplayCanvasManager : MonoBehaviour
     {
         _miniMap.gameObject.SetActive(false);
         _speedUI.gameObject.SetActive(false);
+        if(GameManager.Instance.playerManager.ScelectCar==1)
         _batPauseMenu.gameObject.SetActive(true);
+        else
+            _bumblePauseMenu.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
     
@@ -49,7 +51,10 @@ public class GameplayCanvasManager : MonoBehaviour
     {
         _miniMap.gameObject.SetActive(true);
         _speedUI.gameObject.SetActive(true);
-        _batPauseMenu.gameObject.SetActive(false);
+        if (GameManager.Instance.playerManager.ScelectCar == 1)
+            _batPauseMenu.gameObject.SetActive(false);
+        else
+            _bumblePauseMenu.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 }
