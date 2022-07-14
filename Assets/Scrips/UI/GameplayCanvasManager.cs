@@ -10,16 +10,30 @@ public class GameplayCanvasManager : MonoBehaviour
     [SerializeField] private GameObject _speedUI;
     [Header("Stop Menu")]
     [SerializeField] private Canvas _batPauseMenu;
-    [SerializeField] private Canvas _BumblePauseMenu;
+    [SerializeField] private Canvas _bumblePauseMenu;
     [Header("End game Menu")]
     [SerializeField] private Canvas _endRaceMenu;
 
+    private bool _isPaused;
 
+    private void Awake()
+    {
+        _batPauseMenu.gameObject.SetActive(false);
+        _bumblePauseMenu.gameObject.SetActive(false);
+        _endRaceMenu.gameObject.SetActive(false);
+        _miniMap.gameObject.SetActive(true);
+        _speedUI.gameObject.SetActive(true);
+
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OpenStopMenu();
+            if (!_isPaused)
+                OpenStopMenu();
+
+            else
+                ResumeGame();
         }
     }
 
