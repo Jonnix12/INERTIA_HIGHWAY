@@ -14,6 +14,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private CheckPointSystem _checkPointSystem;
     [SerializeField] private TimeTrackSystem _timeTrackSystem;
     [SerializeField] private PositionSystem _positionSystem;
+    [SerializeField] private EndGameManu _endGameManu;
 
     [SerializeField] private int _numberOfLaps;
 
@@ -45,6 +46,7 @@ public class RaceManager : MonoBehaviour
         for (int i = 0; i < tempCars.Length; i++)
         {
             _cars.Add(tempCars[i]);
+            _cars[i].CarCompletedTheRace += EndRace;
         }
 
         List<CarCheckPointHelper> tempCarCheckPointHelpers = new List<CarCheckPointHelper>();
@@ -77,6 +79,7 @@ public class RaceManager : MonoBehaviour
         _checkPointSystem.InitSystem(tempArrayCheckPointHelpers, _numberOfLaps);
         _positionSystem.InitSystem(tempArrayCheckPointHelpers);
         _timeTrackSystem.InitSystem(tempArrayTimeTracks);
+        
         StartRace();
     }
 
@@ -100,11 +103,19 @@ public class RaceManager : MonoBehaviour
             }
         }
             
-        //allCarsDane
+        _endGameManu.SetManu();
     }
 
     private void StartRace()
     {
         _timeTrackSystem.StartRace(_carInputs.ToArray());
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < _cars.Count; i++)
+        {
+            _cars[i].CarCompletedTheRace -= EndRace;
+        }
     }
 }
