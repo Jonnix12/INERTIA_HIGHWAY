@@ -20,6 +20,14 @@ public class GraphicsCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RefreshResolutions();
+        //_isFullScreenToggle.isOn = PlayerPrefs.GetInt("fullscreenSettings") ? 1 : 0;
+        _isFullScreenToggle.isOn = Screen.fullScreen;
+        _brightnessSlider.value = PlayerPrefs.GetFloat("brightnessSettings") * 100;
+    }
+
+    private void RefreshResolutions()
+    {
         resolutions = Screen.resolutions;
         List<string> options = new List<string>();
 
@@ -51,10 +59,6 @@ public class GraphicsCanvas : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
-        
-        _isFullScreenToggle.isOn = Screen.fullScreen;
-        _brightnessSlider.value = PlayerPrefs.GetFloat("brightnessSettings") * 100;
     }
 
     public void SetResolution()
@@ -71,33 +75,25 @@ public class GraphicsCanvas : MonoBehaviour
         PlayerPrefs.SetInt("resolutionSettings", resolutionDropdown.value);
     }
 
-    public void SetBrighness(float brightness)
+    public void SetBrighness()
     {
-        _brightnessLevel = brightness;
-        __brightnessTextValue.text = brightness.ToString();
+        _brightnessLevel = _brightnessSlider.value;
+        __brightnessTextValue.text = _brightnessSlider.value.ToString();
+        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel / 100);
     }
 
     public void SetFullScreen()
     {
-            Screen.fullScreen = _isFullScreenToggle.isOn;
-    }
-
-    public void GraphicsApply()
-    {
-        Screen.brightness = _brightnessLevel;
-        PlayerPrefs.SetFloat("brightnessSettings", _brightnessLevel/100);
+        Screen.fullScreen = _isFullScreenToggle.isOn;
         PlayerPrefs.SetInt("fullscreenSettings", (_isFullScreenToggle.isOn ? 1 : 0));
-        SetResolution();
-        SetFullScreen();
     }
 
     public void ResetButton()
     {
             _brightnessSlider.value = DEFAULT_BRIGHTNESS;
-            __brightnessTextValue.text = DEFAULT_BRIGHTNESS.ToString();
+            __brightnessTextValue.text = (DEFAULT_BRIGHTNESS*100).ToString();
             _isFullScreenToggle.isOn = true;
             Screen.fullScreen = true;
             SetResolution(PlayerPrefs.GetInt("resolutionSettings"));
-            GraphicsApply();
     }
 }

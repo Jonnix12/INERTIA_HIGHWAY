@@ -16,28 +16,21 @@ public class VolumeCanvas : MonoBehaviour
 
     private void Start()
     {
+        AudioListener.volume = PlayerPrefs.GetFloat("volumeSettings") * 100;
         _volumeSlider.value = PlayerPrefs.GetFloat("volumeSettings")*100;
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume()
     {
-        AudioListener.volume = volume;
-        _volumeTextValue.text = volume.ToString();
+        AudioListener.volume = _volumeSlider.value;
+        _volumeTextValue.text = _volumeSlider.value.ToString();
+        PlayerPrefs.SetFloat("volumeSettings", AudioListener.volume / 100f);
     }
 
-    public void VolumeApply()
+    public void ResetButton()
     {
-        PlayerPrefs.SetFloat("volumeSettings", AudioListener.volume/100f);
-    }
-
-    public void ResetBuuton(string MenuType)
-    {
-        if (MenuType == "Audio")
-        {
             AudioListener.volume = _defaultVolume;
             _volumeSlider.value = _defaultVolume;
-            _volumeTextValue.text = _defaultVolume.ToString();
-            VolumeApply();
-        }
+            _volumeTextValue.text = _volumeSlider.value.ToString();
     }
 }
