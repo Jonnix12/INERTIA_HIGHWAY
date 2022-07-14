@@ -1,6 +1,7 @@
 #region
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,10 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private PositionSystem _positionSystem;
 
     [SerializeField] private int _numberOfLaps;
-    
+
+    [SerializeField] private GameObject bumble;
+    [SerializeField] private GameObject bat;
+
     private List<Idisable> _carInputs;
     private List<CarRaceManager> _cars;
     
@@ -26,6 +30,13 @@ public class RaceManager : MonoBehaviour
 
     private void Awake()
     {
+        if (GameManager.Instance.playerManager.ScelectCar == 1)
+            bat.gameObject.SetActive(true);
+
+        else
+            bumble.gameObject.SetActive(true);
+
+        WaitToLoad(5);
         CarRaceManager[] tempCars;
         tempCars = FindObjectsOfType<CarRaceManager>();
 
@@ -67,6 +78,11 @@ public class RaceManager : MonoBehaviour
         _positionSystem.InitSystem(tempArrayCheckPointHelpers);
         _timeTrackSystem.InitSystem(tempArrayTimeTracks);
         StartRace();
+    }
+
+    public IEnumerator WaitToLoad(int time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     public void EndRace(CarRaceManager carRaceManager)
