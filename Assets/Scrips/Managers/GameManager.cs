@@ -3,6 +3,7 @@
 using System.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #endregion
 
@@ -63,15 +64,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
         
         AsyncOperation scene = _sceneManager.LoadSceneAsync(index, isAdditive);
-        
+
 
         while (scene.progress < 0.85f)
         {
             yield return new WaitForEndOfFrame();
         }
 
-        
-        
         _prsestanScene.FadeViewPort(false);
 
         while (!_prsestanScene.IsFadeIn)
@@ -80,8 +79,6 @@ public class GameManager : MonoBehaviour
         }
         
         scene.allowSceneActivation = true;
-        yield return new WaitForSeconds(1);
-
-        _sceneManager.ActiveCurrentSecne();
+        StartCoroutine(_sceneManager.ActiveScene());
     }
 }

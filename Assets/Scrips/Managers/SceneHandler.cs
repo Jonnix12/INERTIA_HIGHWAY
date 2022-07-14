@@ -70,9 +70,10 @@ public class SceneHandler : MonoBehaviour
             await Task.Delay(500);
         }
     }
-    
-    public void ActiveCurrentSecne()
+   
+    public IEnumerator ActiveScene()
     {
+        yield return new WaitForSeconds(1);
         SceneManager.SetActiveScene(_sceneRef);
     }
 
