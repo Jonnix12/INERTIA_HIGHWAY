@@ -53,8 +53,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
         
         scene.allowSceneActivation = true;
-        yield return new WaitForSeconds(1);
-        _sceneManager.ActiveCurrentSecne();
+        StartCoroutine(_sceneManager.ActiveScene());
     }
 
     public IEnumerator LoadScene(int index,bool isAdditive)
