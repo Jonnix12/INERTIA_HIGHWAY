@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private SceneHandler _sceneManager;
     [SerializeField] private PrsestanSceneManager _prsestanScene;
+    [SerializeField] public PlayerManager playerManager;
  
     public SceneHandler SceneManager
     {

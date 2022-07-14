@@ -2544,6 +2544,37 @@ PhysicMaterial:
   bounciness: 0
   frictionCombine: 0
   bounceCombine: 0
+--- !u!1 &350402906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1270588166419716257, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+    type: 3}
+  m_PrefabInstance: {fileID: 689370959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &350402907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350402906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa5f68e2226cbc4bb13df55c73abd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraLookAT: {fileID: 384134503}
+--- !u!114 &350402916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5945418050563695530, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+    type: 3}
+  m_PrefabInstance: {fileID: 689370959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350402906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b9e8e5e85c09342bb3e0fd6dfa29c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &370247968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2771,6 +2802,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &384134503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7964170325606762877, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+    type: 3}
+  m_PrefabInstance: {fileID: 689370959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386985775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4993,6 +5030,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &689370959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1270588166419716257, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_Name
+      value: Racing Car (BatMobile)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481721452535459033, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: _controller
+      value: 
+      objectReference: {fileID: 350402916}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 635.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.030000687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 358.5195
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939320361450684955, guid: 8ccb8a63a69b5a64592a01adad71fbae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ccb8a63a69b5a64592a01adad71fbae, type: 3}
 --- !u!1001 &691352231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10554,8 +10665,8 @@ MonoBehaviour:
   opt_bIsLightmapped: 0
   opt_tRoadMaterialDropdown: 3
   tRoadMaterialDropdownOLD: 3
-  RoadMaterial1: {fileID: 0}
-  RoadMaterial2: {fileID: 0}
+  RoadMaterial1: {fileID: 2100000, guid: 0507e1e4370429b4bb425498fbf1a165, type: 2}
+  RoadMaterial2: {fileID: 2100000, guid: 576b30ace62aa7240bbbba9efd4d4c05, type: 2}
   RoadMaterial3: {fileID: 0}
   RoadMaterial4: {fileID: 0}
   RoadMaterialMarker1: {fileID: 2100000, guid: 4ae110091cdba9444b4abeb8ac844916, type: 2}
@@ -12412,6 +12523,7 @@ GameObject:
   - component: {fileID: 1838332685}
   - component: {fileID: 1838332684}
   - component: {fileID: 1838332687}
+  - component: {fileID: 1838332688}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12484,7 +12596,7 @@ Transform:
   m_Children:
   - {fileID: 2100899841}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1838332687
 MonoBehaviour:
@@ -12610,6 +12722,20 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &1838332688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838332683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c8552ec736fe64697abf60a7164e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offSet: {x: 0, y: 0, z: 0}
+  _timeToSmoothDamp: 1
 --- !u!1 &1842538237
 GameObject:
   m_ObjectHideFlags: 0

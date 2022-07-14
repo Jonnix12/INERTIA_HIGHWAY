@@ -53,26 +53,20 @@ public class LevelSelectionManager : MonoBehaviour
     public void ChooseLevel(int levelIndex)
     {
         _levelChoice = levelIndex;
+        MoveToCarChoice();
     }
 
     public void ChooseCar(int carIndex)
     {
-        _carChoice = carIndex;
+        GameManager.Instance.playerManager.ScelectCar = carIndex;
+        LoadLevel();
     }
 
     public void LoadLevel()
     {
-        if (_carChoice == 0)
-        {
-            Debug.LogError("I didnt chose any car");
-        }
-
-        //if the player chose the batmobile- is this scene the yellow car will be setactvie false
-        //both of the cars need to be in the scene but only one of them will be active
-        //We can use _carChoice to know the car index
         if (_levelChoice == 3 || _levelChoice == 4 || _levelChoice == 5)
         {
-            StartCoroutine(GameManager.Instance.LoadScene(_levelChoice,true));
+            StartCoroutine(GameManager.Instance.LoadScene(_levelChoice, true));
         }
     }
 
