@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 7025239714863004647}
   - component: {fileID: 7025239714863004646}
   - component: {fileID: 7025239714863004645}
+  - component: {fileID: 7272568423651360048}
   m_Layer: 5
   m_Name: EndGameCanvas
   m_TagString: Untagged
@@ -867,6 +868,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7272568423651360048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025239714863004644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56875663c1df68941a442746c4181a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7025239714869196385
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 #region
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +8,16 @@ using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
+    public event Action OnAllCarsCompleted;
+    
     [SerializeField] private CheckPointSystem _checkPointSystem;
     [SerializeField] private TimeTrackSystem _timeTrackSystem;
     [SerializeField] private PositionSystem _positionSystem;
 
     [SerializeField] private int _numberOfLaps;
-
-    private string[,] _endList;
     
     private List<Idisable> _carInputs;
     private List<CarRaceManager> _cars;
-
-    public string[,] EndList
-    {
-        get { return _endList; }
-    }
     
     public IReadOnlyList<CarRaceManager> Cars
     {
@@ -73,9 +69,22 @@ public class RaceManager : MonoBehaviour
         StartRace();
     }
 
-    public void EndRace()
+    public void EndRace(CarRaceManager carRaceManager)
     {
+        if (carRaceManager.CarCheckPointHelper.IsPlayer)
+        {
+            
+        }
         
+        for (int i = 0; i < _cars.Count; i++)
+        {
+            if (!_cars[i].IsDone)
+            {
+                return;
+            }
+        }
+            
+        //allCarsDane
     }
 
     private void StartRace()

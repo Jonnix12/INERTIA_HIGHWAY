@@ -13,6 +13,7 @@ public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelpe
     public event Action<CarCheckPointHelper> OnCompletedTheRace;
 
     [SerializeField] private int _racePosition;
+    [SerializeField] private bool _isPlayer;
 
     private CheckPoint _previousCheckPoint;
     private CheckPoint _nextCheckPoint;
@@ -20,6 +21,11 @@ public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelpe
     private int _numberOfCheckPointToEnd;
     private int _numberOfLaps;
 
+    public bool IsPlayer
+    {
+        get { return _isPlayer; }
+    }
+    
     public int NumberOfCheckPointToEnd
     {
         get { return _numberOfCheckPointToEnd; }
@@ -82,6 +88,7 @@ public class CarCheckPointHelper : MonoBehaviour, IComparable<CarCheckPointHelpe
 
         if (_numberOfLaps <= 0)
         {
+            Debug.Log(  name+"I");
             OnCompletedTheRace?.Invoke(this);
         }
     }

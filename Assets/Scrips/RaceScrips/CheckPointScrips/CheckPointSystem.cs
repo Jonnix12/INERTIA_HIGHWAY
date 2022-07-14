@@ -83,7 +83,7 @@ public class CheckPointSystem : MonoBehaviour
         else
         {
             car.PassInCorrectCheckPoint();
-            //Debug.LogError("Wrong CheckPoint" + checkPointId.ID);
+            Debug.LogError(car.name + "Wrong CheckPoint" + checkPointId.ID);
         }
     }
 
