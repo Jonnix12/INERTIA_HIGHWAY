@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class EndGameManu : MonoBehaviour
 {
     [SerializeField] private RaceManager _raceManager;
+    [SerializeField] private GameObject _firstButton;
     
     [SerializeField] private TextMeshProUGUI[] _names;
     
@@ -18,6 +22,7 @@ public class EndGameManu : MonoBehaviour
         _times = new TextMeshProUGUI[4];
 
         _raceManager.OnAllCarsCompleted += SetManu;
+        UpdateFirstButton(_firstButton);
     }
 
     private void OnDisable()
@@ -34,5 +39,26 @@ public class EndGameManu : MonoBehaviour
         }
         
         gameObject.SetActive(true);
+    }
+
+    public void NextRace()
+    {
+         Scene scene = GameManager.Instance.SceneManager.GetActiveSecene();
+        if(scene.buildIndex==5)
+            StartCoroutine(GameManager.Instance.LoadScene(1,false));
+
+        else
+        StartCoroutine(GameManager.Instance.LoadScene(scene.buildIndex + 1, false)); 
+    }
+
+    public void MainMenu()
+    {
+        StartCoroutine(GameManager.Instance.LoadScene(1, false)); 
+    }
+
+    private void UpdateFirstButton(GameObject firstButton)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
     }
 }
