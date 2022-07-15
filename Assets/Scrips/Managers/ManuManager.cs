@@ -10,4 +10,9 @@ public class ManuManager : MonoBehaviour
     {
         GameManager.Instance.LoadScene(index);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
