@@ -29,7 +29,7 @@ public class PrsestanSceneManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         _viewPort.SetActive(true);
         float fade = 0;
@@ -44,7 +44,7 @@ public class PrsestanSceneManager : MonoBehaviour
         _isFadeIn = true;
     }
 
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         float fade = 1;
 

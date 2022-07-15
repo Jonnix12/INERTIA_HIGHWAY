@@ -36,49 +36,29 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(LoadManu());
     }
+    
+    public void LoadScene(int index)
+    {
+        StartCoroutine(LoadSceneCoroutine(index));
+    }
 
     public IEnumerator LoadManu()
     {
-        _prsestanScene.FadeViewPort(true);
-        
-        yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
+        yield return StartCoroutine(_sceneManager.LoadSceneAsync(1));
 
-        AsyncOperation scene = _sceneManager.LoadSceneAsyncFirstScene(1, true);
+        yield return StartCoroutine(_prsestanScene.FadeOut());
 
-        
-        yield return new WaitUntil(() => scene.progress > 0.85f);
-
-        
-        _prsestanScene.FadeViewPort(false);
-        
-        yield return new WaitUntil(() => !_prsestanScene.IsFadeIn);
-        
-        scene.allowSceneActivation = true;
         StartCoroutine(_sceneManager.ActiveScene());
     }
 
-    public IEnumerator LoadScene(int index,bool isAdditive)
+    private IEnumerator LoadSceneCoroutine(int index)
     {
-        _prsestanScene.FadeViewPort(true);
-        
-        yield return new WaitUntil(() => _prsestanScene.IsFadeIn);
-        
-        AsyncOperation scene = _sceneManager.LoadSceneAsync(index, isAdditive);
+        yield return StartCoroutine(_prsestanScene.FadeIn());
 
+        yield return StartCoroutine(_sceneManager.LoadSceneAsync(index));
 
-        while (scene.progress < 0.85f)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return StartCoroutine(_prsestanScene.FadeOut());
 
-        _prsestanScene.FadeViewPort(false);
-
-        while (!_prsestanScene.IsFadeIn)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        
-        scene.allowSceneActivation = true;
         StartCoroutine(_sceneManager.ActiveScene());
     }
 }

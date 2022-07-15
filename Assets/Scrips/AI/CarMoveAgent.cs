@@ -58,6 +58,9 @@ public class CarMoveAgent : Agent, Idisable
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        if (checkPointHelper.NextCheckPoint == null)
+            return;        
+        
         Vector3 checkpointForward = checkPointHelper.NextCheckPoint.transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
         sensor.AddObservation(directionDot);

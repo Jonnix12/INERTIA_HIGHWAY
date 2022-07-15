@@ -19,64 +19,49 @@ public class SceneHandler : MonoBehaviour
 
     private void Awake()
     {
-        _presistanScene = SceneManager.GetActiveScene();
+        _presistanScene = SceneManager.GetSceneByBuildIndex(0);
     }
 
-    public AsyncOperation LoadSceneAsync(int index, bool isAdditive)
+    public IEnumerator LoadSceneAsync(int index)
     {
         _isSceneLoaded = false;
 
         Scene preventsScene = SceneManager.GetActiveScene();
         
         SceneManager.SetActiveScene(_presistanScene);
-        
-        SceneManager.UnloadSceneAsync(preventsScene);
-        
-        //_scene = SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
-        _scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
-        _sceneRef = SceneManager.GetSceneByBuildIndex(index);
-        
-        _scene.allowSceneActivation = false;
 
-        return _scene;
-    }
-    
-    public AsyncOperation LoadSceneAsyncFirstScene(int index, bool isAdditive)
-    {
-        _isSceneLoaded = false;
-        
-        Scene preventsScene = SceneManager.GetActiveScene();
-        SceneManager.UnloadScene(preventsScene);
-        
-        _scene = SceneManager.LoadSceneAsync(index,isAdditive? LoadSceneMode.Additive : LoadSceneMode.Single);
-        
-        _sceneRef = SceneManager.GetSceneByBuildIndex(index);
-
-        _scene.allowSceneActivation = false;
-
-        return _scene;
-    }
-
-    public async void LoadNextScene()
-    {
-        _currentScene++;
-
-        AsyncOperation scene = SceneManager.LoadSceneAsync(_currentScene);
-
-        scene.allowSceneActivation = false;
-
-        if (scene.isDone)
+        if (preventsScene.buildIndex != 0)
         {
-            await Task.Delay(500);
+             SceneManager.UnloadSceneAsync(preventsScene);
+        }
+        
+        _scene = SceneManager.LoadSceneAsync(index,LoadSceneMode.Additive);
+        
+        _scene.allowSceneActivation = false;
+
+        while (!_scene.isDone)
+        {
+            if (_scene.progress >= 0.89f)
+            {
+                _scene.allowSceneActivation = true;
+                _sceneRef = SceneManager.GetSceneByBuildIndex(index);
+                yield break;
+            }
+            
+            _isSceneLoaded = _scene.isDone;
+            yield return null;
         }
     }
-   
+
     public IEnumerator ActiveScene()
     {
-        yield return new WaitForSeconds(1);
-        SceneManager.SetActiveScene(_sceneRef);
+        while (!SceneManager.SetActiveScene(_sceneRef))
+        {
+            yield return null;
+        }
+        
     }
-
+    
     public Scene GetActiveSecene()
     {
         return SceneManager.GetActiveScene();

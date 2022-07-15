@@ -45,15 +45,15 @@ public class EndGameManu : MonoBehaviour
     {
          Scene scene = GameManager.Instance.SceneManager.GetActiveSecene();
         if(scene.buildIndex==5)
-            StartCoroutine(GameManager.Instance.LoadScene(1, true));
+            GameManager.Instance.LoadScene(1);
 
         else
-        StartCoroutine(GameManager.Instance.LoadScene(scene.buildIndex + 1, true)); 
+            GameManager.Instance.LoadScene(scene.buildIndex + 1); 
     }
 
     public void MainMenu()
     {
-        StartCoroutine(GameManager.Instance.LoadScene(1, true)); 
+        GameManager.Instance.LoadScene(1);
     }
 
     private void UpdateFirstButton(GameObject firstButton)

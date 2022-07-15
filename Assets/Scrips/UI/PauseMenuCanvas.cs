@@ -16,19 +16,19 @@ public class PauseMenuCanvas : MonoBehaviour
     public void Restart()
     {
         Scene scene = GameManager.Instance.SceneManager.GetActiveSecene();
-        StartCoroutine(GameManager.Instance.LoadScene(scene.buildIndex, true));
+        GameManager.Instance.LoadScene(scene.buildIndex);
         Time.timeScale = 1;
     }
 
     public void MoveToLevelSelection()
     {
-        StartCoroutine(GameManager.Instance.LoadScene(2, true));
+        GameManager.Instance.LoadScene(2);
         Time.timeScale = 1;
     }
 
     public void MoveToMainMenu()
     {
-        StartCoroutine(GameManager.Instance.LoadScene(1, true));
+        GameManager.Instance.LoadScene(1);
         Time.timeScale = 1;
     }
 

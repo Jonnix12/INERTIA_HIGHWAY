@@ -27,7 +27,7 @@ public class LevelSelectionManager : MonoBehaviour
 
     public void MoveBackToMainMenu()
     {
-        StartCoroutine(GameManager.Instance.LoadScene(1,false));
+        GameManager.Instance.LoadScene(1);
     }
 
     public void MoveToLevelSelection()
@@ -66,7 +66,7 @@ public class LevelSelectionManager : MonoBehaviour
     {
         if (_levelChoice == 3 || _levelChoice == 4 || _levelChoice == 5)
         {
-            StartCoroutine(GameManager.Instance.LoadScene(_levelChoice, true));
+            GameManager.Instance.LoadScene(_levelChoice);
         }
     }
 

@@ -21,6 +21,11 @@ public class CarHud : MonoBehaviour
         _maxLaps.text = _checkPoint.NumberOfLaps.ToString();
     }
 
+    private void OnDisable()
+    {
+        TimeTrackSystem.CountDown -= GetCountDown;
+    }
+
     private void Update()
     {
         float tempTime = _timeTrack.LapTime;
