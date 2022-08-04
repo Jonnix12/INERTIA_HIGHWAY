@@ -1,19 +1,20 @@
-using System;
+#region
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+#endregion
 
 public class CarVFX : MonoBehaviour
 {
     [SerializeField] private CarController _controller;
-    
+
     [SerializeField] private ParticleSystem _smoke;
     [SerializeField] private ParticleSystem _dust;
     [SerializeField] private float _timeToWaitForParticle = 2f;
     private WaitForSeconds _waitFor;
 
-    private bool _isCoroutineRuning = false;
+    private bool _isCoroutineRuning;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class CarVFX : MonoBehaviour
 
     void Update()
     {
-       _smoke.Play();
+        _smoke.Play();
     }
 
     private IEnumerator ParticleTimeOut()

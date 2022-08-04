@@ -1,40 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
+#region
+
 using UnityEngine;
 
-public class CarInputManager : MonoBehaviour
+#endregion
+
+public class CarInputManager : MonoBehaviour, Idisable
 {
     #region ScrifsReference
 
     [SerializeField] private CarController _controller;
     public CarInput Input;
+    private float acceleration;
+
+    public float CarAcceleration
+    {
+        get { return acceleration; }
+    }
 
     #endregion
 
     private void Awake()
     {
         Input = new CarInput();
-        CamaraFallowCar.SetTarget(_controller._cameraLookAT);
-    }
-
-    private void OnEnable()
-    {
-        Input.Enable();
-    }
-
-    private void OnDisable()
-    {
         Input.Disable();
     }
 
-    private void Update()
+    public void Update()
     {
-        float acceleration = Input.Default.Acceleration.ReadValue<float>();
+        acceleration = Input.Default.Acceleration.ReadValue<float>();
         float steer = Input.Default.Steering.ReadValue<float>();
         bool isBreak = Input.Default.Break.IsPressed();
-
-        _controller.UpdateCarInputs(acceleration,steer,isBreak);
+        _controller.UpdateCarInputs(acceleration, steer, isBreak);
 
         CamaraFallowCar.IsLookBackInput = Input.CamControl.CamControl.IsPressed();
+    }
+
+    [ContextMenu("EnableInput")]
+    private void ForceEnable()
+    {
+        InputState(true);
+    }
+
+    private void InputState(bool stats)
+    {
+        if (stats)
+        {
+            Input.Enable();
+        }
+        else
+        {
+            Input.Disable();
+        }
+    }
+
+
+    public void EnableInput(bool enable)
+    {
+        InputState(enable);
     }
 }

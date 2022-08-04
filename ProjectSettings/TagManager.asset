@@ -18,8 +18,8 @@ TagManager:
   - UI
   - Wall
   - CheckPoint
-  - 
-  - 
+  - MiniMap
+  - Terrain
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: PresetanScene
+    uniqueID: 1958199757
     locked: 0

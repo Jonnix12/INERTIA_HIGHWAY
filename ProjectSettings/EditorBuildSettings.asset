@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AnimEffectTest/AnimEffectTest.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
+    path: Assets/Scenes/PrsestanScene/PrsestanScene.unity
+    guid: 94e64fdbadacddc46a9c2af19e7d4553
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/Main Menu.unity
+    guid: f68615eb0de69b24a941e9912bb33e2b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/LevelSettingsScene.unity
+    guid: 802f6e3d05b6a3b4b804aef2405ffd0d
+  - enabled: 1
+    path: Assets/Scenes/Races/Race1.unity
+    guid: b7635b85354b7914aa195605420d8058
+  - enabled: 1
+    path: Assets/Scenes/Races/Race2.unity
+    guid: 89f17035979a0614295a401f13adcd6d
+  - enabled: 1
+    path: Assets/Scenes/Races/Race3.unity
+    guid: 652a724074af204488c4e1037a8f5237
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e9e13510ac8d9a24a932e58023a8e238,
       type: 2}

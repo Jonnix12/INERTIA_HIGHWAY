@@ -125,11 +125,11 @@ GameObject:
   - component: {fileID: 1880317207959290724}
   - component: {fileID: 5941300305639498453}
   - component: {fileID: 8314477958352051973}
-  - component: {fileID: 2652593304945152731}
-  - component: {fileID: 1454559328895671054}
-  - component: {fileID: 5482650088193543652}
+  - component: {fileID: 1460911654750654008}
   - component: {fileID: 2690864471449865936}
   - component: {fileID: 1810582283}
+  - component: {fileID: 105115991918602670}
+  - component: {fileID: 4557911037445420393}
   m_Layer: 0
   m_Name: Racing Car
   m_TagString: Car
@@ -168,20 +168,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - {fileID: 1709527907469197365, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 3274204849436070299, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 5777664676044734833, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
-  - {fileID: 8780044168393870926, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  - {fileID: 1709527907469197365}
+  - {fileID: 3274204849436070299}
+  - {fileID: 5777664676044734833}
+  - {fileID: 8780044168393870926}
   wheelRadius: 0.33
-  rb: {fileID: 1810582283, guid: dbab81e23cc3e20448f4ed436ad2e9e8, type: 3}
+  _rb: {fileID: 1810582283}
   restLength: 0.57
   springTravel: 0.15
   springStiffness: 60000
   damperStiffness: 4000
+  _wheelRotation: 10
   _brakeForce: 2500
   _wheelBase: 2.55
   _rearTranck: 1.5
   _turnRadius: 3
+  _animator: {fileID: 105115991918602670}
   _engineCurve:
     serializedVersion: 2
     m_Curve:
@@ -209,8 +211,6 @@ MonoBehaviour:
   _smoothDampTime: 0.5
   _maxSpeed: 130
   _speedLimitMultiplier: 3
-  _cameraLookAT: {fileID: 1880317207959290724, guid: dbab81e23cc3e20448f4ed436ad2e9e8,
-    type: 3}
 --- !u!114 &8314477958352051973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,23 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279d92753fbc3c44a85bbec36469976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2652593304945152731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ffdee4ad628ea4494727d6c11d302a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {fileID: 0}
-  enginRPM: {fileID: 0}
-  gear: {fileID: 0}
-  _car: {fileID: 5941300305639498453}
---- !u!114 &1454559328895671054
+  _racePosition: 0
+--- !u!114 &1460911654750654008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,26 +233,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248598967819147742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec2fcec00510b974b8363035f9d37160, type: 3}
+  m_Script: {fileID: 11500000, guid: a72aed9ab301d0f4b99c194079879db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 5941300305639498453}
---- !u!114 &5482650088193543652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248598967819147742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9da075e41d7d54f8ba0056ed0081b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 5941300305639498453}
-  _smoke: {fileID: 2643989895111903125}
-  _dust: {fileID: 4104078004516051882, guid: 9ad077e426191e64b9a3ce4839ab700e, type: 3}
-  _timeToWaitForParticle: 2
 --- !u!65 &2690864471449865936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -297,6 +265,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &105115991918602670
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 82efcc1c4c35384499068607dc833df2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4557911037445420393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248598967819147742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5a1ad669883ac44b3ef36c3cbea67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeTrack: {fileID: 1460911654750654008}
+  _checkPointHelper: {fileID: 8314477958352051973}
 --- !u!1 &1532183532590448871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,12 +1145,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376e99acfa55e4944a9c38c31f0a6f99, type: 3}
---- !u!198 &2643989895111903125 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5859661776530846119, guid: 376e99acfa55e4944a9c38c31f0a6f99,
-    type: 3}
-  m_PrefabInstance: {fileID: 8494041347107337778}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5861281326663677069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2645743654374408895, guid: 376e99acfa55e4944a9c38c31f0a6f99,

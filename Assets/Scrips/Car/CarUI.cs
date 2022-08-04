@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+#region
+
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
+
+#endregion
 
 public class CarUI : MonoBehaviour
 {

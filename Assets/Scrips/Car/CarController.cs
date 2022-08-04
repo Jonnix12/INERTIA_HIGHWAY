@@ -1,12 +1,6 @@
-using System;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class CarController : CarEngineComponent
 {
     #region Fields
-
-    [Header("Camera LookAT")] public Transform _cameraLookAT;
 
     private float _accelerationInput;
     private float _steeringInput;
@@ -15,14 +9,12 @@ public class CarController : CarEngineComponent
     private float _currentBreakForce;
 
     #endregion
-    
 
     #region Updates
 
     private void Start()
     {
         InitSuspension();
-        CamaraFallowCar.SetTarget(_cameraLookAT);
     }
 
     private void FixedUpdate()
@@ -38,7 +30,6 @@ public class CarController : CarEngineComponent
             }
         }
     }
-    
 
     #endregion
 
@@ -51,7 +42,5 @@ public class CarController : CarEngineComponent
         _isBreakingInput = isBreak;
     }
 
-    
     #endregion
-    
 }
